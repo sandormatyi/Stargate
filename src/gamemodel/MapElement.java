@@ -16,7 +16,7 @@ public abstract class MapElement {
 	}
 
 	public Box getBox() {
-		//
+		// na talán most
 		return box;
 	}
 
