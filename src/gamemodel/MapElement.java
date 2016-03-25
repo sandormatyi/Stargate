@@ -16,6 +16,7 @@ public abstract class MapElement {
 	}
 
 	public Box getBox() {
+		// ez csak egy getter
 		return box;
 	}
 
