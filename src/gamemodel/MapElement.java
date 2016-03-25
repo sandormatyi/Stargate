@@ -16,7 +16,6 @@ public abstract class MapElement {
 	}
 
 	public Box getBox() {
-		// TODO
 		return box;
 	}
 
