@@ -52,6 +52,9 @@ public class Main {
 		}
 	}
 
+	/*
+	 * Handle ZPM test calls.
+	 */
 	private static void handleZpmTestCall(String choice) throws IOException {
 		switch (choice) {
 		case "1":
@@ -70,6 +73,9 @@ public class Main {
 		}
 	}
 
+	/*
+	 * Handle shoot test calls.
+	 */
 	private static void handleShootTestCall(String choice) throws IOException {
 		switch (choice) {
 		case "1":
@@ -92,6 +98,9 @@ public class Main {
 		}
 	}
 
+	/*
+	 * Handle box test calls.
+	 */
 	private static void handleBoxTestCall(String choice) throws IOException {
 		switch (choice) {
 		case "1":
@@ -138,6 +147,9 @@ public class Main {
 		}
 	}
 
+	/*
+	 * Handle player test calls.
+	 */
 	private static void handlePlayerTestCall(String choice) throws IOException {
 		switch (choice) {
 		case "1":
@@ -172,17 +184,26 @@ public class Main {
 		}
 	}
 
+	/*
+	 * Print ZPM menu.
+	 */
 	private static void printZpmMenu() {
 		System.out.println("*************************************************************");
 		System.out.println("(1) Utolsó ZPM felvétele");
 	}
 
+	/*
+	 * Print shoot menu.
+	 */
 	private static void printShootMenu() {
 		System.out.println("*************************************************************");
 		System.out.println("(1) Lövés falra");
 		System.out.println("(2) Lövés speciális falra");
 	}
 
+	/*
+	 * Print box menu.
+	 */
 	private static void printBoxInteractionMenu() {
 		System.out.println("*************************************************************");
 		System.out.println("(1) Felvétel útról");
@@ -195,6 +216,9 @@ public class Main {
 		System.out.println("(8) Lerakás portálon keresztül");
 	}
 
+	/*
+	 * Print player menu.
+	 */
 	private static void printPlayerMovamentMenu() {
 		System.out.println("*************************************************************");
 		System.out.println("(1) Játékos mozgatása útra");
@@ -204,6 +228,9 @@ public class Main {
 		System.out.println("(5) Játékos mozgatása szakadékba");
 	}
 
+	/*
+	 * Print main menu.
+	 */
 	private static void printMainMenu() {
 		System.out.println("*************************************************************");
 		System.out.println("(1) Játékos mozgatása");
