@@ -34,12 +34,9 @@ public class Player extends Movable {
 	@Override
 	public void move() {
 		this.leaveMapElement(position);
-		// Get the Next MapElement
 		MapElement nextposition = position.getNeighbour(direction);
-		// If there is not nextPosition, then return.
 		if (nextposition == null)
 			return;
-		// Call the nextMapElement's arrive method
 		this.arriveOnMapElement(direction, nextposition);
 	}
 
@@ -75,16 +72,12 @@ public class Player extends Movable {
 	 * Pick up a box from the next mapElement
 	 */
 	public void pickUpBox() {
-		// If the player already has a box, then return
 		if (this.box != null)
 			return;
-		// Otherwise get the box from the next element
 		MapElement nextposition = position.getNeighbour(direction);
-		// If there is not nextPosition, then return.
 		if (nextposition == null)
 			return;
 		this.box = nextposition.getBox();
-		// If we get a box, then set it's position to null.
 		if (this.box != null)
 			box.leaveMapElement(nextposition);
 	}
@@ -94,16 +87,12 @@ public class Player extends Movable {
 	 */
 	public void putDownBox() {
 		MapElement nextposition = position.getNeighbour(direction);
-		// If there is not nextPosition, then return.
 		if (nextposition == null)
 			return;
 		Box nextPositionBox = nextposition.getBox();
-		// If the nextMapElement already has a box, then return
 		if (nextPositionBox != null)
 			return;
-		// Otherwise put down the player's box
 		box.arriveOnMapElement(direction, nextposition);
-		// Set our box to null
 		this.box = null;
 	}
 
