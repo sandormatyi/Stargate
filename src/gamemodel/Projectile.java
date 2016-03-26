@@ -10,6 +10,7 @@ public class Projectile extends Movable {
 		this.direction = direction;
 		this.type = type;
 	}
+	
 	/*
 	 * The Projectile arrives on a mapElement
 	 */
@@ -40,7 +41,7 @@ public class Projectile extends Movable {
 	 * Open a stargate
 	 */
 	public Stargate openStargate() {
-		//a positiont nem lehet neki átadni, mert az nem specialwall.
+		//A positiont nem lehet neki átadni, mert az nem specialwall.
 		Stargate Stargate = new Stargate(null, type, direction);
 		return Stargate;
 	}

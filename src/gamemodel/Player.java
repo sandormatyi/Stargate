@@ -11,18 +11,26 @@ public class Player extends Movable {
 		super(position);
 		this.direction = direction;
 	}
-
+	
+	/*
+	 *Player arrives on a MapElement
+	 */
 	@Override
 	public void arriveOnMapElement(Direction dir, MapElement element) {
 		element.handlePlayerArrive(dir, this);
 	}
-
+	
+	/*
+	 *Player leaves a MapElement
+	 */
 	@Override
 	public void leaveMapElement(MapElement element) {
 		element.handlePlayerLeave();
 	}
-
-	//Player moves
+	
+	/*
+	 *Player moves
+	 */
 	@Override
 	public void move() {
 		this.leaveMapElement(position);
@@ -34,25 +42,34 @@ public class Player extends Movable {
 		this.arriveOnMapElement(direction,nextposition);
 	}
 	
-	//Player is alive?
+	/*
+	 *Player is alive?
+	 */
 	public boolean isAlive() {
 		return isAlive;
 	}
 	
-	//Turn the player to a direction
+	/*
+	 *Turn the player to a direction
+	*/
 	public void turn(Direction direction) {
 		this.direction = direction;
 	}
-	//Shoot a projectile
+	
+	/*
+	 *Shoot a projectile
+	*/
 	public void shoot() {
 		//Create Projectile
 		Projectile projectile = new Projectile(position, direction, projType);
 		//Set the projectile type the the other one.
 		if (projType == ProjectileType.BLUE) projType = ProjectileType.YELLOW;
 		else projType = ProjectileType.BLUE;
-		// Ezt nem tudom hogy kéne egyelõre
 	}
-	//Pick up a box from the next mapElement
+	
+	/*
+	 *Pick up a box from the next mapElement
+	*/
 	public void pickUpBox() {
 		//If the player already has a box, then return
 		if (this.box != null) return;
@@ -65,7 +82,9 @@ public class Player extends Movable {
 		if (this.box != null) box.leaveMapElement(nextposition);
 	}
 	
-	//Put down a box to the next mapElement
+	/*
+	 *Put down a box to the next mapElement
+	*/
 	public void putDownBox() {
 		MapElement nextposition = position.getNeighbour(direction);
 		//If there is not nextPosition, then return.
@@ -79,9 +98,10 @@ public class Player extends Movable {
 		this.box = null;
 	}
 	
-	//Set the isAlive to false
+	/*
+	 *Set the isAlive to false
+	*/
 	public void die() {
-		// TODO
 		this.isAlive = false;
 	}
 }
