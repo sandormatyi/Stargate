@@ -22,21 +22,34 @@ public class Player extends Movable {
 		element.handlePlayerLeave();
 	}
 
-	//Call the super's move method
+	//Player moves
 	@Override
 	public void move() {
-		super.move();
+		this.leaveMapElement(position);
+		//Get the Next MapElement
+		MapElement nextposition = position.getNeighbour(direction);
+		//If there is not nextPosition, then return.
+		if (nextposition == null) return;
+		//Call the nextMapElement's arrive method
+		this.arriveOnMapElement(direction,nextposition);
 	}
+	
 	//Player is alive?
 	public boolean isAlive() {
 		return isAlive;
 	}
+	
 	//Turn the player to a direction
 	public void turn(Direction direction) {
 		this.direction = direction;
 	}
 	//Shoot a projectile
 	public void shoot() {
+		//Create Projectile
+		Projectile projectile = new Projectile(position, direction, projType);
+		//Set the projectile type the the other one.
+		if (projType == ProjectileType.BLUE) projType = ProjectileType.YELLOW;
+		else projType = ProjectileType.BLUE;
 		// Ezt nem tudom hogy kéne egyelõre
 	}
 	//Pick up a box from the next mapElement
