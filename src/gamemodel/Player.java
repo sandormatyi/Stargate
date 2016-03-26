@@ -59,7 +59,7 @@ public class Player extends Movable {
 		if (nextposition == null) return;
 		Box nextPositionBox = nextposition.getBox();
 		//If the nextMapElement already has a box, then return
-		if (this.box != null) return;
+		if (nextPositionBox != null) return;
 		//Otherwise put down the player's box
 		box.arriveOnMapElement(direction, nextposition);
 		//Set our box to null
