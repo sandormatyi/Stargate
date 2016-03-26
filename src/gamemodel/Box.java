@@ -1,7 +1,10 @@
 package gamemodel;
 
 public class Box extends Movable {
-
+	/*
+	 * Starting position
+	 * If the box is destroyed then its position will be set back to this
+	 */
 	private MapElement initPosition;
 
 	public Box(MapElement position, MapElement initPosition) {
@@ -10,16 +13,26 @@ public class Box extends Movable {
 	}
 
 	@Override
+	/*
+	 * The box arrives on a mapElement
+	 */
 	public void arriveOnMapElement(Direction dir, MapElement element) {
-		// TODO
+		element.handleBoxPutDown(dir, this);
 	}
 
 	@Override
+	/*
+	 * The box leaves a mapElement
+	 */
 	public void leaveMapElement(MapElement element) {
-		// TODO
+		//Call the next Mapelement's Box Pick up handle method
+		element.handleBoxPickUp();
 	}
-
+	
+	/*
+	 * Box has been destroyed. Set back the location to the init position.
+	 */
 	public void respawn() {
-		// TODO
+		super.position = initPosition;
 	}
 }
