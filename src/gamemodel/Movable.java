@@ -5,7 +5,7 @@ public abstract class Movable {
 	public Movable(MapElement position) {
 		this.position = position;
 	}
-
+//blabla
 	private MapElement position;
 
 	public void setPosition(MapElement position) {
