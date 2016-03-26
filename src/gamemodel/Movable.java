@@ -6,7 +6,7 @@ public abstract class Movable {
 		this.position = position;
 	}
 //blabla
-	private MapElement position;
+	protected MapElement position;
 
 	public void setPosition(MapElement position) {
 		this.position = position;
@@ -18,5 +18,9 @@ public abstract class Movable {
 
 	public void move() {
 		// TODO
+		this.leaveMapElement(position);
+		MapElement nextposition;
+		//nextposition = getNeighbourDirection(direction);
+		//arriveOnMapElement(direction,nextposition);
 	}
 }
