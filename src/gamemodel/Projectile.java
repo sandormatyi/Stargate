@@ -10,24 +10,38 @@ public class Projectile extends Movable {
 		this.direction = direction;
 		this.type = type;
 	}
-
+	/*
+	 * The Projectile arrives on a mapElement
+	 */
 	@Override
 	public void arriveOnMapElement(Direction dir, MapElement element) {
-		// TODO
+		element.handleProjectileArrive(dir, this);
 	}
 
+	/*
+	 * The Projectile leaves a mapElement
+	 */
 	@Override
 	public void leaveMapElement(MapElement element) {
 		// TODO
 	}
 
+	/*
+	 * Move the projectile to the next MapElement
+	 */
 	@Override
 	public void move() {
-		// TODO
+		this.leaveMapElement(position);
+		MapElement nextPosition = position.getNeighbour(direction);
+		this.arriveOnMapElement(direction, nextPosition);
 	}
-
+	
+	/*
+	 * Open a stargate
+	 */
 	public Stargate openStargate() {
-		// TODO
-		return null;
+		//a positiont nem lehet neki átadni, mert az nem specialwall.
+		Stargate Stargate = new Stargate(null, type, direction);
+		return Stargate;
 	}
 }
