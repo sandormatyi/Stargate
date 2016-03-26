@@ -1,7 +1,7 @@
 package gamemodel;
 
 public abstract class Movable {
-
+	//
 	public Movable(MapElement position) {
 		this.position = position;
 	}
