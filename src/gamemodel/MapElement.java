@@ -7,17 +7,23 @@ public abstract class MapElement {
 	private HashMap<Direction, MapElement> neighbours = new HashMap<Direction, MapElement>();
 	private Box box = null;
 
-	/* Getter for neighbour MapElement in a specific direction. */
+	/*
+	 * Getter for neighbour MapElement in a specific direction.
+	 */
 	public MapElement getNeighbour(Direction dir) {
 		return neighbours.get(dir);
 	}
 
-	/* Setter for neighbour MapElement in a specific direction. */
+	/*
+	 * Setter for neighbour MapElement in a specific direction.
+	 */
 	public void setNeighbour(Direction dir, MapElement neighbour) {
 		neighbours.put(dir, neighbour);
 	}
 
-	/* Getter for the box, that is on this MapElement, if any. */
+	/*
+	 * Getter for the box, that is on this MapElement, if any.
+	 */
 	public Box getBox() {
 		return box;
 	}
@@ -30,12 +36,16 @@ public abstract class MapElement {
 		player.leaveMapElement(this.getNeighbour(dir.getOppositeDirection(dir)));
 	}
 
-	/* Funcion for player leave. Does nothing by default */
+	/*
+	 * Funcion for player leave. Does nothing by default
+	 */
 	public void handlePlayerLeave() {
 
 	}
 
-	/* Funcion for projectile arrival. Does nothing by default */
+	/*
+	 * Funcion for projectile arrival. Does nothing by default
+	 */
 	public void handleProjectileArrive(Direction dir, Projectile projectile) {
 
 	}
@@ -48,7 +58,9 @@ public abstract class MapElement {
 		box.leaveMapElement(this.getNeighbour(dir.getOppositeDirection(dir)));
 	}
 
-	/* Function for box picking up from this tile. Does nothing by default. */
+	/*
+	 * Function for box picking up from this tile. Does nothing by default.
+	 */
 	public void handleBoxPickUp() {
 
 	}
