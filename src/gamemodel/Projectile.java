@@ -24,7 +24,6 @@ public class Projectile extends Movable {
 	 */
 	@Override
 	public void leaveMapElement(MapElement element) {
-		// TODO
 	}
 
 	/*
@@ -34,6 +33,8 @@ public class Projectile extends Movable {
 	public void move() {
 		this.leaveMapElement(position);
 		MapElement nextPosition = position.getNeighbour(direction);
+		if (nextPosition == null)
+			return;
 		this.arriveOnMapElement(direction, nextPosition);
 	}
 	
