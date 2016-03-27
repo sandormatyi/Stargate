@@ -8,5 +8,6 @@ public class Wall extends MapElement {
 	@Override
 	public void handleProjectileArrive(Direction dir, Projectile projectile) {
 		projectile.setPosition(this);
+		projectile.destroy();
 	}
 }
