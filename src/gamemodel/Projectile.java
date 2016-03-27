@@ -43,7 +43,7 @@ public class Projectile extends Movable {
 	 */
 	public Stargate openStargate() {
 		//A positiont nem lehet neki átadni, mert az nem specialwall.
-		Stargate Stargate = new Stargate(null, type, direction);
+		Stargate Stargate = new Stargate(position, type, direction);
 		return Stargate;
 	}
 }

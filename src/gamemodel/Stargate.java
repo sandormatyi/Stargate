@@ -6,11 +6,11 @@ public class Stargate {
 	private static Stargate blueStargate = null;
 	private static Stargate yellowStargate = null;
 
-	private SpecialWall position;
+	private MapElement position;
 	private ProjectileType type;
 	private Direction direction;
 
-	public Stargate(SpecialWall position, ProjectileType type, Direction direction) {
+	public Stargate(MapElement position, ProjectileType type, Direction direction) {
 		this.position = position;
 		this.type = type;
 		this.direction = direction;
