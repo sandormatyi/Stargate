@@ -48,6 +48,13 @@ public class Player extends Movable {
 	}
 
 	/*
+	 * Get the direction of the player
+	 */
+	public Direction getDirection() {
+		return direction;
+	}
+
+	/*
 	 * Turn the player to a direction
 	 */
 	public void turn(Direction direction) {
