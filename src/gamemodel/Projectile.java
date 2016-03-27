@@ -45,4 +45,11 @@ public class Projectile extends Movable {
 		Stargate Stargate = new Stargate(position, type, Direction.getOppositeDirection(direction));
 		return Stargate;
 	}
+
+	/*
+	 * Destroy the projectile
+	 */
+	public void destroy() {
+		// TODO
+	}
 }

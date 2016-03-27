@@ -24,7 +24,7 @@ public abstract class MapElement {
 	/*
 	 * Getter for the box, that is on this MapElement, if any.
 	 */
-	public Box getBox() {
+	public Box getBox(Direction dir) {
 		return box;
 	}
 

@@ -84,7 +84,7 @@ public class Player extends Movable {
 		MapElement nextposition = position.getNeighbour(direction);
 		if (nextposition == null)
 			return;
-		this.box = nextposition.getBox();
+		this.box = nextposition.getBox(null);
 		if (this.box != null)
 			box.leaveMapElement(nextposition);
 	}
@@ -96,7 +96,7 @@ public class Player extends Movable {
 		MapElement nextposition = position.getNeighbour(direction);
 		if (nextposition == null)
 			return;
-		Box nextPositionBox = nextposition.getBox();
+		Box nextPositionBox = nextposition.getBox(null);
 		if (nextPositionBox != null)
 			return;
 		box.arriveOnMapElement(direction, nextposition);

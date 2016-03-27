@@ -31,4 +31,17 @@ public class Stargate {
 
 		return null;
 	}
+
+	/*
+	 * Returns the other Stargate's direction relative to its position
+	 */
+	public Direction getExitDirection() {
+		ProjectileType otherType = ProjectileType.getOppositeType(type);
+		Stargate exitStargate = stargates.get(otherType);
+
+		if (exitStargate != null)
+			return exitStargate.direction;
+
+		return null;
+	}
 }
