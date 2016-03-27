@@ -18,7 +18,7 @@ public class Game {
 		// TODO
 	}
 
-	public void stop() {
+	public void stop(boolean isVictory) {
 		// TODO
 	}
 }
