@@ -1,10 +1,13 @@
 package gamemodel;
 
+import java.util.HashMap;
+
 public class Stargate {
 
-	// FIXME: Use HashMap<Direction, Stargate> instead?
-	private static Stargate blueStargate = null;
-	private static Stargate yellowStargate = null;
+	/*
+	 * A HashMap to store the stargates indexed by their types
+	 */
+	private static HashMap<ProjectileType, Stargate> stargates = new HashMap<ProjectileType, Stargate>(2);
 
 	private MapElement position;
 	private ProjectileType type;
@@ -16,8 +19,16 @@ public class Stargate {
 		this.direction = direction;
 	}
 
+	/*
+	 * Returns the position of the other Stargate
+	 */
 	public MapElement getExitPosition() {
-		// TODO
+		ProjectileType otherType = ProjectileType.getOppositeType(type);
+		Stargate exitStargate = stargates.get(otherType);
+
+		if (exitStargate != null)
+			return exitStargate.position;
+
 		return null;
 	}
 }
