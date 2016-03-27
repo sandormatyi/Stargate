@@ -33,11 +33,12 @@ public abstract class MapElement {
 	 * default.
 	 */
 	public void handlePlayerArrive(Direction dir, Player player) {
-		player.leaveMapElement(this.getNeighbour(dir.getOppositeDirection(dir)));
+		Direction opdir = Direction.getOppositeDirection(dir);
+		this.getNeighbour(opdir).handlePlayerArrive(opdir, player);
 	}
 
 	/*
-	 * Funcion for player leave. Does nothing by default
+	 * Funcion for player leave. Does nothing by default.
 	 */
 	public void handlePlayerLeave() {
 
@@ -55,7 +56,8 @@ public abstract class MapElement {
 	 * tile by default.
 	 */
 	public void handleBoxPutDown(Direction dir, Box box) {
-		box.leaveMapElement(this.getNeighbour(dir.getOppositeDirection(dir)));
+		Direction opdir = Direction.getOppositeDirection(dir);
+		this.getNeighbour(opdir).handleBoxPutDown(opdir, box);
 	}
 
 	/*

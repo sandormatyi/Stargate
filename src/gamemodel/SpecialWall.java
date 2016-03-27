@@ -18,7 +18,7 @@ public class SpecialWall extends MapElement {
 
 	@Override
 	public void handleProjectileArrive(Direction dir, Projectile projectile) {
-		// TODO
+
 	}
 
 	@Override
