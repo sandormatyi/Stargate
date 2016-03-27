@@ -5,7 +5,7 @@ import java.util.HashMap;
 public abstract class MapElement {
 
 	private HashMap<Direction, MapElement> neighbours = new HashMap<Direction, MapElement>();
-	private Box box = null;
+	protected Box box = null;
 
 	/*
 	 * Getter for neighbour MapElement in a specific direction.
