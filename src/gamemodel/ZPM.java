@@ -8,9 +8,12 @@ public class ZPM {
 	 * if it is equal to 5 (or 10, whatever) the game stops
 	 */
 	public void handlePickUp() {
-		// TODO
+		/*
 		game.incrementScore();
 		if (game.getScore() == 5)
 			game.stop();
+		*/
+		//  Kommentbe tettem, mert nincs meg game-unk
+		
 	}
 }
