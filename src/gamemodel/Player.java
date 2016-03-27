@@ -81,25 +81,25 @@ public class Player extends Movable {
 	public void pickUpBox() {
 		if (this.box != null)
 			return;
-		MapElement nextposition = position.getNeighbour(direction);
-		if (nextposition == null)
+
+		MapElement nextPosition = position.getNeighbour(direction);
+		if (nextPosition == null)
 			return;
-		this.box = nextposition.getBox(null);
+
+		this.box = nextPosition.getBox(direction);
 		if (this.box != null)
-			box.leaveMapElement(nextposition);
+			box.leaveMapElement(nextPosition);
 	}
 
 	/*
 	 * Put down a box to the next mapElement
 	 */
 	public void putDownBox() {
-		MapElement nextposition = position.getNeighbour(direction);
-		if (nextposition == null)
+		MapElement nextPosition = position.getNeighbour(direction);
+		if (nextPosition == null)
 			return;
-		Box nextPositionBox = nextposition.getBox(null);
-		if (nextPositionBox != null)
-			return;
-		box.arriveOnMapElement(direction, nextposition);
+
+		this.box.arriveOnMapElement(direction, nextPosition);
 		this.box = null;
 	}
 

@@ -17,7 +17,6 @@ public class Gap extends MapElement {
 	@Override
 	public void handleProjectileArrive(Direction dir, Projectile projectile) {
 		projectile.setPosition(this);
-		projectile.move();
 	}
 
 	/*

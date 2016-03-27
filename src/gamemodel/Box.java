@@ -32,6 +32,7 @@ public class Box extends Movable {
 	 * Box has been destroyed. Set back the location to the init position.
 	 */
 	public void respawn() {
-		super.position = initPosition;
+		leaveMapElement(position);
+		arriveOnMapElement(null, initPosition);
 	}
 }

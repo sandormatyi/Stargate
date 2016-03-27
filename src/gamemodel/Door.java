@@ -58,6 +58,11 @@ public class Door extends MapElement {
 	public void handleBoxPutDown(Direction dir, Box box) {
 		if (isOpened) {
 			box.setPosition(this);
+
+			if (this.box != null)
+				this.box.respawn();
+
+			this.box = box;
 		} else {
 			super.handleBoxPutDown(dir, box);
 		}

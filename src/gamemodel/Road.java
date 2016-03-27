@@ -28,7 +28,6 @@ public class Road extends MapElement {
 	@Override
 	public void handleProjectileArrive(Direction dir, Projectile projectile) {
 		projectile.setPosition(this);
-		projectile.move();
 	}
 
 	/*
@@ -36,7 +35,12 @@ public class Road extends MapElement {
 	 */
 	@Override
 	public void handleBoxPutDown(Direction dir, Box box) {
-		box.position = this;
+		box.setPosition(this);
+
+		if (this.box != null)
+			this.box.respawn();
+
+		this.box = box;
 	}
 
 	/*

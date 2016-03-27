@@ -7,28 +7,47 @@ public class Scale extends MapElement {
 
 	@Override
 	public void handlePlayerArrive(Direction dir, Player player) {
-		// TODO
 		weightCount++;
+
+		if (door != null)
+			door.setOpened(true);
 	}
 
 	@Override
 	public void handlePlayerLeave() {
-		// TODO
 		weightCount--;
+
+		if (door != null && weightCount < 1)
+			door.setOpened(false);
 	}
 
 	@Override
 	public void handleProjectileArrive(Direction dir, Projectile projectile) {
-		// TODO
+		projectile.setPosition(this);
 	}
 
 	@Override
 	public void handleBoxPickUp() {
-		// TODO
+		weightCount--;
+
+		if (door != null && weightCount < 1)
+			door.setOpened(false);
+
+		box = null;
 	}
 
 	@Override
 	public void handleBoxPutDown(Direction dir, Box box) {
-		// TODO
+		weightCount++;
+
+		if (door != null)
+			door.setOpened(true);
+
+		box.setPosition(this);
+
+		if (this.box != null)
+			this.box.respawn();
+
+		this.box = box;
 	}
 }
