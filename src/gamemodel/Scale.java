@@ -8,11 +8,13 @@ public class Scale extends MapElement {
 	@Override
 	public void handlePlayerArrive(Direction dir, Player player) {
 		// TODO
+		weightCount++;
 	}
 
 	@Override
 	public void handlePlayerLeave() {
 		// TODO
+		weightCount--;
 	}
 
 	@Override
