@@ -7,7 +7,6 @@ class BoxPutDownWallTest extends Test {
 
 	public BoxPutDownWallTest(Controller controller) {
 		super(controller);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -18,7 +17,7 @@ class BoxPutDownWallTest extends Test {
 		controller.moveOrTurnPlayer(Direction.SOUTH);
 		// Turn NORTH
 		controller.moveOrTurnPlayer(Direction.NORTH);
-		//Pick up box
+		// Pick up box
 		controller.pickUpBox();
 		// Turn EAST
 		controller.moveOrTurnPlayer(Direction.EAST);
@@ -26,7 +25,7 @@ class BoxPutDownWallTest extends Test {
 
 	@Override
 	public void run() {
-		//Put down box - Wall
+		// Put down box - Wall
 		controller.putDownBox();
 
 	}

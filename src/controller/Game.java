@@ -59,8 +59,6 @@ public class Game {
 	 */
 	public void stop(boolean isVictory) {
 		controller = null;
-
-		// TODO
 	}
 
 	@Override
