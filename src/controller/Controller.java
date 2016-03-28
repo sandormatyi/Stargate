@@ -86,6 +86,9 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 		player.putDownBox();
 	}
 
+	/*
+	 * Increment Score and if it's the last one, end the game
+	 */
 	@Override
 	public void onZPMPickedUp(ZPM zpm) {
 		game.incrementScore();
@@ -97,6 +100,9 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 		}
 	}
 
+	/*
+	 * Until the projectile is "alive", move it.
+	 */
 	@Override
 	public void onProjectileCreated(Projectile projectile) {
 		isProjectileMoving = true;
@@ -106,6 +112,9 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 		}
 	}
 
+	/*
+	 * If the Projectile is destroyed, then stop its moving
+	 */
 	@Override
 	public void onProjectileDestroyed(Projectile projectile) {
 		isProjectileMoving = false;
