@@ -63,6 +63,8 @@ public class Road extends MapElement {
 			this.box.respawn();
 
 		this.box = box;
+
+		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
