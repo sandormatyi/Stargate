@@ -2,7 +2,6 @@ package test;
 
 import controller.Controller;
 import gamemodel.Direction;
-
 class PlayerMoveWormholeTest extends Test {
 
 	public PlayerMoveWormholeTest(Controller controller) {
@@ -11,8 +10,6 @@ class PlayerMoveWormholeTest extends Test {
 
 	@Override
 	public void setUp() {
-		// Turn WEST
-		controller.moveOrTurnPlayer(Direction.WEST);
 		// Move WEST
 		controller.moveOrTurnPlayer(Direction.WEST);
 		// Turn NORTH
