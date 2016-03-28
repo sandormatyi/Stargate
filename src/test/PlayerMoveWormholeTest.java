@@ -1,6 +1,7 @@
 package test;
 
 import controller.Controller;
+import gamemodel.Direction;
 
 class PlayerMoveWormholeTest extends Test {
 
@@ -10,14 +11,24 @@ class PlayerMoveWormholeTest extends Test {
 
 	@Override
 	public void setUp() {
-		// TODO Auto-generated method stub
-
+		// Turn WEST
+		controller.moveOrTurnPlayer(Direction.WEST);
+		// Move WEST
+		controller.moveOrTurnPlayer(Direction.WEST);
+		// Turn NORTH
+		controller.moveOrTurnPlayer(Direction.NORTH);
+		//Shoot projectile
+		controller.shoot();
+		// Turn SOUTH
+		controller.moveOrTurnPlayer(Direction.SOUTH);
+		//Shoot projectile
+		controller.shoot();
 	}
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
-
+		// Move south
+		controller.moveOrTurnPlayer(Direction.SOUTH);
 	}
 
 }
