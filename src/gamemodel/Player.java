@@ -64,9 +64,6 @@ public class Player extends Movable {
 	 * Player is alive?
 	 */
 	public boolean isAlive() {
-		SkeletonLogger.functionCalled(this, "isAlive", null);
-
-		SkeletonLogger.returnFromFunction(isAlive);
 		return isAlive;
 	}
 
@@ -112,34 +109,46 @@ public class Player extends Movable {
 	 * Pick up a box from the next mapElement
 	 */
 	public void pickUpBox() {
-		if (this.box != null)
-			return;
+		SkeletonLogger.functionCalled(this, "pickUpBox", null);
 
-		MapElement nextPosition = position.getNeighbour(direction);
-		if (nextPosition == null)
-			return;
+		if (box == null) {
+			MapElement nextPosition = position.getNeighbour(direction);
 
-		this.box = nextPosition.getBox(direction);
-		if (this.box != null)
-			box.leaveMapElement(nextPosition);
+			if (nextPosition != null) {
+				box = nextPosition.getBox(direction);
+
+				if (box != null) {
+					box.leaveMapElement(nextPosition);
+				}
+			}
+		}
+
+		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
 	 * Put down a box to the next mapElement
 	 */
 	public void putDownBox() {
-		MapElement nextPosition = position.getNeighbour(direction);
-		if (nextPosition == null)
-			return;
+		SkeletonLogger.functionCalled(this, "putDownBox", null);
 
-		this.box.arriveOnMapElement(direction, nextPosition);
-		this.box = null;
+		MapElement nextPosition = position.getNeighbour(direction);
+		if (nextPosition != null) {
+			box.arriveOnMapElement(direction, nextPosition);
+			box = null;
+		}
+
+		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
 	 * Set the isAlive to false
 	 */
 	public void die() {
-		this.isAlive = false;
+		SkeletonLogger.functionCalled(this, "die", null);
+
+		isAlive = false;
+
+		SkeletonLogger.returnFromFunction(null);
 	}
 }
