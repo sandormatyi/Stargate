@@ -1,6 +1,7 @@
 package test;
 
 import controller.Controller;
+import gamemodel.Direction;
 
 class ZPMTest extends Test {
 
@@ -10,14 +11,15 @@ class ZPMTest extends Test {
 
 	@Override
 	public void setUp() {
-		// TODO Auto-generated method stub
+		// Turn SOUTH
+		controller.moveOrTurnPlayer(Direction.SOUTH);
 
 	}
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
-
+		// Move SOUTH
+		controller.moveOrTurnPlayer(Direction.SOUTH);
 	}
 
 }
