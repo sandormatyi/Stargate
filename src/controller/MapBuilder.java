@@ -26,6 +26,7 @@ public class MapBuilder {
 	public void buildMap() {
 		// Initialize zpm
 		ZPM zpm = new ZPM();
+		zpmSet.add(zpm);
 
 		// Initialize MapElements
 		SpecialWall northWest = new SpecialWall();
@@ -80,6 +81,9 @@ public class MapBuilder {
 		// Handle neighborhoods of southEast
 		southEast.setNeighbour(Direction.NORTH, east);
 		southEast.setNeighbour(Direction.WEST, south);
+
+		// Initialize player
+		player = new Player(middle, Direction.WEST);
 	}
 
 	public Controller createController(Game game) {
