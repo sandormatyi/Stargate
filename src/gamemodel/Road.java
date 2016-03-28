@@ -5,6 +5,22 @@ public class Road extends MapElement {
 	private ZPM zpm = null;
 
 	/*
+	 * Constructor
+	 */
+	public Road() {
+		super();
+	}
+
+	/*
+	 * Constructor using fields
+	 */
+	public Road(ZPM zpm, Box box) {
+		super();
+		this.zpm = zpm;
+		this.box = box;
+	}
+
+	/*
 	 * Player arrival method.
 	 */
 	@Override

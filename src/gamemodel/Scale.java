@@ -2,8 +2,25 @@ package gamemodel;
 
 public class Scale extends MapElement {
 
-	private int weightCount = 0;
+	private int weightCount;
 	private Door door = null;
+
+	/*
+	 * Constructor
+	 */
+	public Scale() {
+		super();
+		this.weightCount = 0;
+	}
+
+	/*
+	 * Constructor using door field
+	 */
+	public Scale(Door door) {
+		super();
+		this.weightCount = 0;
+		this.door = door;
+	}
 
 	@Override
 	public void handlePlayerArrive(Direction dir, Player player) {
