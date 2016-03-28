@@ -4,16 +4,8 @@ import debug.SkeletonLogger;
 
 public class Scale extends MapElement {
 
-	private int weightCount;
+	private int weightCount = 0;
 	private Door door = null;
-
-	/*
-	 * Constructor
-	 */
-	public Scale() {
-		super();
-		this.weightCount = 0;
-	}
 
 	/*
 	 * Door setter
