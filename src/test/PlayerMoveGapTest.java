@@ -1,6 +1,7 @@
 package test;
 
 import controller.Controller;
+import gamemodel.Direction;
 
 class PlayerMoveGapTest extends Test {
 
@@ -10,13 +11,14 @@ class PlayerMoveGapTest extends Test {
 
 	@Override
 	public void setUp() {
-		// TODO Auto-generated method stub
+		// Turn north
+		controller.moveOrTurnPlayer(Direction.NORTH);
 
 	}
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
+		controller.moveOrTurnPlayer(Direction.NORTH);
 
 	}
 
