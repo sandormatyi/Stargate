@@ -31,7 +31,8 @@ public class Projectile extends Movable {
 	 */
 	@Override
 	public void leaveMapElement(MapElement element) {
-		// TODO: Ezt kiírjuk-e?
+		SkeletonLogger.functionCalled(this, "leaveMapElement", null);
+		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*

@@ -43,11 +43,6 @@ public class SpecialWall extends MapElement {
 		SkeletonLogger.returnFromFunction(null);
 	}
 
-	@Override
-	public void handlePlayerLeave() {
-		// TODO
-	}
-
 	/*
 	 * If there is already an open stargate on the edge with which the
 	 * projectile has collided, destroy the projectile, else, open a new
@@ -103,11 +98,6 @@ public class SpecialWall extends MapElement {
 		// back to the previous MapElement
 		super.handleBoxPutDown(oppositeDirection, box);
 		SkeletonLogger.returnFromFunction(null);
-	}
-
-	@Override
-	public void handleBoxPickUp() {
-		// TODO
 	}
 
 	/*

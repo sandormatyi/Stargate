@@ -40,14 +40,6 @@ public class Door extends MapElement {
 	}
 
 	/*
-	 * Does nothing
-	 */
-	@Override
-	public void handlePlayerLeave() {
-		// TODO
-	}
-
-	/*
 	 * Projectile arrives if the Door is opened the projectile goes through it
 	 * to the next MapElement if the door is closed the projectile stops on the
 	 * Door, waiting for the gc

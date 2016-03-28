@@ -30,15 +30,6 @@ public class Road extends MapElement {
 	}
 
 	/*
-	 * Does nothing.
-	 */
-	@Override
-	public void handlePlayerLeave() {
-		SkeletonLogger.functionCalled(this, "handlePlayerLeave", null);
-		SkeletonLogger.returnFromFunction(null);
-	}
-
-	/*
 	 * Projectile comes, flies through and goes to the next tile.
 	 */
 	@Override
