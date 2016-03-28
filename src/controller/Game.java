@@ -58,6 +58,11 @@ public class Game {
 	 * Stop the game with the result given as parameter
 	 */
 	public void stop(boolean isVictory) {
+		if (isVictory) {
+			SkeletonLogger.functionCalled(this, "stop", null);
+			SkeletonLogger.returnFromFunction(null);
+		}
+
 		controller = null;
 	}
 
