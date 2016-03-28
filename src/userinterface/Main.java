@@ -14,47 +14,47 @@ public class Main {
 		try {
 			// Reads from standard in
 			br = new BufferedReader(new InputStreamReader(System.in));
-			String choice;
+			int choice;
 
 			// Endless loop for handling menu
 			while (true) {
 				// Prints main menu, read user's choice
 				printMainMenu();
-				choice = br.readLine();
+				choice = Integer.parseInt(br.readLine());
 
 				// Handles user's choice
 				switch (choice) {
 				// Prints movament menu, read user's choice, then handles it
-				case "1":
+				case 1:
 					printPlayerMovamentMenu();
-					choice = br.readLine();
+					choice = Integer.parseInt(br.readLine());
 					handlePlayerTestCall(choice);
 					br.readLine();
 					break;
 				// Prints box interaction menu, read user's choice, then handles
 				// it
-				case "2":
+				case 2:
 					printBoxInteractionMenu();
-					choice = br.readLine();
+					choice = Integer.parseInt(br.readLine());
 					handleBoxTestCall(choice);
 					br.readLine();
 					break;
 				// Prints shoot menu, read user's choice, then handles it
-				case "3":
+				case 3:
 					printShootMenu();
-					choice = br.readLine();
+					choice = Integer.parseInt(br.readLine());
 					handleShootTestCall(choice);
 					br.readLine();
 					break;
 				// Prints zpm menu, read user's choice, then handles it
-				case "4":
+				case 4:
 					printZpmMenu();
-					choice = br.readLine();
+					choice = Integer.parseInt(br.readLine());
 					handleZpmTestCall(choice);
 					br.readLine();
 					break;
 				// Exits from program
-				case "5":
+				case 5:
 					System.exit(0);
 					// Handles wrong input
 				default:
@@ -65,16 +65,18 @@ public class Main {
 			}
 		} catch (IOException io) {
 			System.err.println("ERROR: A rendszerben kivétel keletkezett, kérem indítsa újra az alkalmazást!");
+		} catch (Exception e) {
+			System.err.println("ERROR: A rendszerben kivétel keletkezett, kérem indítsa újra az alkalmazást!");
 		}
 	}
 
 	/*
 	 * Handle ZPM test calls.
 	 */
-	private static void handleZpmTestCall(String choice) throws IOException {
+	private static void handleZpmTestCall(int choice) throws IOException {
 		switch (choice) {
 		// Handles Zpm pickup test
-		case "1":
+		case 1:
 			System.out.println("-------------------------------------------------------------");
 			System.out.println("Utolsó ZPM felvétele");
 			System.out.println("-------------------------------------------------------------");
@@ -84,11 +86,11 @@ public class Main {
 		// finally calls this method again with new choice
 		default:
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-			String newChoice = null;
+			int newChoice = 0;
 			System.out.println("Nem megfelelõ menüpontot választottál ki!");
 			System.out.println("A lehetõségeid:");
 			printZpmMenu();
-			newChoice = br.readLine();
+			newChoice = Integer.parseInt(br.readLine());
 			handleZpmTestCall(newChoice);
 			break;
 		}
@@ -97,17 +99,17 @@ public class Main {
 	/*
 	 * Handle shoot test calls.
 	 */
-	private static void handleShootTestCall(String choice) throws IOException {
+	private static void handleShootTestCall(int choice) throws IOException {
 		switch (choice) {
 		// Handles shoot on wall test
-		case "1":
+		case 1:
 			System.out.println("-------------------------------------------------------------");
 			System.out.println("Lövés falra");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.ShootWall);
 			break;
 		// Handles shoot on specialwall test
-		case "2":
+		case 2:
 			System.out.println("-------------------------------------------------------------");
 			System.out.println("Lövés speciális falra");
 			System.out.println("-------------------------------------------------------------");
@@ -117,11 +119,11 @@ public class Main {
 		// finally calls this method again with new choice
 		default:
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-			String newChoice = null;
+			int newChoice = 0;
 			System.out.println("Nem megfelelõ menüpontot választottál ki!");
 			System.out.println("A lehetõségeid:");
 			printShootMenu();
-			newChoice = br.readLine();
+			newChoice = Integer.parseInt(br.readLine());
 			handleShootTestCall(newChoice);
 			break;
 		}
@@ -130,59 +132,59 @@ public class Main {
 	/*
 	 * Handle box test calls.
 	 */
-	private static void handleBoxTestCall(String choice) throws IOException {
+	private static void handleBoxTestCall(int choice) throws IOException {
 		switch (choice) {
 		// Handles pick up from road
-		case "1":
+		case 1:
 			System.out.println("-------------------------------------------------------------");
 			System.out.println("Felvétel útról");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.BoxPickUpRoad);
 			break;
 		// Handles pick up from scale
-		case "2":
+		case 2:
 			System.out.println("-------------------------------------------------------------");
 			System.out.println("Felvétel mérlegrõl");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.BoxPickUpScale);
 			break;
 		// Handles pick up through wormhole
-		case "3":
+		case 3:
 			System.out.println("-------------------------------------------------------------");
 			System.out.println("Felvétel portálon átnyúlva");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.BoxPickUpWormhole);
 			break;
 		// Handles put down (road)
-		case "4":
+		case 4:
 			System.out.println("-------------------------------------------------------------");
 			System.out.println("Lerakás útra");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.BoxPutDownRoad);
 			break;
 		// Handles put down (scale)
-		case "5":
+		case 5:
 			System.out.println("-------------------------------------------------------------");
 			System.out.println("Lerakás mérlegre");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.BoxPutDownScale);
 			break;
 		// Handles put down (gap)
-		case "6":
+		case 6:
 			System.out.println("-------------------------------------------------------------");
 			System.out.println("Lerakás szakadékba");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.BoxPutDownGap);
 			break;
 		// Handles put down (wall)
-		case "7":
+		case 7:
 			System.out.println("-------------------------------------------------------------");
 			System.out.println("Lerakás falra");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.BoxPutDownWall);
 			break;
 		// Handles put down (through wormhole)
-		case "8":
+		case 8:
 			System.out.println("-------------------------------------------------------------");
 			System.out.println("Lerakás portálon keresztül");
 			System.out.println("-------------------------------------------------------------");
@@ -192,11 +194,11 @@ public class Main {
 		// finally calls this method again with new choice
 		default:
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-			String newChoice = null;
+			int newChoice = 0;
 			System.out.println("Nem megfelelõ menüpontot választottál ki!");
 			System.out.println("A lehetõségeid:");
 			printBoxInteractionMenu();
-			newChoice = br.readLine();
+			newChoice = Integer.parseInt(br.readLine());
 			handleBoxTestCall(newChoice);
 			break;
 		}
@@ -205,38 +207,38 @@ public class Main {
 	/*
 	 * Handle player test calls.
 	 */
-	private static void handlePlayerTestCall(String choice) throws IOException {
+	private static void handlePlayerTestCall(int choice) throws IOException {
 		switch (choice) {
 		// Handles player move to road
-		case "1":
+		case 1:
 			System.out.println("-------------------------------------------------------------");
 			System.out.println("Játékos mozgatása útra");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.PlayerMoveRoad);
 			break;
 		// Handles player move to scale
-		case "2":
+		case 2:
 			System.out.println("-------------------------------------------------------------");
 			System.out.println("Játékos mozgatása mérlegre");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.PlayerMoveScale);
 			break;
 		// Handles player move to wall
-		case "3":
+		case 3:
 			System.out.println("-------------------------------------------------------------");
 			System.out.println("Játékos mozgatása falra");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.PlayerMoveWall);
 			break;
 		// Handles player move to portal (opened)
-		case "4":
+		case 4:
 			System.out.println("-------------------------------------------------------------");
 			System.out.println("Játékos mozgatása speciális falra (nyitott portál)");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.PlayerMoveWormhole);
 			break;
 		// Handles player move to gap
-		case "5":
+		case 5:
 			System.out.println("-------------------------------------------------------------");
 			System.out.println("Játékos mozgatása szakadékba");
 			System.out.println("-------------------------------------------------------------");
@@ -246,11 +248,11 @@ public class Main {
 		// finally calls this method again with new choice
 		default:
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-			String newChoice = null;
+			int newChoice = 0;
 			System.out.println("Nem megfelelõ menüpontot választottál ki!");
 			System.out.println("A lehetõségeid:");
 			printPlayerMovamentMenu();
-			newChoice = br.readLine();
+			newChoice = Integer.parseInt(br.readLine());
 			handlePlayerTestCall(newChoice);
 			break;
 		}
