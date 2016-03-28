@@ -68,12 +68,11 @@ public class Scale extends MapElement {
 	public void handleBoxPutDown(Direction dir, Box box) {
 		SkeletonLogger.functionCalled(this, "handleBoxPutDown", new Object[] { dir, box });
 
+		box.setPosition(this);
 		weightCount++;
 
 		if (door != null)
 			door.setOpened(true);
-
-		box.setPosition(this);
 
 		if (this.box != null)
 			this.box.respawn();
