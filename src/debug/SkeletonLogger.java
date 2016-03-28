@@ -49,16 +49,43 @@ public class SkeletonLogger {
 	 * Prints the textual representation of a function call to the standard
 	 * output
 	 */
-	public static void callFunction(Object caller, String functionName) {
+	public static void callFunction(Object callee) {
 		if (!printEnabled)
 			return;
 
 		for (int i = 0; i < logDepth; i++)
 			System.out.print("\t");
 
-		System.out.println(caller.getClass().getSimpleName() + "." + functionName);
+		System.out.print(callee.getClass().getSimpleName() + ".");
 
 		incrementLogDepth();
+	}
+
+	/*
+	 * Prints the textual representation of entering a function to the standard
+	 * output
+	 */
+	public static void functionCalled(String functionName, Object[] params) {
+		if (!printEnabled)
+			return;
+
+		System.out.print(functionName + "(");
+
+		if (params != null) {
+			boolean firstParam = true;
+
+			for (Object param : params) {
+				if (!firstParam) {
+					System.out.print(", ");
+				} else {
+					firstParam = false;
+				}
+
+				System.out.print(param == null ? "null" : param.getClass().getSimpleName());
+			}
+		}
+
+		System.out.println(")");
 	}
 
 	/*
@@ -72,11 +99,7 @@ public class SkeletonLogger {
 		for (int i = 0; i < logDepth; i++)
 			System.out.print("\t");
 
-		if (returnValue == null) {
-			System.out.println("return");
-		} else {
-			System.out.println("return " + returnValue.getClass().getSimpleName());
-		}
+		System.out.println("return" + ((returnValue == null) ? "" : " " + returnValue.getClass().getSimpleName()));
 
 		decrementLogDepth();
 	}
