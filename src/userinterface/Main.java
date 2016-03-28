@@ -53,7 +53,7 @@ public class Main {
 				}
 			}
 		} catch (IOException io) {
-			System.out.println("ERROR: A rendszerben kivétel keletkezett, kérem indítsa újra az alkalmazást!");
+			System.err.println("ERROR: A rendszerben kivétel keletkezett, kérem indítsa újra az alkalmazást!");
 		}
 	}
 
