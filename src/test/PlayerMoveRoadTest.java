@@ -3,7 +3,7 @@ package test;
 import controller.Controller;
 import gamemodel.Direction;
 
-public class PlayerMoveRoadTest extends Test {
+class PlayerMoveRoadTest extends Test {
 
 	public PlayerMoveRoadTest(Controller controller) {
 		super(controller);
