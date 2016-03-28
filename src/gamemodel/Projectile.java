@@ -52,6 +52,8 @@ public class Projectile extends Movable {
 			arriveOnMapElement(Direction.getOppositeDirection(direction), position);
 		}
 
+		destroy();
+
 		SkeletonLogger.returnFromFunction(null);
 	}
 
