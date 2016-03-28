@@ -1,6 +1,7 @@
 package test;
 
 import controller.Controller;
+import gamemodel.Direction;
 
 class BoxPutDownWallTest extends Test {
 
@@ -11,13 +12,22 @@ class BoxPutDownWallTest extends Test {
 
 	@Override
 	public void setUp() {
-		// TODO Auto-generated method stub
-
+		// Turn SOUTH
+		controller.moveOrTurnPlayer(Direction.SOUTH);
+		// Move SOUTH
+		controller.moveOrTurnPlayer(Direction.SOUTH);
+		// Turn NORTH
+		controller.moveOrTurnPlayer(Direction.NORTH);
+		//Pick up box
+		controller.pickUpBox();
+		// Turn EAST
+		controller.moveOrTurnPlayer(Direction.EAST);
 	}
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
+		//Put down box - Wall
+		controller.putDownBox();
 
 	}
 
