@@ -11,9 +11,6 @@ class PlayerMoveScaleTest extends Test {
 
 	@Override
 	public void setUp() {
-		// Turn WEST
-		controller.moveOrTurnPlayer(Direction.WEST);
-
 	}
 
 	@Override
