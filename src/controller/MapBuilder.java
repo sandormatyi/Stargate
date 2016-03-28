@@ -44,7 +44,7 @@ class MapBuilder {
 		west.setDoor(east);
 		south.setZpm(zpm);
 		Box box = new Box(middle);
-		middle.handleBoxPutDown(null, box);
+		box.arriveOnMapElement(null, middle);
 
 		// Handle neighborhoods of northWest
 		northWest.setNeighbour(Direction.EAST, north);
