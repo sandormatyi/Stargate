@@ -26,6 +26,8 @@ public class Scale extends MapElement {
 	public void handlePlayerArrive(Direction dir, Player player) {
 		SkeletonLogger.functionCalled(this, "handlePlayerArrive", new Object[] { dir, player });
 
+		player.setPosition(this);
+
 		weightCount++;
 
 		if (door != null)
