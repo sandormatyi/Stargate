@@ -11,18 +11,30 @@ class PlayerMoveWallTest extends Test {
 
 	@Override
 	public void setUp() {
-		// Turn south
-		controller.moveOrTurnPlayer(Direction.SOUTH);
-		// Move south
-		controller.moveOrTurnPlayer(Direction.SOUTH);
-		// Turn east
+		// Turn WEST
+		controller.moveOrTurnPlayer(Direction.WEST);
+		// Turn EAST
 		controller.moveOrTurnPlayer(Direction.EAST);
+		//Pick up box
+		controller.pickUpBox();
+		// MOve EAST
+		controller.moveOrTurnPlayer(Direction.EAST);
+		// Turn WEST
+		controller.moveOrTurnPlayer(Direction.WEST);
+		//Put down box - Open Door
+		controller.putDownBox();
+		// Turn EAST
+		controller.moveOrTurnPlayer(Direction.EAST);
+		// MOve EAST
+		controller.moveOrTurnPlayer(Direction.EAST);		
+		// Turn SOUTH
+		controller.moveOrTurnPlayer(Direction.SOUTH);
 	}
 
 	@Override
 	public void run() {
-		// Move east
-		controller.moveOrTurnPlayer(Direction.EAST);
+		// Move south
+		controller.moveOrTurnPlayer(Direction.SOUTH);
 	}
 
 }
