@@ -50,6 +50,8 @@ public class Projectile extends Movable {
 	 * Destroy the projectile
 	 */
 	public void destroy() {
-		// TODO
+		this.position = null;
+		this.type = null;
+		this.direction = null;
 	}
 }
