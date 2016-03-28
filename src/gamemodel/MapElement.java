@@ -2,6 +2,8 @@ package gamemodel;
 
 import java.util.HashMap;
 
+import debug.SkeletonLogger;
+
 public abstract class MapElement {
 
 	private HashMap<Direction, MapElement> neighbours = new HashMap<Direction, MapElement>();
@@ -11,7 +13,12 @@ public abstract class MapElement {
 	 * Getter for neighbour MapElement in a specific direction.
 	 */
 	public MapElement getNeighbour(Direction dir) {
-		return neighbours.get(dir);
+		SkeletonLogger.functionCalled(this, "getNeighbour", new Object[] { dir });
+
+		MapElement neighbour = neighbours.get(dir);
+
+		SkeletonLogger.returnFromFunction(neighbour);
+		return neighbour;
 	}
 
 	/*
@@ -25,6 +32,9 @@ public abstract class MapElement {
 	 * Getter for the box, that is on this MapElement, if any.
 	 */
 	public Box getBox(Direction dir) {
+		SkeletonLogger.functionCalled(this, "getBox", new Object[] { dir });
+
+		SkeletonLogger.returnFromFunction(box);
 		return box;
 	}
 
@@ -33,22 +43,30 @@ public abstract class MapElement {
 	 * default.
 	 */
 	public void handlePlayerArrive(Direction dir, Player player) {
+		SkeletonLogger.functionCalled(this, "handlePlayerArrive", new Object[] { dir, player });
+
 		Direction opdir = Direction.getOppositeDirection(dir);
 		this.getNeighbour(opdir).handlePlayerArrive(opdir, player);
+
+		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
 	 * Funcion for player leave. Does nothing by default.
 	 */
 	public void handlePlayerLeave() {
+		SkeletonLogger.functionCalled(this, "handlePlayerLeave", null);
 
+		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
 	 * Funcion for projectile arrival. Does nothing by default
 	 */
 	public void handleProjectileArrive(Direction dir, Projectile projectile) {
+		SkeletonLogger.functionCalled(this, "handleProjectileArrive", new Object[] { dir, projectile });
 
+		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
@@ -56,14 +74,25 @@ public abstract class MapElement {
 	 * tile by default.
 	 */
 	public void handleBoxPutDown(Direction dir, Box box) {
+		SkeletonLogger.functionCalled(this, "handleBoxPutDown", new Object[] { dir, box });
+
 		Direction opdir = Direction.getOppositeDirection(dir);
 		this.getNeighbour(opdir).handleBoxPutDown(opdir, box);
+
+		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
 	 * Function for box picking up from this tile. Does nothing by default.
 	 */
 	public void handleBoxPickUp() {
+		SkeletonLogger.functionCalled(this, "handleBoxPickup", null);
 
+		SkeletonLogger.returnFromFunction(null);
+	}
+
+	@Override
+	public String toString() {
+		return this.getClass().getSimpleName();
 	}
 }
