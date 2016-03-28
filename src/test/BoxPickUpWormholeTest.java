@@ -1,6 +1,7 @@
 package test;
 
 import controller.Controller;
+import gamemodel.Direction;
 
 class BoxPickUpWormholeTest extends Test {
 
@@ -10,14 +11,30 @@ class BoxPickUpWormholeTest extends Test {
 
 	@Override
 	public void setUp() {
-		// TODO Auto-generated method stub
-
+		// move WEST
+		controller.moveOrTurnPlayer(Direction.WEST);
+		// turn NORTH
+		controller.moveOrTurnPlayer(Direction.NORTH);
+		// shoot
+		controller.shoot();
+		// turn SOUTH
+		controller.moveOrTurnPlayer(Direction.SOUTH);
+		// shoot
+		controller.shoot();
+		// turn EAST
+		controller.moveOrTurnPlayer(Direction.EAST);
+		// pick up box
+		controller.pickUpBox();
+		// turn SOUTH
+		controller.moveOrTurnPlayer(Direction.SOUTH);
+		// put down box
+		controller.putDownBox();
 	}
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
-
+		// pick up box
+		controller.pickUpBox();
 	}
 
 }
