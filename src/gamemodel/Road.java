@@ -62,11 +62,11 @@ public class Road extends MapElement {
 	 * Neither does anything.
 	 */
 	@Override
-	public void handleBoxPickUp() {
-		SkeletonLogger.functionCalled(this, "handleBoxPickup", null);
+	public void handleBoxPickUp(Box box) {
+		SkeletonLogger.functionCalled(this, "handleBoxPickup", new Object[] { box });
 
-		box.setPosition(null);
-		box = null;
+		this.box.setPosition(null);
+		this.box = null;
 
 		SkeletonLogger.returnFromFunction(null);
 	}

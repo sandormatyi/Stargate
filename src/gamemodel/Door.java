@@ -86,13 +86,13 @@ public class Door extends MapElement {
 	 * Handles box pickup
 	 */
 	@Override
-	public void handleBoxPickUp() {
+	public void handleBoxPickUp(Box box) {
 		// Signal that the handleBoxPickUp method was called
-		SkeletonLogger.functionCalled(this, "handleBoxPickup", null);
+		SkeletonLogger.functionCalled(this, "handleBoxPickup", new Object[] { box });
 		// Set the Box's position to null
-		box.setPosition(null);
+		this.box.setPosition(null);
 		// Modify the MapElement's box to null
-		box = null;
+		this.box = null;
 		// Signal that the method returned
 		SkeletonLogger.returnFromFunction(null);
 	}

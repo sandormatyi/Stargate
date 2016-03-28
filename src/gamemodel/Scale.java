@@ -50,16 +50,16 @@ public class Scale extends MapElement {
 	}
 
 	@Override
-	public void handleBoxPickUp() {
-		SkeletonLogger.functionCalled(this, "handleBoxPickUp", null);
+	public void handleBoxPickUp(Box box) {
+		SkeletonLogger.functionCalled(this, "handleBoxPickUp", new Object[] { box });
 
-		box.setPosition(null);
+		this.box.setPosition(null);
 		weightCount--;
 
 		if (door != null && weightCount < 1)
 			door.setOpened(false);
 
-		box = null;
+		this.box = null;
 
 		SkeletonLogger.returnFromFunction(null);
 	}

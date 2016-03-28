@@ -38,7 +38,7 @@ public class Box extends Movable {
 		// Signal that the leaveMapElement method was called
 		SkeletonLogger.functionCalled(this, "leaveMapElement", new Object[] { element });
 		// Pick up box
-		element.handleBoxPickUp();
+		element.handleBoxPickUp(this);
 		// Signal that the method returned
 		SkeletonLogger.returnFromFunction(null);
 	}
