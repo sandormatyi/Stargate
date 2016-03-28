@@ -16,6 +16,9 @@ public class ZPM {
 		SkeletonLogger.returnFromFunction(null);
 	}
 
+	/*
+	 * Get the Class name as String
+	 */
 	@Override
 	public String toString() {
 		return getClass().getSimpleName();

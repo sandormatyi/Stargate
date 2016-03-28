@@ -14,6 +14,9 @@ public class Scale extends MapElement {
 		this.door = door;
 	}
 
+	/*
+	 * Increment Weighcount and Open the Door.
+	 */
 	@Override
 	public void handlePlayerArrive(Direction dir, Player player) {
 		SkeletonLogger.functionCalled(this, "handlePlayerArrive", new Object[] { dir, player });
@@ -28,6 +31,9 @@ public class Scale extends MapElement {
 		SkeletonLogger.returnFromFunction(null);
 	}
 
+	/*
+	 * Decrement weightCount and close the if it is 0.
+	 */
 	@Override
 	public void handlePlayerLeave() {
 		SkeletonLogger.functionCalled(this, "handlePlayerLeave", null);
@@ -40,6 +46,9 @@ public class Scale extends MapElement {
 		SkeletonLogger.returnFromFunction(null);
 	}
 
+	/*
+	 * The projectile harmlessly goes through
+	 */
 	@Override
 	public void handleProjectileArrive(Direction dir, Projectile projectile) {
 		SkeletonLogger.functionCalled(this, "handleProjectileArrive", new Object[] { dir, projectile });
@@ -49,6 +58,9 @@ public class Scale extends MapElement {
 		SkeletonLogger.returnFromFunction(null);
 	}
 
+	/*
+	 * Decrement weightCount and close the if it is 0.
+	 */
 	@Override
 	public void handleBoxPickUp(Box box) {
 		SkeletonLogger.functionCalled(this, "handleBoxPickUp", new Object[] { box });
@@ -63,7 +75,10 @@ public class Scale extends MapElement {
 
 		SkeletonLogger.returnFromFunction(null);
 	}
-
+	
+	/*
+	 * Increment Weighcount and Open the Door.
+	 */
 	@Override
 	public void handleBoxPutDown(Direction dir, Box box) {
 		SkeletonLogger.functionCalled(this, "handleBoxPutDown", new Object[] { dir, box });
