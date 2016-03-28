@@ -15,10 +15,20 @@ public class Stargate {
 	private ProjectileType type;
 	private Direction direction;
 
-	public Stargate(MapElement position, ProjectileType type, Direction direction) {
+	private Stargate(MapElement position, ProjectileType type, Direction direction) {
 		this.position = position;
 		this.type = type;
 		this.direction = direction;
+	}
+
+	/*
+	 * Static method to create a Stargate
+	 */
+	public static Stargate createStargate(MapElement position, ProjectileType type, Direction direction) {
+		Stargate stargate = new Stargate(position, type, direction);
+
+		stargates.put(type, stargate);
+		return stargate;
 	}
 
 	/*

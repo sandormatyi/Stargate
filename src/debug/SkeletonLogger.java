@@ -56,7 +56,7 @@ public class SkeletonLogger {
 		for (int i = 0; i < logDepth; i++)
 			System.out.print("\t");
 
-		System.out.print(callee.getClass().getSimpleName() + "." + functionName + "(");
+		System.out.print(callee.toString() + "." + functionName + "(");
 
 		if (params != null) {
 			boolean firstParam = true;

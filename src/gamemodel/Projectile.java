@@ -63,7 +63,7 @@ public class Projectile extends Movable {
 	public Stargate openStargate() {
 		SkeletonLogger.functionCalled(this, "openStargate", null);
 
-		Stargate stargate = new Stargate(position, type, Direction.getOppositeDirection(direction));
+		Stargate stargate = Stargate.createStargate(position, type, Direction.getOppositeDirection(direction));
 
 		SkeletonLogger.returnFromFunction(stargate);
 		return stargate;
