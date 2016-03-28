@@ -13,7 +13,7 @@ import gamemodel.SpecialWall;
 import gamemodel.Wall;
 import gamemodel.ZPM;
 
-public class MapBuilder {
+class MapBuilder {
 
 	private HashSet<ZPM> zpmSet = new HashSet<ZPM>();
 

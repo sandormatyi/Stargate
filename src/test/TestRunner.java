@@ -10,6 +10,8 @@ public class TestRunner {
 	 * Runs the test given as a parameter
 	 */
 	public static void runTest(TestType type) {
+		SkeletonLogger.disablePrint();
+
 		Game game = new Game();
 		game.run();
 
@@ -23,12 +25,9 @@ public class TestRunner {
 		if (test == null)
 			return;
 
-		SkeletonLogger.disablePrint();
 		test.setUp();
 
 		SkeletonLogger.enablePrint();
 		test.run();
-
-		SkeletonLogger.disablePrint();
 	}
 }
