@@ -3,34 +3,23 @@ package controller;
 public class Game {
 
 	/*
+	 * The controller for the current game
+	 */
+	private Controller controller = null;
+
+	/*
 	 * The score of the player
 	 */
 	private int score = 0;
-
-	/*
-	 * Singleton instance
-	 */
-	private static Game instance;
 
 	public Game() {
 		// TODO
 	}
 
 	/*
-	 * Singleton accessor method
-	 */
-	public static Game getInstance() {
-		if (instance == null)
-			instance = new Game();
-
-		return instance;
-	}
-
-	/*
 	 * Returns the player's score
 	 */
 	public int getScore() {
-		// TODO
 		return score;
 	}
 
@@ -38,22 +27,34 @@ public class Game {
 	 * Increments the player's score
 	 */
 	public void incrementScore() {
-		// TODO
 		score++;
+	}
+
+	/*
+	 * Returns the controller for the current game. Valid only when the game is
+	 * running!
+	 */
+	public Controller getController() {
+		return controller;
 	}
 
 	/*
 	 * Start the game
 	 */
 	public void run() {
-		// TODO: Read and build the map and create the Controller object for the
-		// current game
+		MapBuilder builder = new MapBuilder();
+
+		builder.buildMap();
+
+		controller = builder.createController(this);
 	}
 
 	/*
 	 * Stop the game with the result given as parameter
 	 */
 	public void stop(boolean isVictory) {
+		controller = null;
+
 		// TODO
 	}
 }

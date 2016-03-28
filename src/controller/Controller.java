@@ -5,8 +5,10 @@ import java.util.HashSet;
 import gamemodel.Direction;
 import gamemodel.Player;
 import gamemodel.ZPM;
+import gamemodel.events.IZPMPickedUpListener;
+import gamemodel.events.ModelEventSource;
 
-public class Controller {
+public class Controller implements IZPMPickedUpListener {
 
 	/*
 	 * The object representing the current game
@@ -30,6 +32,8 @@ public class Controller {
 		this.game = game;
 		this.player = player;
 		this.zpmSet = zpmSet;
+
+		ModelEventSource.subscribe(this);
 	}
 
 	/*
@@ -45,6 +49,13 @@ public class Controller {
 
 		if (!player.isAlive())
 			game.stop(false);
+	}
+
+	@Override
+	public void onZPMPickedUp(ZPM zpm) {
+		game.incrementScore();
+
+		zpmSet.remove(zpm);
 
 		if (zpmSet.isEmpty())
 			game.stop(true);
