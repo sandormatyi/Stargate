@@ -4,16 +4,8 @@ import debug.SkeletonLogger;
 
 public class Scale extends MapElement {
 
-	private int weightCount;
+	private int weightCount = 0;
 	private Door door = null;
-
-	/*
-	 * Constructor
-	 */
-	public Scale() {
-		super();
-		this.weightCount = 0;
-	}
 
 	/*
 	 * Door setter
@@ -25,6 +17,8 @@ public class Scale extends MapElement {
 	@Override
 	public void handlePlayerArrive(Direction dir, Player player) {
 		SkeletonLogger.functionCalled(this, "handlePlayerArrive", new Object[] { dir, player });
+
+		player.setPosition(this);
 
 		weightCount++;
 
