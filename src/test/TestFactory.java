@@ -9,6 +9,9 @@ class TestFactory {
 	 */
 	public static Test createTest(Controller controller, TestType type) {
 		// TODO
-		return null;
+		switch (type) {
+		default:
+			return null;
+		}
 	}
 }

@@ -4,6 +4,9 @@ import controller.Controller;
 
 abstract class Test {
 
+	/*
+	 * The controller used to issue commands during the test
+	 */
 	protected Controller controller;
 
 	public Test(Controller controller) {

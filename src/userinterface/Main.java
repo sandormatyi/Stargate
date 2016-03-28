@@ -1,7 +1,11 @@
 package userinterface;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
+import test.TestRunner;
+import test.TestType;
 
 public class Main {
 
@@ -59,8 +63,8 @@ public class Main {
 	private static void handleZpmTestCall(String choice) throws IOException {
 		switch (choice) {
 		case "1":
-			// TODO:call test
 			System.out.println("Meghívtam: Utolsó ZPM felvétele");
+			TestRunner.runTest(TestType.ZPM);
 			break;
 		default:
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -80,12 +84,12 @@ public class Main {
 	private static void handleShootTestCall(String choice) throws IOException {
 		switch (choice) {
 		case "1":
-			// TODO:call test
 			System.out.println("Meghívtam: Lövés falra");
+			TestRunner.runTest(TestType.ShootWall);
 			break;
 		case "2":
-			// TODO:call test
 			System.out.println("Meghívtam: Lövés speciális falra");
+			TestRunner.runTest(TestType.ShootSpecialWall);
 			break;
 		default:
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -105,36 +109,36 @@ public class Main {
 	private static void handleBoxTestCall(String choice) throws IOException {
 		switch (choice) {
 		case "1":
-			// TODO:call test
 			System.out.println("Meghívtam: Felvétel útról");
+			TestRunner.runTest(TestType.BoxPickUpRoad);
 			break;
 		case "2":
-			// TODO:call test
 			System.out.println("Meghívtam: Felvétel mérlegrõl");
+			TestRunner.runTest(TestType.BoxPickUpScale);
 			break;
 		case "3":
-			// TODO:call test
 			System.out.println("Meghívtam: Felvétel portálon átnyúlva");
+			TestRunner.runTest(TestType.BoxPickUpWormhole);
 			break;
 		case "4":
-			// TODO:call test
 			System.out.println("Meghívtam: Lerakás útra");
+			TestRunner.runTest(TestType.BoxPutDownRoad);
 			break;
 		case "5":
-			// TODO:call test
 			System.out.println("Meghívtam: Lerakás mérlegre");
+			TestRunner.runTest(TestType.BoxPutDownScale);
 			break;
 		case "6":
-			// TODO:call test
 			System.out.println("Meghívtam: Lerakás szakadékba");
+			TestRunner.runTest(TestType.BoxPutDownGap);
 			break;
 		case "7":
-			// TODO:call test
 			System.out.println("Meghívtam: Lerakás falra");
+			TestRunner.runTest(TestType.BoxPutDownWall);
 			break;
 		case "8":
-			// TODO:call test
 			System.out.println("Meghívtam: Lerakás portálon keresztül");
+			TestRunner.runTest(TestType.BoxPutDownWormhole);
 			break;
 		default:
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -154,24 +158,24 @@ public class Main {
 	private static void handlePlayerTestCall(String choice) throws IOException {
 		switch (choice) {
 		case "1":
-			// TODO:call test
 			System.out.println("Meghívtam: Játékos mozgatása útra");
+			TestRunner.runTest(TestType.PlayerMoveRoad);
 			break;
 		case "2":
-			// TODO:call test
 			System.out.println("Meghívtam: Játékos mozgatása mérlegre");
+			TestRunner.runTest(TestType.PlayerMoveScale);
 			break;
 		case "3":
-			// TODO:call test
 			System.out.println("Meghívtam: Játékos mozgatása falra");
+			TestRunner.runTest(TestType.PlayerMoveWall);
 			break;
 		case "4":
-			// TODO:call test
 			System.out.println("Meghívtam: Játékos mozgatása speciális falra (nyitott portál)");
+			TestRunner.runTest(TestType.PlayerMoveWormhole);
 			break;
 		case "5":
-			// TODO:call test
 			System.out.println("Meghívtam: Játékos mozgatása szakadékba");
+			TestRunner.runTest(TestType.PlayerMoveGap);
 			break;
 		default:
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

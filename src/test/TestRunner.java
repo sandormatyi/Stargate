@@ -20,6 +20,9 @@ public class TestRunner {
 
 		Test test = TestFactory.createTest(controller, type);
 
+		if (test == null)
+			return;
+
 		SkeletonLogger.disablePrint();
 		test.setUp();
 
