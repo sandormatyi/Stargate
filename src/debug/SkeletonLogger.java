@@ -27,6 +27,7 @@ public class SkeletonLogger {
 
 		if (logDepth < 0) {
 			System.err.println(SkeletonLogger.class.getSimpleName() + ": logDepth cannot be negative!");
+			logDepth = 0;
 		}
 	}
 
