@@ -1,5 +1,7 @@
 package gamemodel;
 
+import debug.SkeletonLogger;
+
 public class Gap extends MapElement {
 
 	/*
@@ -7,8 +9,12 @@ public class Gap extends MapElement {
 	 */
 	@Override
 	public void handlePlayerArrive(Direction dir, Player player) {
+		SkeletonLogger.functionCalled(this, "handlePlayerArrive", new Object[] { dir, player });
+
 		player.setPosition(this);
 		player.die();
+
+		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
@@ -16,7 +22,11 @@ public class Gap extends MapElement {
 	 */
 	@Override
 	public void handleProjectileArrive(Direction dir, Projectile projectile) {
+		SkeletonLogger.functionCalled(this, "handleProjectileArrive", new Object[] { dir, projectile });
+
 		projectile.setPosition(this);
+
+		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
@@ -24,7 +34,11 @@ public class Gap extends MapElement {
 	 */
 	@Override
 	public void handleBoxPutDown(Direction dir, Box box) {
+		SkeletonLogger.functionCalled(this, "handleBoxPutDown", new Object[] { dir, box });
+
 		box.setPosition(this);
 		box.respawn();
+
+		SkeletonLogger.returnFromFunction(null);
 	}
 }

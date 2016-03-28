@@ -68,7 +68,7 @@ public class SkeletonLogger {
 					firstParam = false;
 				}
 
-				System.out.print(param == null ? "null" : param.getClass().getSimpleName());
+				System.out.print(param == null ? "null" : param.toString());
 			}
 		}
 

@@ -1,5 +1,7 @@
 package gamemodel;
 
+import debug.SkeletonLogger;
+
 public class Door extends MapElement {
 
 	private boolean isOpened = false;
@@ -9,10 +11,14 @@ public class Door extends MapElement {
 	 * there was on on the field
 	 */
 	public void setOpened(boolean isOpened) {
+		SkeletonLogger.functionCalled(this, "setOpened", new Object[] { isOpened });
+
 		this.isOpened = isOpened;
 
 		if (box != null)
 			box.respawn();
+
+		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
@@ -22,11 +28,15 @@ public class Door extends MapElement {
 	 */
 	@Override
 	public void handlePlayerArrive(Direction dir, Player player) {
+		SkeletonLogger.functionCalled(this, "handlePlayerArrive", new Object[] { dir, player });
+
 		if (isOpened) {
 			player.setPosition(this);
 		} else {
 			super.handlePlayerArrive(dir, player);
 		}
+
+		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
@@ -44,10 +54,14 @@ public class Door extends MapElement {
 	 */
 	@Override
 	public void handleProjectileArrive(Direction dir, Projectile projectile) {
+		SkeletonLogger.functionCalled(this, "handleProjectileArrive", new Object[] { dir, projectile });
+
 		projectile.setPosition(this);
 
 		if (!isOpened)
 			projectile.destroy();
+
+		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
@@ -56,6 +70,8 @@ public class Door extends MapElement {
 	 */
 	@Override
 	public void handleBoxPutDown(Direction dir, Box box) {
+		SkeletonLogger.functionCalled(this, "handleBoxPutDown", new Object[] { dir, box });
+
 		if (isOpened) {
 			box.setPosition(this);
 
@@ -66,10 +82,16 @@ public class Door extends MapElement {
 		} else {
 			super.handleBoxPutDown(dir, box);
 		}
+
+		SkeletonLogger.returnFromFunction(null);
 	}
 
 	@Override
 	public void handleBoxPickUp() {
-		// TODO
+		SkeletonLogger.functionCalled(this, "handleBoxPickup", null);
+
+		box = null;
+
+		SkeletonLogger.returnFromFunction(null);
 	}
 }
