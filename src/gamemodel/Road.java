@@ -34,7 +34,8 @@ public class Road extends MapElement {
 	 */
 	@Override
 	public void handlePlayerLeave() {
-		// TODO
+		SkeletonLogger.functionCalled(this, "handlePlayerLeave", null);
+		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
