@@ -59,4 +59,9 @@ public class Game {
 
 		// TODO
 	}
+
+	@Override
+	public String toString() {
+		return getClass().getSimpleName();
+	}
 }
