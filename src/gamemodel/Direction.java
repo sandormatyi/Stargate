@@ -2,7 +2,10 @@ package gamemodel;
 
 public enum Direction {
 	NORTH, SOUTH, EAST, WEST;
-
+	
+	/*
+	 *Get a direction's opposite direction 
+	 */
 	static Direction getOppositeDirection(Direction dir) {
 		switch (dir) {
 		case NORTH:
