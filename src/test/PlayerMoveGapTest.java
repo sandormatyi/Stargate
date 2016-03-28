@@ -5,6 +5,9 @@ import gamemodel.Direction;
 
 class PlayerMoveGapTest extends Test {
 
+	/*
+	 * Constructor
+	 */
 	public PlayerMoveGapTest(Controller controller) {
 		super(controller);
 	}

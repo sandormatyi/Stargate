@@ -5,6 +5,9 @@ import gamemodel.Direction;
 
 class BoxPickUpWormholeTest extends Test {
 
+	/*
+	 * Constructor
+	 */
 	public BoxPickUpWormholeTest(Controller controller) {
 		super(controller);
 	}

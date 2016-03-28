@@ -5,6 +5,9 @@ import gamemodel.Direction;
 
 class BoxPutDownRoadTest extends Test {
 
+	/*
+	 * Constructor
+	 */
 	public BoxPutDownRoadTest(Controller controller) {
 		super(controller);
 	}

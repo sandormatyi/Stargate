@@ -76,7 +76,7 @@ public class Main {
 		// Handles Zpm pickup test
 		case "1":
 			System.out.println("-------------------------------------------------------------");
-			System.out.println("Meghívtam: Utolsó ZPM felvétele");
+			System.out.println("Utolsó ZPM felvétele");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.ZPM);
 			break;
@@ -102,14 +102,14 @@ public class Main {
 		// Handles shoot on wall test
 		case "1":
 			System.out.println("-------------------------------------------------------------");
-			System.out.println("Meghívtam: Lövés falra");
+			System.out.println("Lövés falra");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.ShootWall);
 			break;
 		// Handles shoot on specialwall test
 		case "2":
 			System.out.println("-------------------------------------------------------------");
-			System.out.println("Meghívtam: Lövés speciális falra");
+			System.out.println("Lövés speciális falra");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.ShootSpecialWall);
 			break;
@@ -135,56 +135,56 @@ public class Main {
 		// Handles pick up from road
 		case "1":
 			System.out.println("-------------------------------------------------------------");
-			System.out.println("Meghívtam: Felvétel útról");
+			System.out.println("Felvétel útról");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.BoxPickUpRoad);
 			break;
 		// Handles pick up from scale
 		case "2":
 			System.out.println("-------------------------------------------------------------");
-			System.out.println("Meghívtam: Felvétel mérlegrõl");
+			System.out.println("Felvétel mérlegrõl");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.BoxPickUpScale);
 			break;
 		// Handles pick up through wormhole
 		case "3":
 			System.out.println("-------------------------------------------------------------");
-			System.out.println("Meghívtam: Felvétel portálon átnyúlva");
+			System.out.println("Felvétel portálon átnyúlva");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.BoxPickUpWormhole);
 			break;
 		// Handles put down (road)
 		case "4":
 			System.out.println("-------------------------------------------------------------");
-			System.out.println("Meghívtam: Lerakás útra");
+			System.out.println("Lerakás útra");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.BoxPutDownRoad);
 			break;
 		// Handles put down (scale)
 		case "5":
 			System.out.println("-------------------------------------------------------------");
-			System.out.println("Meghívtam: Lerakás mérlegre");
+			System.out.println("Lerakás mérlegre");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.BoxPutDownScale);
 			break;
 		// Handles put down (gap)
 		case "6":
 			System.out.println("-------------------------------------------------------------");
-			System.out.println("Meghívtam: Lerakás szakadékba");
+			System.out.println("Lerakás szakadékba");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.BoxPutDownGap);
 			break;
 		// Handles put down (wall)
 		case "7":
 			System.out.println("-------------------------------------------------------------");
-			System.out.println("Meghívtam: Lerakás falra");
+			System.out.println("Lerakás falra");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.BoxPutDownWall);
 			break;
 		// Handles put down (through wormhole)
 		case "8":
 			System.out.println("-------------------------------------------------------------");
-			System.out.println("Meghívtam: Lerakás portálon keresztül");
+			System.out.println("Lerakás portálon keresztül");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.BoxPutDownWormhole);
 			break;
@@ -210,35 +210,35 @@ public class Main {
 		// Handles player move to road
 		case "1":
 			System.out.println("-------------------------------------------------------------");
-			System.out.println("Meghívtam: Játékos mozgatása útra");
+			System.out.println("Játékos mozgatása útra");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.PlayerMoveRoad);
 			break;
 		// Handles player move to scale
 		case "2":
 			System.out.println("-------------------------------------------------------------");
-			System.out.println("Meghívtam: Játékos mozgatása mérlegre");
+			System.out.println("Játékos mozgatása mérlegre");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.PlayerMoveScale);
 			break;
 		// Handles player move to wall
 		case "3":
 			System.out.println("-------------------------------------------------------------");
-			System.out.println("Meghívtam: Játékos mozgatása falra");
+			System.out.println("Játékos mozgatása falra");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.PlayerMoveWall);
 			break;
 		// Handles player move to portal (opened)
 		case "4":
 			System.out.println("-------------------------------------------------------------");
-			System.out.println("Meghívtam: Játékos mozgatása speciális falra (nyitott portál)");
+			System.out.println("Játékos mozgatása speciális falra (nyitott portál)");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.PlayerMoveWormhole);
 			break;
 		// Handles player move to gap
 		case "5":
 			System.out.println("-------------------------------------------------------------");
-			System.out.println("Meghívtam: Játékos mozgatása szakadékba");
+			System.out.println("Játékos mozgatása szakadékba");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.PlayerMoveGap);
 			break;

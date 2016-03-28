@@ -5,6 +5,9 @@ import gamemodel.Direction;
 
 class BoxPutDownGapTest extends Test {
 
+	/*
+	 * Constructor
+	 */
 	public BoxPutDownGapTest(Controller controller) {
 		super(controller);
 	}

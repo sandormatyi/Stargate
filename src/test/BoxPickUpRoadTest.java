@@ -5,6 +5,9 @@ import gamemodel.Direction;
 
 class BoxPickUpRoadTest extends Test {
 
+	/*
+	 * Constructor
+	 */
 	public BoxPickUpRoadTest(Controller controller) {
 		super(controller);
 	}

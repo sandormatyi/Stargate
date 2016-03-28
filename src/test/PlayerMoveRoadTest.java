@@ -5,6 +5,9 @@ import gamemodel.Direction;
 
 class PlayerMoveRoadTest extends Test {
 
+	/*
+	 * Constructor
+	 */
 	public PlayerMoveRoadTest(Controller controller) {
 		super(controller);
 	}

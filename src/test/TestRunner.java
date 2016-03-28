@@ -7,7 +7,8 @@ import debug.SkeletonLogger;
 public class TestRunner {
 
 	/*
-	 * Runs the test given as a parameter
+	 * Create a game, create the specified test given as a parameter using
+	 * TestFactory class and runs it
 	 */
 	public static void runTest(TestType type) {
 		SkeletonLogger.disablePrint();

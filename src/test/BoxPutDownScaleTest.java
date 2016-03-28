@@ -5,6 +5,9 @@ import gamemodel.Direction;
 
 class BoxPutDownScaleTest extends Test {
 
+	/*
+	 * Constructor
+	 */
 	public BoxPutDownScaleTest(Controller controller) {
 		super(controller);
 	}

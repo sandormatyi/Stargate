@@ -5,31 +5,34 @@ import gamemodel.Direction;
 
 class BoxPutDownWormholeTest extends Test {
 
+	/*
+	 * Constructor
+	 */
 	public BoxPutDownWormholeTest(Controller controller) {
 		super(controller);
 	}
 
 	@Override
-	public void setUp() {	
+	public void setUp() {
 		// Move WEST
 		controller.moveOrTurnPlayer(Direction.WEST);
 		// Turn EAST
 		controller.moveOrTurnPlayer(Direction.EAST);
-		//Pick up box
+		// Pick up box
 		controller.pickUpBox();
 		// Turn NORTH
 		controller.moveOrTurnPlayer(Direction.NORTH);
-		//Shoot projectile
+		// Shoot projectile
 		controller.shoot();
 		// Turn SOUTH
 		controller.moveOrTurnPlayer(Direction.SOUTH);
-		//Shoot projectile - Open Stargate
+		// Shoot projectile - Open Stargate
 		controller.shoot();
 	}
 
 	@Override
 	public void run() {
-		//Put down box - Stargate
+		// Put down box - Stargate
 		controller.putDownBox();
 
 	}

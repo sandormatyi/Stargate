@@ -5,6 +5,9 @@ import gamemodel.Direction;
 
 class ShootWallTest extends Test {
 
+	/*
+	 * Constructor
+	 */
 	public ShootWallTest(Controller controller) {
 		super(controller);
 	}
@@ -22,7 +25,7 @@ class ShootWallTest extends Test {
 
 	@Override
 	public void run() {
-		//Shoot projectile
+		// Shoot projectile
 		controller.shoot();
 
 	}

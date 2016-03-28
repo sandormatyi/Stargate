@@ -5,6 +5,9 @@ import gamemodel.Direction;
 
 class PlayerMoveScaleTest extends Test {
 
+	/*
+	 * Constructor
+	 */
 	public PlayerMoveScaleTest(Controller controller) {
 		super(controller);
 	}

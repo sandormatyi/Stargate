@@ -5,6 +5,9 @@ import gamemodel.Direction;
 
 class BoxPickUpScaleTest extends Test {
 
+	/*
+	 * Constructor
+	 */
 	public BoxPickUpScaleTest(Controller controller) {
 		super(controller);
 	}
