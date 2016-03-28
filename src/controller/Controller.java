@@ -4,11 +4,13 @@ import java.util.HashSet;
 
 import gamemodel.Direction;
 import gamemodel.Player;
+import gamemodel.Projectile;
 import gamemodel.ZPM;
+import gamemodel.events.IProjectileStateListener;
 import gamemodel.events.IZPMPickedUpListener;
 import gamemodel.events.ModelEventSource;
 
-public class Controller implements IZPMPickedUpListener {
+public class Controller implements IZPMPickedUpListener, IProjectileStateListener {
 
 	/*
 	 * The object representing the current game
@@ -26,6 +28,11 @@ public class Controller implements IZPMPickedUpListener {
 	private HashSet<ZPM> zpmSet;
 
 	/*
+	 * Stores the current state of the Projectile
+	 */
+	private boolean isProjectileMoving = false;
+
+	/*
 	 * Default constructor
 	 */
 	public Controller(Game game, Player player, HashSet<ZPM> zpmSet) {
@@ -33,7 +40,8 @@ public class Controller implements IZPMPickedUpListener {
 		this.player = player;
 		this.zpmSet = zpmSet;
 
-		ModelEventSource.subscribe(this);
+		ModelEventSource.subscribe((IZPMPickedUpListener) this);
+		ModelEventSource.subscribe((IProjectileStateListener) this);
 	}
 
 	/*
@@ -51,6 +59,13 @@ public class Controller implements IZPMPickedUpListener {
 			game.stop(false);
 	}
 
+	/*
+	 * Make the player shoot a projectile
+	 */
+	public void shoot() {
+		player.shoot();
+	}
+
 	@Override
 	public void onZPMPickedUp(ZPM zpm) {
 		game.incrementScore();
@@ -59,5 +74,18 @@ public class Controller implements IZPMPickedUpListener {
 
 		if (zpmSet.isEmpty())
 			game.stop(true);
+	}
+
+	@Override
+	public void onProjectileCreated(Projectile projectile) {
+		isProjectileMoving = true;
+
+		while (isProjectileMoving)
+			projectile.move();
+	}
+
+	@Override
+	public void onProjectileDestroyed(Projectile projectile) {
+		isProjectileMoving = false;
 	}
 }
