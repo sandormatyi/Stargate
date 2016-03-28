@@ -11,14 +11,30 @@ class PlayerMoveRoadTest extends Test {
 
 	@Override
 	public void setUp() {
-		// Turn south
-		controller.moveOrTurnPlayer(Direction.SOUTH);
+		// Turn WEST
+		controller.moveOrTurnPlayer(Direction.WEST);
+		// Turn EAST
+		controller.moveOrTurnPlayer(Direction.EAST);
+		//Pick up box
+		controller.pickUpBox();
+		// MOve EAST
+		controller.moveOrTurnPlayer(Direction.EAST);
+		// Turn WEST
+		controller.moveOrTurnPlayer(Direction.WEST);
+		//Put down box - Open Door
+		controller.putDownBox();
+		// Turn EAST
+		controller.moveOrTurnPlayer(Direction.EAST);
+		// MOve EAST
+		controller.moveOrTurnPlayer(Direction.EAST);		
+		// Turn NORTH
+		controller.moveOrTurnPlayer(Direction.NORTH);
 	}
 
 	@Override
 	public void run() {
-		// Move south
-		controller.moveOrTurnPlayer(Direction.SOUTH);
+		// Move NORTH
+		controller.moveOrTurnPlayer(Direction.NORTH);
 	}
 
 }
