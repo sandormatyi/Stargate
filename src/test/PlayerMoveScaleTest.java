@@ -1,6 +1,7 @@
 package test;
 
 import controller.Controller;
+import gamemodel.Direction;
 
 class PlayerMoveScaleTest extends Test {
 
@@ -10,13 +11,15 @@ class PlayerMoveScaleTest extends Test {
 
 	@Override
 	public void setUp() {
-		// TODO Auto-generated method stub
+		// Turn WEST
+		controller.moveOrTurnPlayer(Direction.WEST);
 
 	}
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
+		// Move WEST
+		controller.moveOrTurnPlayer(Direction.WEST);
 
 	}
 
