@@ -79,6 +79,9 @@ public class Projectile extends Movable {
 		SkeletonLogger.returnFromFunction(null);
 	}
 
+	/*
+	 * Get the Class name as String
+	 */
 	@Override
 	public String toString() {
 		return getClass().getSimpleName() + "_" + type.toString();
