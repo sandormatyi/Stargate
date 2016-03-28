@@ -10,6 +10,8 @@ class TestFactory {
 	public static Test createTest(Controller controller, TestType type) {
 		// TODO
 		switch (type) {
+		case PlayerMoveRoad:
+			return new PlayerMoveRoadTest(controller);
 		default:
 			return null;
 		}
