@@ -33,12 +33,18 @@ public class MapBuilder {
 		Gap north = new Gap();
 		Road northEast = new Road();
 		Door east = new Door();
-		Scale west = new Scale(east);
-		Road middle = null;
-		middle = new Road(null, new Box(middle, middle));
+		Scale west = new Scale();
+		Road middle = new Road();
 		SpecialWall southWest = new SpecialWall();
-		Road south = new Road(zpm, null);
+		Road south = new Road();
 		Wall southEast = new Wall();
+
+		// Initialize player, set box, zpm, door
+		player = new Player(middle, Direction.WEST);
+		west.setDoor(east);
+		south.setZpm(zpm);
+		Box box = new Box(middle, middle);
+		middle.setBox(box);
 
 		// Handle neighborhoods of northWest
 		northWest.setNeighbour(Direction.EAST, north);
@@ -81,9 +87,6 @@ public class MapBuilder {
 		// Handle neighborhoods of southEast
 		southEast.setNeighbour(Direction.NORTH, east);
 		southEast.setNeighbour(Direction.WEST, south);
-
-		// Initialize player
-		player = new Player(middle, Direction.WEST);
 	}
 
 	public Controller createController(Game game) {

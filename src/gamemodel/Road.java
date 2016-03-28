@@ -12,11 +12,16 @@ public class Road extends MapElement {
 	}
 
 	/*
-	 * Constructor using fields
+	 * Zpm setter
 	 */
-	public Road(ZPM zpm, Box box) {
-		super();
+	public void setZpm(ZPM zpm) {
 		this.zpm = zpm;
+	}
+
+	/*
+	 * Box setter
+	 */
+	public void setBox(Box box) {
 		this.box = box;
 	}
 

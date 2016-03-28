@@ -14,11 +14,9 @@ public class Scale extends MapElement {
 	}
 
 	/*
-	 * Constructor using door field
+	 * Door setter
 	 */
-	public Scale(Door door) {
-		super();
-		this.weightCount = 0;
+	public void setDoor(Door door) {
 		this.door = door;
 	}
 
