@@ -25,9 +25,14 @@ public class TestRunner {
 		if (test == null)
 			return;
 
-		test.setUp();
+		try {
+			test.setUp();
 
-		SkeletonLogger.enablePrint();
-		test.run();
+			SkeletonLogger.enablePrint();
+			test.run();
+		} catch (Exception e) {
+			System.err.println("Error happened during " + test.getClass().getSimpleName());
+			e.printStackTrace();
+		}
 	}
 }
