@@ -38,11 +38,12 @@ class MapBuilder {
 		SpecialWall southWest = new SpecialWall();
 		Road south = new Road();
 		Wall southEast = new Wall();
+		SpecialWall southSouth = new SpecialWall();
 
 		// Initialize player, set box, zpm, door
 		player = new Player(middle, Direction.WEST);
 		west.setDoor(east);
-		south.setZpm(zpm);
+		northEast.setZpm(zpm);
 		Box box = new Box(middle);
 		box.arriveOnMapElement(null, middle);
 
@@ -83,10 +84,14 @@ class MapBuilder {
 		south.setNeighbour(Direction.WEST, southWest);
 		south.setNeighbour(Direction.NORTH, middle);
 		south.setNeighbour(Direction.EAST, southEast);
+		south.setNeighbour(Direction.SOUTH, southSouth);
 
 		// Handle neighborhoods of southEast
 		southEast.setNeighbour(Direction.NORTH, east);
 		southEast.setNeighbour(Direction.WEST, south);
+
+		// Handle neighborhoods of southSouth
+		southSouth.setNeighbour(Direction.NORTH, south);
 	}
 
 	public Controller createController(Game game) {
