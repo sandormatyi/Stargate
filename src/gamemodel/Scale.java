@@ -53,6 +53,7 @@ public class Scale extends MapElement {
 	public void handleBoxPickUp() {
 		SkeletonLogger.functionCalled(this, "handleBoxPickUp", null);
 
+		box.setPosition(null);
 		weightCount--;
 
 		if (door != null && weightCount < 1)

@@ -74,6 +74,7 @@ public class Road extends MapElement {
 	public void handleBoxPickUp() {
 		SkeletonLogger.functionCalled(this, "handleBoxPickup", null);
 
+		box.setPosition(null);
 		box = null;
 
 		SkeletonLogger.returnFromFunction(null);

@@ -1,6 +1,7 @@
 package test;
 
 import controller.Controller;
+import gamemodel.Direction;
 
 class BoxPickUpRoadTest extends Test {
 
@@ -10,14 +11,16 @@ class BoxPickUpRoadTest extends Test {
 
 	@Override
 	public void setUp() {
-		// TODO Auto-generated method stub
-
+		// move WEST
+		controller.moveOrTurnPlayer(Direction.WEST);
+		// turn EAST
+		controller.moveOrTurnPlayer(Direction.EAST);
 	}
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
-
+		// pick up box
+		controller.pickUpBox();
 	}
 
 }
