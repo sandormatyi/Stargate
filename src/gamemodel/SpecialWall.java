@@ -65,9 +65,9 @@ public class SpecialWall extends MapElement {
 		if (stargate == null) {
 			stargate = projectile.openStargate();
 			stargates.put(oppositeDirection, stargate);
-		} else {
-			projectile.destroy();
 		}
+
+		projectile.destroy();
 
 		SkeletonLogger.returnFromFunction(null);
 	}

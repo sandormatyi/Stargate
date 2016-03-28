@@ -48,11 +48,9 @@ public class Projectile extends Movable {
 		if (nextposition != null) {
 			arriveOnMapElement(direction, nextposition);
 		} else {
-			System.err.println("Player tried to step on a MapElement that does not exist!");
-			arriveOnMapElement(Direction.getOppositeDirection(direction), position);
+			System.err.println("Projectile tried to move on a MapElement that does not exist!");
+			destroy();
 		}
-
-		destroy();
 
 		SkeletonLogger.returnFromFunction(null);
 	}
