@@ -85,8 +85,8 @@ public abstract class MapElement {
 	/*
 	 * Function for box picking up from this tile. Does nothing by default.
 	 */
-	public void handleBoxPickUp() {
-		SkeletonLogger.functionCalled(this, "handleBoxPickup", null);
+	public void handleBoxPickUp(Box box) {
+		SkeletonLogger.functionCalled(this, "handleBoxPickup", new Object[] { box });
 
 		SkeletonLogger.returnFromFunction(null);
 	}
