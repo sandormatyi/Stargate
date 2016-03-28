@@ -1,5 +1,7 @@
 package gamemodel;
 
+import gamemodel.events.ModelEventSource;
+
 public class Player extends Movable {
 
 	private Direction direction;
@@ -65,9 +67,11 @@ public class Player extends Movable {
 	 * Shoot a projectile
 	 */
 	public void shoot() {
-		// Ezt nem használod nem kell
-		// Projectile projectile = new Projectile(position, direction,
-		// projType);
+		Projectile projectile = new Projectile(position, direction, projType);
+
+		// Notify the listeners that a projectile has been created
+		ModelEventSource.notifyProjectileCreated(projectile);
+
 		if (projType == ProjectileType.BLUE) {
 			projType = ProjectileType.YELLOW;
 		} else {

@@ -1,5 +1,7 @@
 package gamemodel;
 
+import gamemodel.events.ModelEventSource;
+
 public class Projectile extends Movable {
 
 	private Direction direction;
@@ -50,8 +52,6 @@ public class Projectile extends Movable {
 	 * Destroy the projectile
 	 */
 	public void destroy() {
-		this.position = null;
-		this.type = null;
-		this.direction = null;
+		ModelEventSource.notifyProjectileDestroyed(this);
 	}
 }

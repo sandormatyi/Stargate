@@ -1,19 +1,13 @@
 package gamemodel;
 
+import gamemodel.events.ModelEventSource;
+
 public class ZPM {
 
 	/*
-	 * We need to create "game" when the game starts
-	 * increments the score variable of Game class
-	 * if it is equal to 5 (or 10, whatever) the game stops
+	 * Notifies the listeners that it has been picked up
 	 */
 	public void handlePickUp() {
-		/*
-		game.incrementScore();
-		if (game.getScore() == 5)
-			game.stop();
-		*/
-		//  Kommentbe tettem, mert nincs meg game-unk
-		
+		ModelEventSource.notifyZPMPickedUp(this);
 	}
 }
