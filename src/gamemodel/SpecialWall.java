@@ -101,6 +101,18 @@ public class SpecialWall extends MapElement {
 	}
 
 	/*
+	 * Set the position of the box to null
+	 */
+	@Override
+	public void handleBoxPickUp(Box box) {
+		SkeletonLogger.functionCalled(this, "handleBoxPickup", new Object[] { box });
+
+		box.setPosition(null);
+
+		SkeletonLogger.returnFromFunction(null);
+	};
+
+	/*
 	 * If there is an open wormhole through the given direction, returns the box
 	 * on the MapElement before the exit of the wormhole
 	 */
