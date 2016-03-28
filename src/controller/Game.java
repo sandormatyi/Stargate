@@ -55,6 +55,7 @@ public class Game {
 	 * Stop the game with the result given as parameter
 	 */
 	public void stop(boolean isVictory) {
+		controller.unsubscribe();
 		controller = null;
 
 		// TODO

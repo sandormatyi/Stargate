@@ -44,6 +44,11 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 		ModelEventSource.subscribe((IProjectileStateListener) this);
 	}
 
+	public void unsubscribe() {
+		ModelEventSource.unsubscribe((IZPMPickedUpListener) this);
+		ModelEventSource.unsubscribe((IProjectileStateListener) this);
+	}
+
 	/*
 	 * Move or turn the player depending on the player's current direction and
 	 * check if the game is over
