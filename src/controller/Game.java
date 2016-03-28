@@ -1,5 +1,7 @@
 package controller;
 
+import debug.SkeletonLogger;
+
 public class Game {
 
 	/*
@@ -12,10 +14,6 @@ public class Game {
 	 */
 	private int score = 0;
 
-	public Game() {
-		// TODO
-	}
-
 	/*
 	 * Returns the player's score
 	 */
@@ -27,7 +25,11 @@ public class Game {
 	 * Increments the player's score
 	 */
 	public void incrementScore() {
+		SkeletonLogger.functionCalled(this, "incrementScore", null);
+
 		score++;
+
+		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*

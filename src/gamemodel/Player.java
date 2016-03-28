@@ -1,5 +1,6 @@
 package gamemodel;
 
+import debug.SkeletonLogger;
 import gamemodel.events.ModelEventSource;
 
 public class Player extends Movable {
@@ -19,7 +20,11 @@ public class Player extends Movable {
 	 */
 	@Override
 	public void arriveOnMapElement(Direction dir, MapElement element) {
+		SkeletonLogger.functionCalled(this, "arriveOnMapElement", new Object[] { dir, element });
+
 		element.handlePlayerArrive(dir, this);
+
+		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
@@ -27,7 +32,11 @@ public class Player extends Movable {
 	 */
 	@Override
 	public void leaveMapElement(MapElement element) {
+		SkeletonLogger.functionCalled(this, "leaveMapElement", new Object[] { element });
+
 		element.handlePlayerLeave();
+
+		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
@@ -35,17 +44,29 @@ public class Player extends Movable {
 	 */
 	@Override
 	public void move() {
+		SkeletonLogger.functionCalled(this, "move", null);
+
 		this.leaveMapElement(position);
+
 		MapElement nextposition = position.getNeighbour(direction);
-		if (nextposition == null)
-			return;
-		this.arriveOnMapElement(direction, nextposition);
+
+		if (nextposition != null) {
+			arriveOnMapElement(direction, nextposition);
+		} else {
+			System.err.println("Player tried to step on a MapElement that does not exist!");
+			arriveOnMapElement(Direction.getOppositeDirection(direction), position);
+		}
+
+		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
 	 * Player is alive?
 	 */
 	public boolean isAlive() {
+		SkeletonLogger.functionCalled(this, "isAlive", null);
+
+		SkeletonLogger.returnFromFunction(isAlive);
 		return isAlive;
 	}
 
@@ -60,13 +81,19 @@ public class Player extends Movable {
 	 * Turn the player to a direction
 	 */
 	public void turn(Direction direction) {
+		SkeletonLogger.functionCalled(this, "turn", new Object[] { direction });
+
 		this.direction = direction;
+
+		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
 	 * Shoot a projectile
 	 */
 	public void shoot() {
+		SkeletonLogger.functionCalled(this, "shoot", null);
+
 		Projectile projectile = new Projectile(position, direction, projType);
 
 		// Notify the listeners that a projectile has been created
@@ -77,6 +104,8 @@ public class Player extends Movable {
 		} else {
 			projType = ProjectileType.BLUE;
 		}
+
+		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*

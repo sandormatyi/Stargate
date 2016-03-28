@@ -18,13 +18,11 @@ public class Road extends MapElement {
 	 */
 	@Override
 	public void handlePlayerArrive(Direction dir, Player player) {
-		SkeletonLogger.functionCalled("handlePlayerArrive", new Object[] { dir, player });
+		SkeletonLogger.functionCalled(this, "handlePlayerArrive", new Object[] { dir, player });
 
-		SkeletonLogger.callFunction(player);
 		player.setPosition(this);
 
 		if (zpm != null) {
-			SkeletonLogger.callFunction(zpm);
 			zpm.handlePickUp();
 		}
 
@@ -44,7 +42,11 @@ public class Road extends MapElement {
 	 */
 	@Override
 	public void handleProjectileArrive(Direction dir, Projectile projectile) {
+		SkeletonLogger.functionCalled(this, "handleProjectileArrive", new Object[] { dir, projectile });
+
 		projectile.setPosition(this);
+
+		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
@@ -52,6 +54,8 @@ public class Road extends MapElement {
 	 */
 	@Override
 	public void handleBoxPutDown(Direction dir, Box box) {
+		SkeletonLogger.functionCalled(this, "handleBoxPutDown", new Object[] { dir, box });
+
 		box.setPosition(this);
 
 		if (this.box != null)

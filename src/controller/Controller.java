@@ -55,8 +55,9 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 			player.turn(dir);
 		}
 
-		if (!player.isAlive())
+		if (!player.isAlive()) {
 			game.stop(false);
+		}
 	}
 
 	/*
@@ -86,16 +87,18 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 
 		zpmSet.remove(zpm);
 
-		if (zpmSet.isEmpty())
+		if (zpmSet.isEmpty()) {
 			game.stop(true);
+		}
 	}
 
 	@Override
 	public void onProjectileCreated(Projectile projectile) {
 		isProjectileMoving = true;
 
-		while (isProjectileMoving)
+		while (isProjectileMoving) {
 			projectile.move();
+		}
 	}
 
 	@Override
