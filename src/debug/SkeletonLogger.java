@@ -94,4 +94,9 @@ public class SkeletonLogger {
 
 		decrementLogDepth();
 	}
+
+	@Override
+	public String toString() {
+		return getClass().getSimpleName();
+	}
 }
