@@ -14,19 +14,27 @@ class BoxPutDownWormholeTest extends Test {
 
 	@Override
 	public void setUp() {
-		// Move WEST
+		// Turn south
+		controller.moveOrTurnPlayer(Direction.SOUTH);
+		// Move south
+		controller.moveOrTurnPlayer(Direction.SOUTH);
+		// Turn West
 		controller.moveOrTurnPlayer(Direction.WEST);
-		// Turn EAST
-		controller.moveOrTurnPlayer(Direction.EAST);
+		// Shoot
+		controller.shoot();
+		// Turn north
+		controller.moveOrTurnPlayer(Direction.NORTH);
 		// Pick up box
 		controller.pickUpBox();
-		// Turn NORTH
+		// move north
 		controller.moveOrTurnPlayer(Direction.NORTH);
-		// Shoot projectile
-		controller.shoot();
-		// Turn SOUTH
-		controller.moveOrTurnPlayer(Direction.SOUTH);
-		// Shoot projectile - Open Stargate
+		// turn west
+		controller.moveOrTurnPlayer(Direction.WEST);
+		// move west
+		controller.moveOrTurnPlayer(Direction.WEST);
+		// turn north
+		controller.moveOrTurnPlayer(Direction.NORTH);
+		// shoot
 		controller.shoot();
 	}
 
@@ -34,7 +42,6 @@ class BoxPutDownWormholeTest extends Test {
 	public void run() {
 		// Put down box - Stargate
 		controller.putDownBox();
-
 	}
 
 }
