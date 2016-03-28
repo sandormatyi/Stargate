@@ -91,6 +91,9 @@ public abstract class MapElement {
 		SkeletonLogger.returnFromFunction(null);
 	}
 
+	/*
+	 * Get the Class name as String
+	 */
 	@Override
 	public String toString() {
 		return this.getClass().getSimpleName();
