@@ -43,8 +43,8 @@ class MapBuilder {
 		player = new Player(middle, Direction.WEST);
 		west.setDoor(east);
 		south.setZpm(zpm);
-		Box box = new Box(middle, middle);
-		middle.setBox(box);
+		Box box = new Box(middle);
+		middle.handleBoxPutDown(null, box);
 
 		// Handle neighborhoods of northWest
 		northWest.setNeighbour(Direction.EAST, north);

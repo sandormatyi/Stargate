@@ -1,15 +1,10 @@
 package gamemodel;
 
+import debug.SkeletonLogger;
+
 public class Road extends MapElement {
 
 	private ZPM zpm = null;
-
-	/*
-	 * Constructor
-	 */
-	public Road() {
-		super();
-	}
 
 	/*
 	 * Zpm setter
@@ -19,20 +14,21 @@ public class Road extends MapElement {
 	}
 
 	/*
-	 * Box setter
-	 */
-	public void setBox(Box box) {
-		this.box = box;
-	}
-
-	/*
 	 * Player arrival method.
 	 */
 	@Override
 	public void handlePlayerArrive(Direction dir, Player player) {
+		SkeletonLogger.functionCalled("handlePlayerArrive", new Object[] { dir, player });
+
+		SkeletonLogger.callFunction(player);
 		player.setPosition(this);
-		if (zpm != null)
+
+		if (zpm != null) {
+			SkeletonLogger.callFunction(zpm);
 			zpm.handlePickUp();
+		}
+
+		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*

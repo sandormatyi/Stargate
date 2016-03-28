@@ -7,9 +7,9 @@ public class Box extends Movable {
 	 */
 	private MapElement initPosition;
 
-	public Box(MapElement position, MapElement initPosition) {
+	public Box(MapElement position) {
 		super(position);
-		this.initPosition = initPosition;
+		this.initPosition = position;
 	}
 
 	/*
