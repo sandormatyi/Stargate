@@ -66,6 +66,20 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 		player.shoot();
 	}
 
+	/*
+	 * Make the player pick up a box
+	 */
+	public void pickUpBox() {
+		player.pickUpBox();
+	}
+
+	/*
+	 * Make the player put down a box
+	 */
+	public void putDownBox() {
+		player.putDownBox();
+	}
+
 	@Override
 	public void onZPMPickedUp(ZPM zpm) {
 		game.incrementScore();
