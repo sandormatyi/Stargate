@@ -10,22 +10,22 @@ class PlayerMoveWormholeTest extends Test {
 
 	@Override
 	public void setUp() {
-		// Move WEST
-		controller.moveOrTurnPlayer(Direction.WEST);
-		// Turn NORTH
-		controller.moveOrTurnPlayer(Direction.NORTH);
-		//Shoot projectile
-		controller.shoot();
 		// Turn SOUTH
 		controller.moveOrTurnPlayer(Direction.SOUTH);
+		//Shoot projectile
+		controller.shoot();
+		// Move SOUTH
+		controller.moveOrTurnPlayer(Direction.SOUTH);
+		// Turn WEST
+		controller.moveOrTurnPlayer(Direction.WEST);
 		//Shoot projectile
 		controller.shoot();
 	}
 
 	@Override
 	public void run() {
-		// Move south
-		controller.moveOrTurnPlayer(Direction.SOUTH);
+		// Turn WEST
+		controller.moveOrTurnPlayer(Direction.WEST);
 	}
 
 }
