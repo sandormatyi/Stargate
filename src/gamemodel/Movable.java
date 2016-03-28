@@ -41,6 +41,9 @@ public abstract class Movable {
 		throw new NotImplementedException();
 	}
 
+	/*
+	 * Get the Class name as String
+	 */
 	@Override
 	public String toString() {
 		return this.getClass().getSimpleName();
