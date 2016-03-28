@@ -47,6 +47,14 @@ public class ModelEventSource {
 	}
 
 	/*
+	 * Unsubscribe all observers
+	 */
+	public static void clear() {
+		projectileListeners.clear();
+		zpmListeners.clear();
+	}
+
+	/*
 	 * Notifies the listeners that a ZPM has been picked up
 	 */
 	public static void notifyZPMPickedUp(ZPM zpm) {

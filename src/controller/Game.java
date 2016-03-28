@@ -1,6 +1,7 @@
 package controller;
 
 import debug.SkeletonLogger;
+import gamemodel.events.ModelEventSource;
 
 public class Game {
 
@@ -44,6 +45,8 @@ public class Game {
 	 * Start the game
 	 */
 	public void run() {
+		ModelEventSource.clear();
+
 		MapBuilder builder = new MapBuilder();
 
 		builder.buildMap();
