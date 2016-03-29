@@ -18,49 +18,54 @@ public class Main {
 
 			// Endless loop for handling menu
 			while (true) {
-				// Prints main menu, read user's choice
-				printMainMenu();
-				choice = Integer.parseInt(br.readLine());
+				try {
+					// Prints main menu, read user's choice
+					printMainMenu();
+					choice = Integer.parseInt(br.readLine());
 
-				// Handles user's choice
-				switch (choice) {
-				// Prints movament menu, read user's choice, then handles it
-				case 1:
-					printPlayerMovamentMenu();
-					choice = Integer.parseInt(br.readLine());
-					handlePlayerTestCall(choice);
-					br.readLine();
-					break;
-				// Prints box interaction menu, read user's choice, then handles
-				// it
-				case 2:
-					printBoxInteractionMenu();
-					choice = Integer.parseInt(br.readLine());
-					handleBoxTestCall(choice);
-					br.readLine();
-					break;
-				// Prints shoot menu, read user's choice, then handles it
-				case 3:
-					printShootMenu();
-					choice = Integer.parseInt(br.readLine());
-					handleShootTestCall(choice);
-					br.readLine();
-					break;
-				// Prints zpm menu, read user's choice, then handles it
-				case 4:
-					printZpmMenu();
-					choice = Integer.parseInt(br.readLine());
-					handleZpmTestCall(choice);
-					br.readLine();
-					break;
-				// Exits from program
-				case 5:
-					System.exit(0);
-					// Handles wrong input
-				default:
-					System.out.println("Nem megfelelõ menüpontot választottál ki!");
-					System.out.println("A lehetõségeid:");
-					break;
+					// Handles user's choice
+					switch (choice) {
+					// Prints movament menu, read user's choice, then handles it
+					case 1:
+						printPlayerMovamentMenu();
+						choice = Integer.parseInt(br.readLine());
+						handlePlayerTestCall(choice);
+						br.readLine();
+						break;
+					// Prints box interaction menu, read user's choice, then
+					// handles
+					// it
+					case 2:
+						printBoxInteractionMenu();
+						choice = Integer.parseInt(br.readLine());
+						handleBoxTestCall(choice);
+						br.readLine();
+						break;
+					// Prints shoot menu, read user's choice, then handles it
+					case 3:
+						printShootMenu();
+						choice = Integer.parseInt(br.readLine());
+						handleShootTestCall(choice);
+						br.readLine();
+						break;
+					// Prints zpm menu, read user's choice, then handles it
+					case 4:
+						printZpmMenu();
+						choice = Integer.parseInt(br.readLine());
+						handleZpmTestCall(choice);
+						br.readLine();
+						break;
+					// Exits from program
+					case 5:
+						System.exit(0);
+						// Handles wrong input
+					default:
+						System.out.println("Nem megfelelõ menüpontot választottál ki!");
+						System.out.println("A lehetõségeid:");
+						break;
+					}
+				} catch (NumberFormatException e) {
+					System.out.println("Kérlek, üss be egy számot!");
 				}
 			}
 		} catch (IOException io) {
