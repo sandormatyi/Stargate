@@ -2,6 +2,7 @@ package controller;
 
 import java.util.HashSet;
 
+import debug.SkeletonLogger;
 import gamemodel.Direction;
 import gamemodel.Player;
 import gamemodel.Projectile;
@@ -96,6 +97,7 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 		zpmSet.remove(zpm);
 
 		if (zpmSet.isEmpty()) {
+			SkeletonLogger.resetLogDepth();
 			game.stop(true);
 		}
 	}
@@ -108,6 +110,7 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 		isProjectileMoving = true;
 
 		while (isProjectileMoving) {
+			SkeletonLogger.resetLogDepth();
 			projectile.move();
 		}
 	}
