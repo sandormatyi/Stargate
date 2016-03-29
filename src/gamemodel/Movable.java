@@ -1,7 +1,6 @@
 package gamemodel;
 
 import debug.SkeletonLogger;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public abstract class Movable {
 	/*
@@ -38,7 +37,7 @@ public abstract class Movable {
 	 * Override in the descendants
 	 */
 	public void move() {
-		throw new NotImplementedException();
+		// throw new NotImplementedException();
 	}
 
 	/*
