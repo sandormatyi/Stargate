@@ -49,7 +49,7 @@ public class Game {
 
 		MapBuilder builder = new MapBuilder();
 
-		builder.buildMap();
+		builder.buildSkeletonMap();
 
 		controller = builder.createController(this);
 	}
