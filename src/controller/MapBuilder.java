@@ -24,15 +24,15 @@ class MapBuilder {
 		System.out.println("--+-----+-----+-----+-----+-----+-----+--");
 		System.out.println("1 | WALL| WALL| WALL| WALL| WALL| WALL| 1");
 		System.out.println("--+-----+-----+-----+-----+-----+-----+--");
-		System.out.println("2 | WALL| ROAD| ROAD| GAP | DOOR|SWALL| 2");
+		System.out.println("2 | WALL| ROAD| ROAD| GAP | DOOR|SPECW| 2");
 		System.out.println("--+-----+-----+-----+-----+-----+-----+--");
 		System.out.println("3 | WALL| ROAD| ROAD| WALL| ROAD| WALL| 3");
 		System.out.println("--+-----+-----+-----+-----+-----+-----+--");
-		System.out.println("4 |SWALL|SCALE| GAP | GAP | ROAD| WALL| 4");
+		System.out.println("4 |SPECW|SCALE| GAP | GAP | ROAD| WALL| 4");
 		System.out.println("--+-----+-----+-----+-----+-----+-----+--");
-		System.out.println("5 | WALL|SWALL| ROAD| WALL| ROAD|SWALL| 5");
+		System.out.println("5 | WALL|SPECW| ROAD| WALL| ROAD|SPECW| 5");
 		System.out.println("--+-----+-----+-----+-----+-----+-----+--");
-		System.out.println("6 | WALL| WALL|SWALL| WALL| WALL| WALL| 6");
+		System.out.println("6 | WALL| WALL|SPECW| WALL| WALL| WALL| 6");
 		System.out.println("--+-----+-----+-----+-----+-----+-----+--");
 		System.out.println("  |  A  |  B  |  C  |  D  |  E  |  F  |  ");
 	}
