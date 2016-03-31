@@ -20,22 +20,32 @@ class MapBuilder {
 	private Player player;
 
 	void printProtoStartMap() {
-		System.out.print("  |  A  |  B  |  C  |  D  |  E  |  F  |  ");
-		System.out.print("--+-----+-----+-----+-----+-----+-----+--");
-		System.out.print("1 | WALL| WALL| WALL| WALL| WALL| WALL| 1");
-		System.out.print("--+-----+-----+-----+-----+-----+-----+--");
-		System.out.print("2 | WALL| ROAD| ROAD| GAP | DOOR|SWALL| 2");
-		System.out.print("--+-----+-----+-----+-----+-----+-----+--");
-		System.out.print("3 | WALL| ROAD| ROAD| WALL| ROAD| WALL| 3");
-		System.out.print("--+-----+-----+-----+-----+-----+-----+--");
-		System.out.print("4 |SWALL|SCALE| GAP | GAP | ROAD| WALL| 4");
-		System.out.print("--+-----+-----+-----+-----+-----+-----+--");
-		System.out.print("5 | WALL|SWALL| ROAD| WALL| ROAD|SWALL| 5");
-		System.out.print("--+-----+-----+-----+-----+-----+-----+--");
-		System.out.print("6 | WALL| WALL|SWALL| WALL| WALL| WALL| 6");
-		System.out.print("--+-----+-----+-----+-----+-----+-----+--");
-		System.out.print("  |  A  |  B  |  C  |  D  |  E  |  F  |  ");
+		System.out.println("  |  A  |  B  |  C  |  D  |  E  |  F  |  ");
+		System.out.println("--+-----+-----+-----+-----+-----+-----+--");
+		System.out.println("1 | WALL| WALL| WALL| WALL| WALL| WALL| 1");
+		System.out.println("--+-----+-----+-----+-----+-----+-----+--");
+		System.out.println("2 | WALL| ROAD| ROAD| GAP | DOOR|SWALL| 2");
+		System.out.println("--+-----+-----+-----+-----+-----+-----+--");
+		System.out.println("3 | WALL| ROAD| ROAD| WALL| ROAD| WALL| 3");
+		System.out.println("--+-----+-----+-----+-----+-----+-----+--");
+		System.out.println("4 |SWALL|SCALE| GAP | GAP | ROAD| WALL| 4");
+		System.out.println("--+-----+-----+-----+-----+-----+-----+--");
+		System.out.println("5 | WALL|SWALL| ROAD| WALL| ROAD|SWALL| 5");
+		System.out.println("--+-----+-----+-----+-----+-----+-----+--");
+		System.out.println("6 | WALL| WALL|SWALL| WALL| WALL| WALL| 6");
+		System.out.println("--+-----+-----+-----+-----+-----+-----+--");
+		System.out.println("  |  A  |  B  |  C  |  D  |  E  |  F  |  ");
 	}
+
+	/*
+	 * Ha ideiglenes felvennénk a a moveablebe egy koordináta stringet, ami
+	 * tartalmazza a koordinátáját (A1, etc..) akkor kiirathatnánk a térkép
+	 * alatt minden objektum helyét és így meg lenne oldva minden infó
+	 * 
+	 * Mert ha csak a körülött lévõket látná és a a térképet akkor valószínûleg
+	 * megint bénáznak majd és 50 percig keresik majd, hogy óóó ez melyik része
+	 * is a nagy térképnek
+	 */
 
 	public void buildProtoMap() {
 		// Initialize ZPMs
