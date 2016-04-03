@@ -34,7 +34,7 @@ public class Player extends Movable {
 	public void leaveMapElement(MapElement element) {
 		SkeletonLogger.functionCalled(this, "leaveMapElement", new Object[] { element });
 
-		element.handlePlayerLeave();
+		element.handlePlayerLeave(this);
 
 		SkeletonLogger.returnFromFunction(null);
 	}
@@ -150,5 +150,12 @@ public class Player extends Movable {
 		isAlive = false;
 
 		SkeletonLogger.returnFromFunction(null);
+	}
+
+	public int getWeight() {
+		if (box != null) {
+			return 3;
+		} else
+			return 2;
 	}
 }
