@@ -23,7 +23,7 @@ public class Scale extends MapElement {
 
 		player.setPosition(this);
 
-		weightCount++;
+		weightCount = +2;
 
 		if (door != null)
 			door.setOpened(true);
@@ -75,7 +75,7 @@ public class Scale extends MapElement {
 
 		SkeletonLogger.returnFromFunction(null);
 	}
-	
+
 	/*
 	 * Increment Weighcount and Open the Door.
 	 */
