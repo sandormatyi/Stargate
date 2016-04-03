@@ -20,14 +20,11 @@ public class Scale extends MapElement {
 	 */
 	@Override
 	public void handlePlayerArrive(Direction dir, Player player) {
-		// int weight paraméter
 		SkeletonLogger.functionCalled(this, "handlePlayerArrive", new Object[] { dir, player });
 
 		player.setPosition(this);
 
-		weightCount += 2;
-		// weightCount += weight;
-
+		// weightCount += player.getWeight();
 		if (door != null)
 			door.setOpened(true);
 
@@ -38,13 +35,10 @@ public class Scale extends MapElement {
 	 * Decrement weightCount and close the if it is 0.
 	 */
 	@Override
-	public void handlePlayerLeave() {
-		// int weight paraméter
+	public void handlePlayerLeave(Player player) {
 		SkeletonLogger.functionCalled(this, "handlePlayerLeave", null);
 
-		weightCount += 2;
-		// weightCount -= weight;
-
+		// weightCount -= player.getWeight();
 		if (door != null && weightCount < 1)
 			door.setOpened(false);
 

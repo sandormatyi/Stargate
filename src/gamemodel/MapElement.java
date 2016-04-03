@@ -54,7 +54,7 @@ public abstract class MapElement {
 	/*
 	 * Funcion for player leave. Does nothing by default.
 	 */
-	public void handlePlayerLeave() {
+	public void handlePlayerLeave(Player player) {
 		SkeletonLogger.functionCalled(this, "handlePlayerLeave", null);
 
 		SkeletonLogger.returnFromFunction(null);
