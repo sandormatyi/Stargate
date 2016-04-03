@@ -19,6 +19,9 @@ class MapBuilder {
 
 	private Player player;
 
+	/*
+	 * Proto starting Map
+	 */
 	void printProtoStartMap() {
 		System.out.println("  |  A  |  B  |  C  |  D  |  E  |  F  |  ");
 		System.out.println("--+-----+-----+-----+-----+-----+-----+--");
