@@ -39,7 +39,7 @@ public class Scale extends MapElement {
 		SkeletonLogger.functionCalled(this, "handlePlayerLeave", null);
 
 		weightCount -= player.getWeight();
-		if (door != null && weightCount < 1)
+		if (door != null && weightCount < weightLimit)
 			door.setOpened(false);
 
 		SkeletonLogger.returnFromFunction(null);
