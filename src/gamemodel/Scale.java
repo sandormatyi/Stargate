@@ -5,6 +5,7 @@ import debug.SkeletonLogger;
 public class Scale extends MapElement {
 
 	private int weightCount = 0;
+	static final private int weightLimit = 2;
 	private Door door = null;
 
 	/*
@@ -19,11 +20,13 @@ public class Scale extends MapElement {
 	 */
 	@Override
 	public void handlePlayerArrive(Direction dir, Player player) {
+		// int weight paraméter
 		SkeletonLogger.functionCalled(this, "handlePlayerArrive", new Object[] { dir, player });
 
 		player.setPosition(this);
 
 		weightCount += 2;
+		// weightCount += weight;
 
 		if (door != null)
 			door.setOpened(true);
@@ -36,9 +39,11 @@ public class Scale extends MapElement {
 	 */
 	@Override
 	public void handlePlayerLeave() {
+		// int weight paraméter
 		SkeletonLogger.functionCalled(this, "handlePlayerLeave", null);
 
 		weightCount += 2;
+		// weightCount -= weight;
 
 		if (door != null && weightCount < 1)
 			door.setOpened(false);
@@ -68,7 +73,7 @@ public class Scale extends MapElement {
 		this.box.setPosition(null);
 		weightCount--;
 
-		if (door != null && weightCount < 1)
+		if (door != null && weightCount < weightLimit)
 			door.setOpened(false);
 
 		this.box = null;
@@ -86,8 +91,10 @@ public class Scale extends MapElement {
 		box.setPosition(this);
 		weightCount++;
 
-		if (door != null)
-			door.setOpened(true);
+		if (door != null) {
+			if (weightCount >= weightLimit)
+				door.setOpened(true);
+		}
 
 		if (this.box != null)
 			this.box.respawn();
