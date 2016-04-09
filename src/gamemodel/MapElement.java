@@ -10,6 +10,11 @@ public abstract class MapElement {
 	protected Box box = null;
 
 	/*
+	 * Proto Test protected String Coord; void setCoord(String name){ Coord =
+	 * name; }
+	 */
+
+	/*
 	 * Getter for neighbour MapElement in a specific direction.
 	 */
 	public MapElement getNeighbour(Direction dir) {
