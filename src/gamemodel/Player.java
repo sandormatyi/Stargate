@@ -3,12 +3,12 @@ package gamemodel;
 import debug.ProtoLogger;
 import gamemodel.events.ModelEventSource;
 
-public class Player extends Movable {
+public abstract class Player extends Movable {
 
 	private Direction direction;
 	private boolean isAlive = true;
 	private Box box = null;
-	protected ProjectileType[] projTypes = new ProjectileType[] { ProjectileType.BLUE, ProjectileType.YELLOW };
+	protected ProjectileType[] projTypes;
 
 	public Player(MapElement position, Direction direction) {
 		super(position);

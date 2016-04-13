@@ -6,6 +6,7 @@ import gamemodel.Box;
 import gamemodel.Direction;
 import gamemodel.Door;
 import gamemodel.Gap;
+import gamemodel.ONeill;
 import gamemodel.Player;
 import gamemodel.Road;
 import gamemodel.Scale;
@@ -313,7 +314,7 @@ class MapBuilder {
 		SpecialWall southSouth = new SpecialWall();
 
 		// Initialize player, set box, zpm, door
-		player = new Player(middle, Direction.WEST);
+		player = new ONeill(middle, Direction.WEST);
 		west.setDoor(east);
 		northEast.setZpm(zpm);
 		Box box = new Box(middle);

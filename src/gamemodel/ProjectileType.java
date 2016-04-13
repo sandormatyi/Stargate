@@ -1,7 +1,7 @@
 package gamemodel;
 
 public enum ProjectileType {
-	YELLOW, BLUE;
+	YELLOW, BLUE, RED, GREEN;
 
 	static ProjectileType getOppositeType(ProjectileType type) {
 		switch (type) {
@@ -9,6 +9,10 @@ public enum ProjectileType {
 			return BLUE;
 		case BLUE:
 			return YELLOW;
+		case GREEN:
+			return RED;
+		case RED:
+			return GREEN;
 		default:
 			return null;
 		}
