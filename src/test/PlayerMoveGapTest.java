@@ -1,6 +1,7 @@
 package test;
 
 import controller.Controller;
+import controller.PlayerType;
 import gamemodel.Direction;
 
 class PlayerMoveGapTest extends Test {
@@ -15,14 +16,11 @@ class PlayerMoveGapTest extends Test {
 	@Override
 	public void setUp() {
 		// Turn north
-		controller.moveOrTurnPlayer(Direction.NORTH);
-
+		controller.moveOrTurnPlayer(PlayerType.ONeill, Direction.NORTH);
 	}
 
 	@Override
 	public void run() {
-		controller.moveOrTurnPlayer(Direction.NORTH);
-
+		controller.moveOrTurnPlayer(PlayerType.ONeill, Direction.NORTH);
 	}
-
 }

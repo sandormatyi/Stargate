@@ -1,6 +1,7 @@
 package test;
 
 import controller.Controller;
+import controller.PlayerType;
 import gamemodel.Direction;
 
 class BoxPutDownWallTest extends Test {
@@ -15,21 +16,21 @@ class BoxPutDownWallTest extends Test {
 	@Override
 	public void setUp() {
 		// Turn SOUTH
-		controller.moveOrTurnPlayer(Direction.SOUTH);
+		controller.moveOrTurnPlayer(PlayerType.ONeill, Direction.SOUTH);
 		// Move SOUTH
-		controller.moveOrTurnPlayer(Direction.SOUTH);
+		controller.moveOrTurnPlayer(PlayerType.ONeill, Direction.SOUTH);
 		// Turn NORTH
-		controller.moveOrTurnPlayer(Direction.NORTH);
+		controller.moveOrTurnPlayer(PlayerType.ONeill, Direction.NORTH);
 		// Pick up box
-		controller.pickUpBox();
+		controller.pickUpBox(PlayerType.ONeill);
 		// Turn EAST
-		controller.moveOrTurnPlayer(Direction.EAST);
+		controller.moveOrTurnPlayer(PlayerType.ONeill, Direction.EAST);
 	}
 
 	@Override
 	public void run() {
 		// Put down box - Wall
-		controller.putDownBox();
+		controller.putDownBox(PlayerType.ONeill);
 
 	}
 

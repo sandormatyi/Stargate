@@ -1,5 +1,6 @@
 package gamemodel;
 
+import controller.MapHelper;
 import debug.ProtoLogger;
 
 public class Gap extends MapElement {
@@ -28,6 +29,20 @@ public class Gap extends MapElement {
 	@Override
 	public void handleProjectileArrive(Direction dir, Projectile projectile) {
 		projectile.setPosition(this);
+	}
+
+	/*
+	 * A replicator arrives
+	 */
+	@Override
+	public void handleReplicatorArrive(Direction dir, Replicator replicator) {
+		ProtoLogger.log("Sikeresen átlépett a következő mezőre: " + this.toString());
+
+		replicator.setPosition(this);
+
+		MapHelper.replaceWithRoad(this);
+
+		replicator.destroy();
 	}
 
 	/*

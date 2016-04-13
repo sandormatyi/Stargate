@@ -1,6 +1,7 @@
 package test;
 
 import controller.Controller;
+import controller.PlayerType;
 import gamemodel.Direction;
 
 class PlayerMoveWormholeTest extends Test {
@@ -15,21 +16,21 @@ class PlayerMoveWormholeTest extends Test {
 	@Override
 	public void setUp() {
 		// Turn SOUTH
-		controller.moveOrTurnPlayer(Direction.SOUTH);
+		controller.moveOrTurnPlayer(PlayerType.ONeill, Direction.SOUTH);
 		// Shoot projectile
-		controller.shootFirst();
+		controller.shootFirst(PlayerType.ONeill);
 		// Move SOUTH
-		controller.moveOrTurnPlayer(Direction.SOUTH);
+		controller.moveOrTurnPlayer(PlayerType.ONeill, Direction.SOUTH);
 		// Turn WEST
-		controller.moveOrTurnPlayer(Direction.WEST);
+		controller.moveOrTurnPlayer(PlayerType.ONeill, Direction.WEST);
 		// Shoot projectile
-		controller.shootSecond();
+		controller.shootSecond(PlayerType.ONeill);
 	}
 
 	@Override
 	public void run() {
 		// Turn WEST
-		controller.moveOrTurnPlayer(Direction.WEST);
+		controller.moveOrTurnPlayer(PlayerType.ONeill, Direction.WEST);
 	}
 
 }

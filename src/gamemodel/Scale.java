@@ -103,7 +103,29 @@ public class Scale extends MapElement {
 	@Override
 	public void handleProjectileArrive(Direction dir, Projectile projectile) {
 		projectile.setPosition(this);
+
+		if (replicator != null)
+			replicator.destroy();
 	}
+
+	/*
+	 * A replicator arrives
+	 */
+	@Override
+	public void handleReplicatorArrive(Direction dir, Replicator replicator) {
+		ProtoLogger.log("Sikeresen átlépett a következő mezőre: " + this.toString());
+
+		replicator.setPosition(this);
+		this.replicator = replicator;
+	}
+
+	/*
+	 * A replicator leaves
+	 */
+	@Override
+	public void handleReplicatorLeave(Replicator replicator) {
+		this.replicator = null;
+	};
 
 	/*
 	 * Increments the weight on the scale

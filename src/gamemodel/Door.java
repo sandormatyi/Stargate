@@ -23,10 +23,11 @@ public class Door extends MapElement {
 		if (isOpened = false) {
 			// TODO: Kill any player that is on the MapElement
 
-			while (!boxes.empty()) {
-				Box box = boxes.pop();
-				box.respawn();
-			}
+			if (replicator != null)
+				replicator.destroy();
+
+			while (!boxes.empty())
+				boxes.pop().respawn();
 		}
 	}
 
@@ -55,9 +56,35 @@ public class Door extends MapElement {
 	public void handleProjectileArrive(Direction dir, Projectile projectile) {
 		projectile.setPosition(this);
 
+		if (replicator != null)
+			replicator.destroy();
+
 		if (!isOpened)
 			projectile.destroy();
 	}
+
+	/*
+	 * A replicator arrives
+	 */
+	@Override
+	public void handleReplicatorArrive(Direction dir, Replicator replicator) {
+		if (isOpened) {
+			ProtoLogger.log("Sikeresen átlépett a következő mezőre: " + this.toString());
+
+			replicator.setPosition(this);
+			this.replicator = replicator;
+		} else {
+			super.handleReplicatorArrive(dir, replicator);
+		}
+	}
+
+	/*
+	 * A replicator leaves
+	 */
+	@Override
+	public void handleReplicatorLeave(Replicator replicator) {
+		this.replicator = null;
+	};
 
 	/*
 	 * Put down a box if the door is closed the box position is the player's

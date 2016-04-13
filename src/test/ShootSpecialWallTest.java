@@ -1,6 +1,7 @@
 package test;
 
 import controller.Controller;
+import controller.PlayerType;
 import gamemodel.Direction;
 
 class ShootSpecialWallTest extends Test {
@@ -15,16 +16,16 @@ class ShootSpecialWallTest extends Test {
 	@Override
 	public void setUp() {
 		// Move WEST
-		controller.moveOrTurnPlayer(Direction.WEST);
+		controller.moveOrTurnPlayer(PlayerType.ONeill, Direction.WEST);
 		// Turn NORTH
-		controller.moveOrTurnPlayer(Direction.NORTH);
+		controller.moveOrTurnPlayer(PlayerType.ONeill, Direction.NORTH);
 
 	}
 
 	@Override
 	public void run() {
 		// Shoot projectile
-		controller.shootFirst();
+		controller.shootFirst(PlayerType.ONeill);
 
 	}
 

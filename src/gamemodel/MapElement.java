@@ -9,6 +9,7 @@ public abstract class MapElement {
 
 	private HashMap<Direction, MapElement> neighbours = new HashMap<Direction, MapElement>();
 	protected Stack<Box> boxes = new Stack<Box>();
+	protected Replicator replicator = null;
 	protected String coord;
 
 	/*
@@ -67,6 +68,26 @@ public abstract class MapElement {
 	 * Funcion for projectile arrival. Does nothing by default
 	 */
 	public void handleProjectileArrive(Direction dir, Projectile projectile) {
+		// Do nothing
+	}
+
+	/*
+	 * Function for replicator arrival
+	 */
+	public void handleReplicatorArrive(Direction dir, Replicator replicator) {
+		Direction oppositeDirection = Direction.getOppositeDirection(dir);
+		MapElement neighbour = getNeighbour(oppositeDirection);
+
+		ProtoLogger.log("Sikertelen lépés: " + replicator.toString() + " visszalökődött az előző "
+				+ neighbour.toString() + " mezőre");
+
+		neighbour.handleReplicatorArrive(oppositeDirection, replicator);
+	}
+
+	/*
+	 * Funcion for replicator leave. Does nothing by default.
+	 */
+	public void handleReplicatorLeave(Replicator replicator) {
 		// Do nothing
 	}
 

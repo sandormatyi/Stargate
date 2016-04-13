@@ -1,6 +1,7 @@
 package test;
 
 import controller.Controller;
+import controller.PlayerType;
 import gamemodel.Direction;
 
 class PlayerMoveScaleTest extends Test {
@@ -19,7 +20,7 @@ class PlayerMoveScaleTest extends Test {
 	@Override
 	public void run() {
 		// Move WEST
-		controller.moveOrTurnPlayer(Direction.WEST);
+		controller.moveOrTurnPlayer(PlayerType.ONeill, Direction.WEST);
 
 	}
 

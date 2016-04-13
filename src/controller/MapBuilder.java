@@ -6,6 +6,7 @@ import gamemodel.Box;
 import gamemodel.Direction;
 import gamemodel.Door;
 import gamemodel.Gap;
+import gamemodel.Jaffa;
 import gamemodel.ONeill;
 import gamemodel.Player;
 import gamemodel.Road;
@@ -18,7 +19,8 @@ class MapBuilder {
 
 	private HashSet<ZPM> zpmSet = new HashSet<ZPM>();
 
-	private Player player;
+	private Player oneill;
+	private Player jaffa;
 
 	/*
 	 * Build the map and store a reference to the instantiated player and store
@@ -42,7 +44,9 @@ class MapBuilder {
 		SpecialWall D2 = new SpecialWall("D2");
 
 		// Initialize player, set box, zpm, door
-		player = new ONeill(B2, Direction.WEST);
+		// FIXME: MapElement is initially unaware of the presence of the player
+		oneill = new ONeill(B2, Direction.WEST);
+		jaffa = new Jaffa(A3, Direction.NORTH);
 		B1.setDoor(B3);
 		A3.setZpm(zpm);
 		Box box = new Box(B2);
@@ -96,9 +100,9 @@ class MapBuilder {
 	}
 
 	public Controller createController(Game game) {
-		if (game == null || player == null || zpmSet.isEmpty())
+		if (game == null || oneill == null || jaffa == null || zpmSet.isEmpty())
 			return null;
 
-		return new Controller(game, player, zpmSet);
+		return new Controller(game, zpmSet, oneill, jaffa, null);
 	}
 }

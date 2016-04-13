@@ -1,6 +1,7 @@
 package test;
 
 import controller.Controller;
+import controller.PlayerType;
 import gamemodel.Direction;
 
 class PlayerMoveRoadTest extends Test {
@@ -15,13 +16,13 @@ class PlayerMoveRoadTest extends Test {
 	@Override
 	public void setUp() {
 		// Turn SOUTH
-		controller.moveOrTurnPlayer(Direction.SOUTH);
+		controller.moveOrTurnPlayer(PlayerType.ONeill, Direction.SOUTH);
 	}
 
 	@Override
 	public void run() {
 		// Move SOUTH
-		controller.moveOrTurnPlayer(Direction.SOUTH);
+		controller.moveOrTurnPlayer(PlayerType.ONeill, Direction.SOUTH);
 	}
 
 }

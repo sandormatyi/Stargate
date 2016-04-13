@@ -1,6 +1,7 @@
 package test;
 
 import controller.Controller;
+import controller.PlayerType;
 import gamemodel.Direction;
 
 class PlayerMoveWallTest extends Test {
@@ -15,29 +16,29 @@ class PlayerMoveWallTest extends Test {
 	@Override
 	public void setUp() {
 		// Turn WEST
-		controller.moveOrTurnPlayer(Direction.WEST);
+		controller.moveOrTurnPlayer(PlayerType.ONeill, Direction.WEST);
 		// Turn EAST
-		controller.moveOrTurnPlayer(Direction.EAST);
+		controller.moveOrTurnPlayer(PlayerType.ONeill, Direction.EAST);
 		// Pick up box
-		controller.pickUpBox();
+		controller.pickUpBox(PlayerType.ONeill);
 		// MOve EAST
-		controller.moveOrTurnPlayer(Direction.EAST);
+		controller.moveOrTurnPlayer(PlayerType.ONeill, Direction.EAST);
 		// Turn WEST
-		controller.moveOrTurnPlayer(Direction.WEST);
+		controller.moveOrTurnPlayer(PlayerType.ONeill, Direction.WEST);
 		// Put down box - Open Door
-		controller.putDownBox();
+		controller.putDownBox(PlayerType.ONeill);
 		// Turn EAST
-		controller.moveOrTurnPlayer(Direction.EAST);
+		controller.moveOrTurnPlayer(PlayerType.ONeill, Direction.EAST);
 		// MOve EAST
-		controller.moveOrTurnPlayer(Direction.EAST);
+		controller.moveOrTurnPlayer(PlayerType.ONeill, Direction.EAST);
 		// Turn SOUTH
-		controller.moveOrTurnPlayer(Direction.SOUTH);
+		controller.moveOrTurnPlayer(PlayerType.ONeill, Direction.SOUTH);
 	}
 
 	@Override
 	public void run() {
 		// Move south
-		controller.moveOrTurnPlayer(Direction.SOUTH);
+		controller.moveOrTurnPlayer(PlayerType.ONeill, Direction.SOUTH);
 	}
 
 }

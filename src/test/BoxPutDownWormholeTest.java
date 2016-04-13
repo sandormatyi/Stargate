@@ -1,6 +1,7 @@
 package test;
 
 import controller.Controller;
+import controller.PlayerType;
 import gamemodel.Direction;
 
 class BoxPutDownWormholeTest extends Test {
@@ -15,33 +16,33 @@ class BoxPutDownWormholeTest extends Test {
 	@Override
 	public void setUp() {
 		// Turn south
-		controller.moveOrTurnPlayer(Direction.SOUTH);
+		controller.moveOrTurnPlayer(PlayerType.ONeill, Direction.SOUTH);
 		// Move south
-		controller.moveOrTurnPlayer(Direction.SOUTH);
+		controller.moveOrTurnPlayer(PlayerType.ONeill, Direction.SOUTH);
 		// Turn West
-		controller.moveOrTurnPlayer(Direction.WEST);
+		controller.moveOrTurnPlayer(PlayerType.ONeill, Direction.WEST);
 		// Shoot
-		controller.shootFirst();
+		controller.shootFirst(PlayerType.ONeill);
 		// Turn north
-		controller.moveOrTurnPlayer(Direction.NORTH);
+		controller.moveOrTurnPlayer(PlayerType.ONeill, Direction.NORTH);
 		// Pick up box
-		controller.pickUpBox();
+		controller.pickUpBox(PlayerType.ONeill);
 		// move north
-		controller.moveOrTurnPlayer(Direction.NORTH);
+		controller.moveOrTurnPlayer(PlayerType.ONeill, Direction.NORTH);
 		// turn west
-		controller.moveOrTurnPlayer(Direction.WEST);
+		controller.moveOrTurnPlayer(PlayerType.ONeill, Direction.WEST);
 		// move west
-		controller.moveOrTurnPlayer(Direction.WEST);
+		controller.moveOrTurnPlayer(PlayerType.ONeill, Direction.WEST);
 		// turn north
-		controller.moveOrTurnPlayer(Direction.NORTH);
+		controller.moveOrTurnPlayer(PlayerType.ONeill, Direction.NORTH);
 		// shoot
-		controller.shootSecond();
+		controller.shootSecond(PlayerType.ONeill);
 	}
 
 	@Override
 	public void run() {
 		// Put down box - Stargate
-		controller.putDownBox();
+		controller.putDownBox(PlayerType.ONeill);
 	}
 
 }

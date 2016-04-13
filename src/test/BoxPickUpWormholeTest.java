@@ -1,6 +1,7 @@
 package test;
 
 import controller.Controller;
+import controller.PlayerType;
 import gamemodel.Direction;
 
 class BoxPickUpWormholeTest extends Test {
@@ -15,29 +16,29 @@ class BoxPickUpWormholeTest extends Test {
 	@Override
 	public void setUp() {
 		// move WEST
-		controller.moveOrTurnPlayer(Direction.WEST);
+		controller.moveOrTurnPlayer(PlayerType.ONeill, Direction.WEST);
 		// turn NORTH
-		controller.moveOrTurnPlayer(Direction.NORTH);
+		controller.moveOrTurnPlayer(PlayerType.ONeill, Direction.NORTH);
 		// shoot
-		controller.shootFirst();
+		controller.shootFirst(PlayerType.ONeill);
 		// turn SOUTH
-		controller.moveOrTurnPlayer(Direction.SOUTH);
+		controller.moveOrTurnPlayer(PlayerType.ONeill, Direction.SOUTH);
 		// shoot
-		controller.shootSecond();
+		controller.shootSecond(PlayerType.ONeill);
 		// turn EAST
-		controller.moveOrTurnPlayer(Direction.EAST);
+		controller.moveOrTurnPlayer(PlayerType.ONeill, Direction.EAST);
 		// pick up box
-		controller.pickUpBox();
+		controller.pickUpBox(PlayerType.ONeill);
 		// turn SOUTH
-		controller.moveOrTurnPlayer(Direction.SOUTH);
+		controller.moveOrTurnPlayer(PlayerType.ONeill, Direction.SOUTH);
 		// put down box
-		controller.putDownBox();
+		controller.putDownBox(PlayerType.ONeill);
 	}
 
 	@Override
 	public void run() {
 		// pick up box
-		controller.pickUpBox();
+		controller.pickUpBox(PlayerType.ONeill);
 	}
 
 }

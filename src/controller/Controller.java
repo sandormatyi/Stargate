@@ -1,10 +1,13 @@
 package controller;
 
+import java.util.HashMap;
 import java.util.HashSet;
 
+import debug.ProtoLogger;
 import gamemodel.Direction;
 import gamemodel.Player;
 import gamemodel.Projectile;
+import gamemodel.Replicator;
 import gamemodel.ZPM;
 import gamemodel.events.IProjectileStateListener;
 import gamemodel.events.IZPMPickedUpListener;
@@ -18,14 +21,19 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 	private Game game;
 
 	/*
-	 * The object representing the player character of the game
-	 */
-	private Player player;
-
-	/*
 	 * The set of ZPMs located on the map
 	 */
 	private HashSet<ZPM> zpmSet;
+
+	/*
+	 * The object representing the player characters of the game
+	 */
+	private HashMap<PlayerType, Player> players = new HashMap<PlayerType, Player>();
+
+	/*
+	 * The object representing the replicator
+	 */
+	private Replicator replicator;
 
 	/*
 	 * Stores the current state of the Projectile
@@ -35,10 +43,13 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 	/*
 	 * Default constructor
 	 */
-	public Controller(Game game, Player player, HashSet<ZPM> zpmSet) {
+	public Controller(Game game, HashSet<ZPM> zpmSet, Player oneill, Player jaffa, Replicator replicator) {
 		this.game = game;
-		this.player = player;
 		this.zpmSet = zpmSet;
+		this.replicator = replicator;
+
+		players.put(PlayerType.ONeill, oneill);
+		players.put(PlayerType.Jaffa, jaffa);
 
 		ModelEventSource.subscribe((IZPMPickedUpListener) this);
 		ModelEventSource.subscribe((IProjectileStateListener) this);
@@ -53,44 +64,79 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 	 * Move or turn the player depending on the player's current direction and
 	 * check if the game is over
 	 */
-	public void moveOrTurnPlayer(Direction dir) {
+	public void moveOrTurnPlayer(PlayerType playerType, Direction dir) {
+		Player player = players.get(playerType);
+
+		if (player == null) {
+			ProtoLogger.logError("Trying to move a player that does not exist");
+			return;
+		}
+
 		if (player.getDirection() == dir) {
 			player.move();
 		} else {
 			player.turn(dir);
 		}
 
-		// TODO: Check both players
-		if (!player.isAlive()) {
-			game.stop(player, false);
+		for (Player p : players.values()) {
+			if (!p.isAlive())
+				game.stop(player, false);
 		}
 	}
 
 	/*
 	 * Make the player shoot a projectile of the first type
 	 */
-	public void shootFirst() {
+	public void shootFirst(PlayerType playerType) {
+		Player player = players.get(playerType);
+
+		if (player == null) {
+			ProtoLogger.logError("Trying to shoot with a player that does not exist");
+			return;
+		}
+
 		player.shootFirst();
 	}
 
 	/*
 	 * Make the player shoot a projectile of the second type
 	 */
-	public void shootSecond() {
+	public void shootSecond(PlayerType playerType) {
+		Player player = players.get(playerType);
+
+		if (player == null) {
+			ProtoLogger.logError("Trying to shoot with a player that does not exist");
+			return;
+		}
+
 		player.shootSecond();
 	}
 
 	/*
 	 * Make the player pick up a box
 	 */
-	public void pickUpBox() {
+	public void pickUpBox(PlayerType playerType) {
+		Player player = players.get(playerType);
+
+		if (player == null) {
+			ProtoLogger.logError("Trying to pick up a box with a player that does not exist");
+			return;
+		}
+
 		player.pickUpBox();
 	}
 
 	/*
 	 * Make the player put down a box
 	 */
-	public void putDownBox() {
+	public void putDownBox(PlayerType playerType) {
+		Player player = players.get(playerType);
+
+		if (player == null) {
+			ProtoLogger.logError("Trying to put down a box with a player that does not exist");
+			return;
+		}
+
 		player.putDownBox();
 	}
 
