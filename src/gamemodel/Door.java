@@ -20,10 +20,14 @@ public class Door extends MapElement {
 	public void setOpened(boolean isOpened) {
 		this.isOpened = isOpened;
 
-		if (box != null)
-			box.respawn();
+		if (isOpened = false) {
+			// TODO: Kill any player that is on the MapElement
 
-		// TODO: Kill any player that is on the MapElement
+			while (!boxes.empty()) {
+				Box box = boxes.pop();
+				box.respawn();
+			}
+		}
 	}
 
 	/*
@@ -66,10 +70,7 @@ public class Door extends MapElement {
 
 			box.setPosition(this);
 
-			if (this.box != null)
-				this.box.respawn();
-
-			this.box = box;
+			boxes.push(box);
 		} else {
 			super.handleBoxPutDown(dir, box);
 		}
@@ -82,7 +83,10 @@ public class Door extends MapElement {
 	public void handleBoxPickUp(Box box) {
 		ProtoLogger.log("Sikeres dobozfelvétel a(z) " + this.toString() + " mezőről");
 
-		this.box.setPosition(null);
-		this.box = null;
+		box.setPosition(null);
+
+		if (!boxes.remove(box)) {
+			ProtoLogger.logError("Trying to remove a box from a field that does not contain the box");
+		}
 	}
 }

@@ -1,13 +1,14 @@
 package gamemodel;
 
 import java.util.HashMap;
+import java.util.Stack;
 
 import debug.ProtoLogger;
 
 public abstract class MapElement {
 
 	private HashMap<Direction, MapElement> neighbours = new HashMap<Direction, MapElement>();
-	protected Box box = null;
+	protected Stack<Box> boxes = new Stack<Box>();
 	protected String coord;
 
 	/*
@@ -35,7 +36,10 @@ public abstract class MapElement {
 	 * Getter for the box, that is on this MapElement, if any.
 	 */
 	public Box getBox(Direction dir) {
-		return box;
+		if (boxes.empty())
+			return null;
+
+		return boxes.peek();
 	}
 
 	/*

@@ -51,11 +51,7 @@ public class Road extends MapElement {
 
 		box.setPosition(this);
 
-		// FIXME: Boxes can stack
-		if (this.box != null)
-			this.box.respawn();
-
-		this.box = box;
+		boxes.push(box);
 	}
 
 	/*
@@ -65,7 +61,10 @@ public class Road extends MapElement {
 	public void handleBoxPickUp(Box box) {
 		ProtoLogger.log("Sikeres dobozfelvétel a(z) " + this.toString() + " mezőről");
 
-		this.box.setPosition(null);
-		this.box = null;
+		box.setPosition(null);
+
+		if (!boxes.remove(box)) {
+			ProtoLogger.logError("Trying to remove a box from a field that does not contain the box");
+		}
 	}
 }

@@ -72,12 +72,11 @@ public class Scale extends MapElement {
 	 */
 	@Override
 	public void handleBoxPutDown(Direction dir, Box box) {
+		ProtoLogger.log("Sikeres dobozletétel a(z) " + this.toString() + " mezőre");
+
 		box.setPosition(this);
 
-		if (this.box != null)
-			this.box.respawn();
-
-		this.box = box;
+		boxes.push(box);
 	}
 
 	/*
@@ -85,9 +84,13 @@ public class Scale extends MapElement {
 	 */
 	@Override
 	public void handleBoxPickUp(Box box) {
-		this.box.setPosition(null);
+		ProtoLogger.log("Sikeres dobozfelvétel a(z) " + this.toString() + " mezőről");
 
-		this.box = null;
+		box.setPosition(null);
+
+		if (!boxes.remove(box)) {
+			ProtoLogger.logError("Trying to remove a box from a field that does not contain the box");
+		}
 	}
 
 	/*
