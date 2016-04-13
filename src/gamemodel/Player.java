@@ -115,7 +115,6 @@ public abstract class Player extends Movable {
 				box = nextPosition.getBox(direction);
 
 				if (box != null) {
-					nextPosition.decrementWeight();
 					box.leaveMapElement(nextPosition);
 					position.incrementWeight();
 				}
@@ -134,7 +133,6 @@ public abstract class Player extends Movable {
 				ProtoLogger.logCommand(
 						this.toString() + " megpróbál letenni egy dobozt a(z) " + nextPosition.toString() + " mezőre");
 
-				nextPosition.incrementWeight();
 				box.arriveOnMapElement(direction, nextPosition);
 				position.decrementWeight();
 				box = null;

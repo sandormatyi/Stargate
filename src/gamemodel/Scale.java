@@ -77,6 +77,8 @@ public class Scale extends MapElement {
 		box.setPosition(this);
 
 		boxes.push(box);
+
+		incrementWeight();
 	}
 
 	/*
@@ -91,6 +93,8 @@ public class Scale extends MapElement {
 		if (!boxes.remove(box)) {
 			ProtoLogger.logError("Trying to remove a box from a field that does not contain the box");
 		}
+
+		decrementWeight();
 	}
 
 	/*
