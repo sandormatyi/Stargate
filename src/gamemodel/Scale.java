@@ -1,6 +1,6 @@
 package gamemodel;
 
-import debug.SkeletonLogger;
+import debug.ProtoLogger;
 
 public class Scale extends MapElement {
 
@@ -16,33 +16,48 @@ public class Scale extends MapElement {
 	}
 
 	/*
-	 * Increment Weighcount and Open the Door.
+	 * Increment weightCount and open the door if it is above the limit
 	 */
 	@Override
 	public void handlePlayerArrive(Direction dir, Player player) {
-		SkeletonLogger.functionCalled(this, "handlePlayerArrive", new Object[] { dir, player });
+		ProtoLogger.log("Sikeresen átlépett a következő mezőre: " + this.toString());
 
 		player.setPosition(this);
 
-		weightCount += player.getWeight();
-		if (door != null)
-			door.setOpened(true);
+		int playerWeight = player.getWeight();
+		weightCount += playerWeight;
 
-		SkeletonLogger.returnFromFunction(null);
+		ProtoLogger.log("A(z) " + this.toString() + " mezőre " + playerWeight + " egységnyi súly került, összesen "
+				+ weightCount + " súly van rajta");
+
+		if (door != null && weightCount >= weightLimit) {
+			ProtoLogger.log(
+					"Mivel legalább " + weightLimit + " súly van a mérlegen, a(z) " + door.toString() + " kinyílt");
+
+			door.setOpened(true);
+		}
 	}
 
 	/*
-	 * Decrement weightCount and close the if it is 0.
+	 * Decrement weightCount and close the door if it is below the limit
 	 */
 	@Override
 	public void handlePlayerLeave(Player player) {
-		SkeletonLogger.functionCalled(this, "handlePlayerLeave", null);
+		int playerWeight = player.getWeight();
+		weightCount -= playerWeight;
 
-		weightCount -= player.getWeight();
-		if (door != null && weightCount < weightLimit)
+		if (weightCount < 0)
+			ProtoLogger.logError("Weight count of scale cannot be negative");
+
+		ProtoLogger.log("A(z) " + this.toString() + " mezőről " + playerWeight + " egységnyi súly lekerült, összesen "
+				+ weightCount + " súly van rajta");
+
+		if (door != null && weightCount < weightLimit) {
+			ProtoLogger.log(
+					"Mivel nincsen legalább " + weightLimit + " súly a mérlegen, a(z) " + door.toString() + " bezárul");
+
 			door.setOpened(false);
-
-		SkeletonLogger.returnFromFunction(null);
+		}
 	}
 
 	/*
@@ -50,51 +65,54 @@ public class Scale extends MapElement {
 	 */
 	@Override
 	public void handleProjectileArrive(Direction dir, Projectile projectile) {
-		SkeletonLogger.functionCalled(this, "handleProjectileArrive", new Object[] { dir, projectile });
-
 		projectile.setPosition(this);
-
-		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
-	 * Decrement weightCount and close the if it is 0.
+	 * Decrement weightCount and close the door if it is below the limit
 	 */
 	@Override
 	public void handleBoxPickUp(Box box) {
-		SkeletonLogger.functionCalled(this, "handleBoxPickUp", new Object[] { box });
-
 		this.box.setPosition(null);
 		weightCount--;
 
-		if (door != null && weightCount < weightLimit)
+		if (weightCount < 0)
+			ProtoLogger.logError("Weight count of scale cannot be negative");
+
+		ProtoLogger.log("A(z) " + this.toString() + " mezőről 1 egységnyi súly lekerült, összesen " + weightCount
+				+ " súly van rajta");
+
+		if (door != null && weightCount < weightLimit) {
+			ProtoLogger.log(
+					"Mivel nincsen legalább " + weightLimit + " súly a mérlegen, a(z) " + door.toString() + " bezárul");
+
 			door.setOpened(false);
+		}
 
 		this.box = null;
-
-		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
-	 * Increment Weighcount and Open the Door.
+	 * Increment weightCount and open the door if it is above the limit
 	 */
 	@Override
 	public void handleBoxPutDown(Direction dir, Box box) {
-		SkeletonLogger.functionCalled(this, "handleBoxPutDown", new Object[] { dir, box });
-
 		box.setPosition(this);
 		weightCount++;
 
-		if (door != null) {
-			if (weightCount >= weightLimit)
-				door.setOpened(true);
+		ProtoLogger.log("A(z) " + this.toString() + " mezőre 1 egységnyi súly került, összesen " + weightCount
+				+ " súly van rajta");
+
+		if (door != null && weightCount >= weightLimit) {
+			ProtoLogger.log(
+					"Mivel legalább " + weightLimit + " súly van a mérlegen, a(z) " + door.toString() + " kinyílt");
+
+			door.setOpened(true);
 		}
 
 		if (this.box != null)
 			this.box.respawn();
 
 		this.box = box;
-
-		SkeletonLogger.returnFromFunction(null);
 	}
 }

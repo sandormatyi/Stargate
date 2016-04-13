@@ -1,6 +1,6 @@
 package gamemodel;
 
-import debug.SkeletonLogger;
+import debug.ProtoLogger;
 import gamemodel.events.ModelEventSource;
 
 public class Projectile extends Movable {
@@ -19,11 +19,7 @@ public class Projectile extends Movable {
 	 */
 	@Override
 	public void arriveOnMapElement(Direction dir, MapElement element) {
-		SkeletonLogger.functionCalled(this, "arriveOnMapElement", new Object[] { dir, element });
-
 		element.handleProjectileArrive(dir, this);
-
-		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
@@ -31,8 +27,7 @@ public class Projectile extends Movable {
 	 */
 	@Override
 	public void leaveMapElement(MapElement element) {
-		SkeletonLogger.functionCalled(this, "leaveMapElement", null);
-		SkeletonLogger.returnFromFunction(null);
+		// Do nothing
 	}
 
 	/*
@@ -40,8 +35,6 @@ public class Projectile extends Movable {
 	 */
 	@Override
 	public void move() {
-		SkeletonLogger.functionCalled(this, "move", null);
-
 		this.leaveMapElement(position);
 
 		MapElement nextposition = position.getNeighbour(direction);
@@ -49,22 +42,22 @@ public class Projectile extends Movable {
 		if (nextposition != null) {
 			arriveOnMapElement(direction, nextposition);
 		} else {
-			System.err.println("Projectile tried to move on a MapElement that does not exist!");
+			ProtoLogger.logError("Projectile tried to move on a MapElement that does not exist");
 			destroy();
 		}
-
-		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
 	 * Open a stargate
 	 */
 	public Stargate openStargate() {
-		SkeletonLogger.functionCalled(this, "openStargate", null);
+		Direction oppositeDirection = Direction.getOppositeDirection(direction);
 
-		Stargate stargate = Stargate.createStargate(position, type, Direction.getOppositeDirection(direction));
+		ProtoLogger.log(this.toString() + " csillagkaput nyitott " + position.toString() + " mező "
+				+ oppositeDirection.toString() + " oldalán");
 
-		SkeletonLogger.returnFromFunction(stargate);
+		Stargate stargate = Stargate.createStargate(position, type, oppositeDirection);
+
 		return stargate;
 	}
 
@@ -72,11 +65,9 @@ public class Projectile extends Movable {
 	 * Destroy the projectile
 	 */
 	public void destroy() {
-		SkeletonLogger.functionCalled(this, "destroy", null);
+		ProtoLogger.log(this.toString() + " lövedék megsemmisült a(z) " + position.toString() + " mezőn");
 
 		ModelEventSource.notifyProjectileDestroyed(this);
-
-		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
@@ -84,6 +75,6 @@ public class Projectile extends Movable {
 	 */
 	@Override
 	public String toString() {
-		return getClass().getSimpleName() + "_" + type.toString();
+		return type.toString();
 	}
 }

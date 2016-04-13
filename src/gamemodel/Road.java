@@ -1,6 +1,6 @@
 package gamemodel;
 
-import debug.SkeletonLogger;
+import debug.ProtoLogger;
 
 public class Road extends MapElement {
 
@@ -18,15 +18,13 @@ public class Road extends MapElement {
 	 */
 	@Override
 	public void handlePlayerArrive(Direction dir, Player player) {
-		SkeletonLogger.functionCalled(this, "handlePlayerArrive", new Object[] { dir, player });
+		ProtoLogger.log("Sikeresen átlépett a következő mezőre: " + this.toString());
 
 		player.setPosition(this);
 
 		if (zpm != null) {
 			zpm.handlePickUp();
 		}
-
-		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
@@ -34,11 +32,7 @@ public class Road extends MapElement {
 	 */
 	@Override
 	public void handleProjectileArrive(Direction dir, Projectile projectile) {
-		SkeletonLogger.functionCalled(this, "handleProjectileArrive", new Object[] { dir, projectile });
-
 		projectile.setPosition(this);
-
-		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
@@ -46,16 +40,15 @@ public class Road extends MapElement {
 	 */
 	@Override
 	public void handleBoxPutDown(Direction dir, Box box) {
-		SkeletonLogger.functionCalled(this, "handleBoxPutDown", new Object[] { dir, box });
+		ProtoLogger.log("Sikeres dobozletétel a(z) " + this.toString() + " mezőre");
 
 		box.setPosition(this);
 
+		// FIXME: Boxes can stack
 		if (this.box != null)
 			this.box.respawn();
 
 		this.box = box;
-
-		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
@@ -63,11 +56,9 @@ public class Road extends MapElement {
 	 */
 	@Override
 	public void handleBoxPickUp(Box box) {
-		SkeletonLogger.functionCalled(this, "handleBoxPickup", new Object[] { box });
+		ProtoLogger.log("Sikeres dobozfelvétel a(z) " + this.toString() + " mezőről");
 
 		this.box.setPosition(null);
 		this.box = null;
-
-		SkeletonLogger.returnFromFunction(null);
 	}
 }

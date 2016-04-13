@@ -1,6 +1,7 @@
 package controller;
 
-import debug.SkeletonLogger;
+import debug.ProtoLogger;
+import gamemodel.Player;
 import gamemodel.events.ModelEventSource;
 
 public class Game {
@@ -26,11 +27,7 @@ public class Game {
 	 * Increments the player's score
 	 */
 	public void incrementScore() {
-		SkeletonLogger.functionCalled(this, "incrementScore", null);
-
 		score++;
-
-		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
@@ -55,12 +52,15 @@ public class Game {
 	}
 
 	/*
-	 * Stop the game with the result given as parameter
+	 * Stop the game. The player that caused the game to end is given as a
+	 * parameter
 	 */
-	public void stop(boolean isVictory) {
+	public void stop(Player player, boolean isVictory) {
+		// TODO: Make a distinction between single- and multiplayer games
 		if (isVictory) {
-			SkeletonLogger.functionCalled(this, "stop", null);
-			SkeletonLogger.returnFromFunction(null);
+			ProtoLogger.logCommand("A játék véget ért, a játékos nyert");
+		} else {
+			ProtoLogger.logCommand("A játék véget ért, a játékos vesztett");
 		}
 
 		controller = null;

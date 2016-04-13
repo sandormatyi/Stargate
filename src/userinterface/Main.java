@@ -3,6 +3,8 @@ package userinterface;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 
 import test.TestRunner;
 import test.TestType;
@@ -10,6 +12,13 @@ import test.TestType;
 public class Main {
 
 	public static void main(String[] args) {
+		try {
+			System.setOut(new PrintStream(System.out, true, "UTF-8"));
+		} catch (UnsupportedEncodingException e1) {
+			System.err.println(
+					"The standard output does not support UTF-8 encoding: some characters may appear incorrectly");
+		}
+
 		BufferedReader br = null;
 		try {
 			// Reads from standard in
@@ -60,18 +69,18 @@ public class Main {
 						System.exit(0);
 						// Handles wrong input
 					default:
-						System.out.println("Nem megfelelı men¸pontot v·lasztott·l ki!");
-						System.out.println("A lehetısÈgeid:");
+						System.out.println("Nem megfelel≈ë men√ºpontot v√°lasztott√°l ki!");
+						System.out.println("A lehet≈ës√©geid:");
 						break;
 					}
 				} catch (NumberFormatException e) {
-					System.out.println("KÈrlek, ¸ss be egy sz·mot!");
+					System.out.println("K√©rlek, √ºss be egy sz√°mot!");
 				}
 			}
 		} catch (IOException io) {
-			System.err.println("ERROR: A rendszerben kivÈtel keletkezett, kÈrem indÌtsa ˙jra az alkalmaz·st!");
+			System.err.println("ERROR: A rendszerben kiv√©tel keletkezett, k√©rem ind√≠tsa √∫jra az alkalmaz√°st!");
 		} catch (Exception e) {
-			System.err.println("ERROR: A rendszerben kivÈtel keletkezett, kÈrem indÌtsa ˙jra az alkalmaz·st!");
+			System.err.println("ERROR: A rendszerben kiv√©tel keletkezett, k√©rem ind√≠tsa √∫jra az alkalmaz√°st!");
 		}
 	}
 
@@ -83,7 +92,7 @@ public class Main {
 		// Handles Zpm pickup test
 		case 1:
 			System.out.println("-------------------------------------------------------------");
-			System.out.println("UtolsÛ ZPM felvÈtele");
+			System.out.println("Utols√≥ ZPM felv√©tele");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.ZPM);
 			break;
@@ -92,8 +101,8 @@ public class Main {
 		default:
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			int newChoice = 0;
-			System.out.println("Nem megfelelı men¸pontot v·lasztott·l ki!");
-			System.out.println("A lehetısÈgeid:");
+			System.out.println("Nem megfelel≈ë men√ºpontot v√°lasztott√°l ki!");
+			System.out.println("A lehet≈ës√©geid:");
 			printZpmMenu();
 			newChoice = Integer.parseInt(br.readLine());
 			handleZpmTestCall(newChoice);
@@ -109,14 +118,14 @@ public class Main {
 		// Handles shoot on wall test
 		case 1:
 			System.out.println("-------------------------------------------------------------");
-			System.out.println("LˆvÈs falra");
+			System.out.println("L√∂v√©s falra");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.ShootWall);
 			break;
 		// Handles shoot on specialwall test
 		case 2:
 			System.out.println("-------------------------------------------------------------");
-			System.out.println("LˆvÈs speci·lis falra");
+			System.out.println("L√∂v√©s speci√°lis falra");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.ShootSpecialWall);
 			break;
@@ -125,8 +134,8 @@ public class Main {
 		default:
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			int newChoice = 0;
-			System.out.println("Nem megfelelı men¸pontot v·lasztott·l ki!");
-			System.out.println("A lehetısÈgeid:");
+			System.out.println("Nem megfelel≈ë men√ºpontot v√°lasztott√°l ki!");
+			System.out.println("A lehet≈ës√©geid:");
 			printShootMenu();
 			newChoice = Integer.parseInt(br.readLine());
 			handleShootTestCall(newChoice);
@@ -142,56 +151,56 @@ public class Main {
 		// Handles pick up from road
 		case 1:
 			System.out.println("-------------------------------------------------------------");
-			System.out.println("FelvÈtel ˙trÛl");
+			System.out.println("Felv√©tel √∫tr√≥l");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.BoxPickUpRoad);
 			break;
 		// Handles pick up from scale
 		case 2:
 			System.out.println("-------------------------------------------------------------");
-			System.out.println("FelvÈtel mÈrlegrıl");
+			System.out.println("Felv√©tel m√©rlegr≈ël");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.BoxPickUpScale);
 			break;
 		// Handles pick up through wormhole
 		case 3:
 			System.out.println("-------------------------------------------------------------");
-			System.out.println("FelvÈtel port·lon ·tny˙lva");
+			System.out.println("Felv√©tel port√°lon √°tny√∫lva");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.BoxPickUpWormhole);
 			break;
 		// Handles put down (road)
 		case 4:
 			System.out.println("-------------------------------------------------------------");
-			System.out.println("Lerak·s ˙tra");
+			System.out.println("Lerak√°s √∫tra");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.BoxPutDownRoad);
 			break;
 		// Handles put down (scale)
 		case 5:
 			System.out.println("-------------------------------------------------------------");
-			System.out.println("Lerak·s mÈrlegre");
+			System.out.println("Lerak√°s m√©rlegre");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.BoxPutDownScale);
 			break;
 		// Handles put down (gap)
 		case 6:
 			System.out.println("-------------------------------------------------------------");
-			System.out.println("Lerak·s szakadÈkba");
+			System.out.println("Lerak√°s szakad√©kba");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.BoxPutDownGap);
 			break;
 		// Handles put down (wall)
 		case 7:
 			System.out.println("-------------------------------------------------------------");
-			System.out.println("Lerak·s falra");
+			System.out.println("Lerak√°s falra");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.BoxPutDownWall);
 			break;
 		// Handles put down (through wormhole)
 		case 8:
 			System.out.println("-------------------------------------------------------------");
-			System.out.println("Lerak·s port·lon kereszt¸l");
+			System.out.println("Lerak√°s port√°lon kereszt√ºl");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.BoxPutDownWormhole);
 			break;
@@ -200,8 +209,8 @@ public class Main {
 		default:
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			int newChoice = 0;
-			System.out.println("Nem megfelelı men¸pontot v·lasztott·l ki!");
-			System.out.println("A lehetısÈgeid:");
+			System.out.println("Nem megfelel≈ë men√ºpontot v√°lasztott√°l ki!");
+			System.out.println("A lehet≈ës√©geid:");
 			printBoxInteractionMenu();
 			newChoice = Integer.parseInt(br.readLine());
 			handleBoxTestCall(newChoice);
@@ -217,35 +226,35 @@ public class Main {
 		// Handles player move to road
 		case 1:
 			System.out.println("-------------------------------------------------------------");
-			System.out.println("J·tÈkos mozgat·sa ˙tra");
+			System.out.println("J√°t√©kos mozgat√°sa √∫tra");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.PlayerMoveRoad);
 			break;
 		// Handles player move to scale
 		case 2:
 			System.out.println("-------------------------------------------------------------");
-			System.out.println("J·tÈkos mozgat·sa mÈrlegre");
+			System.out.println("J√°t√©kos mozgat√°sa m√©rlegre");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.PlayerMoveScale);
 			break;
 		// Handles player move to wall
 		case 3:
 			System.out.println("-------------------------------------------------------------");
-			System.out.println("J·tÈkos mozgat·sa falra");
+			System.out.println("J√°t√©kos mozgat√°sa falra");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.PlayerMoveWall);
 			break;
 		// Handles player move to portal (opened)
 		case 4:
 			System.out.println("-------------------------------------------------------------");
-			System.out.println("J·tÈkos mozgat·sa speci·lis falra (nyitott port·l)");
+			System.out.println("J√°t√©kos mozgat√°sa speci√°lis falra (nyitott port√°l)");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.PlayerMoveWormhole);
 			break;
 		// Handles player move to gap
 		case 5:
 			System.out.println("-------------------------------------------------------------");
-			System.out.println("J·tÈkos mozgat·sa szakadÈkba");
+			System.out.println("J√°t√©kos mozgat√°sa szakad√©kba");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.PlayerMoveGap);
 			break;
@@ -254,8 +263,8 @@ public class Main {
 		default:
 			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 			int newChoice = 0;
-			System.out.println("Nem megfelelı men¸pontot v·lasztott·l ki!");
-			System.out.println("A lehetısÈgeid:");
+			System.out.println("Nem megfelel≈ë men√ºpontot v√°lasztott√°l ki!");
+			System.out.println("A lehet≈ës√©geid:");
 			printPlayerMovamentMenu();
 			newChoice = Integer.parseInt(br.readLine());
 			handlePlayerTestCall(newChoice);
@@ -268,7 +277,7 @@ public class Main {
 	 */
 	private static void printZpmMenu() {
 		System.out.println("*************************************************************");
-		System.out.println("(1) UtolsÛ ZPM felvÈtele");
+		System.out.println("(1) Utols√≥ ZPM felv√©tele");
 		System.out.println("*************************************************************");
 	}
 
@@ -277,8 +286,8 @@ public class Main {
 	 */
 	private static void printShootMenu() {
 		System.out.println("*************************************************************");
-		System.out.println("(1) LˆvÈs falra");
-		System.out.println("(2) LˆvÈs speci·lis falra");
+		System.out.println("(1) L√∂v√©s falra");
+		System.out.println("(2) L√∂v√©s speci√°lis falra");
 		System.out.println("*************************************************************");
 	}
 
@@ -287,14 +296,14 @@ public class Main {
 	 */
 	private static void printBoxInteractionMenu() {
 		System.out.println("*************************************************************");
-		System.out.println("(1) FelvÈtel ˙trÛl");
-		System.out.println("(2) FelvÈtel mÈrlegrıl");
-		System.out.println("(3) FelvÈtel port·lon ·tny˙lva");
-		System.out.println("(4) Lerak·s ˙tra");
-		System.out.println("(5) Lerak·s mÈrlegre");
-		System.out.println("(6) Lerak·s szakadÈkba");
-		System.out.println("(7) Lerak·s falra");
-		System.out.println("(8) Lerak·s port·lon kereszt¸l");
+		System.out.println("(1) Felv√©tel √∫tr√≥l");
+		System.out.println("(2) Felv√©tel m√©rlegr≈ël");
+		System.out.println("(3) Felv√©tel port√°lon √°tny√∫lva");
+		System.out.println("(4) Lerak√°s √∫tra");
+		System.out.println("(5) Lerak√°s m√©rlegre");
+		System.out.println("(6) Lerak√°s szakad√©kba");
+		System.out.println("(7) Lerak√°s falra");
+		System.out.println("(8) Lerak√°s port√°lon kereszt√ºl");
 		System.out.println("*************************************************************");
 	}
 
@@ -303,11 +312,11 @@ public class Main {
 	 */
 	private static void printPlayerMovamentMenu() {
 		System.out.println("*************************************************************");
-		System.out.println("(1) J·tÈkos mozgat·sa ˙tra");
-		System.out.println("(2) J·tÈkos mozgat·sa mÈrlegre");
-		System.out.println("(3) J·tÈkos mozgat·sa falra");
-		System.out.println("(4) J·tÈkos mozgat·sa speci·lis falra (nyitott port·l)");
-		System.out.println("(5) J·tÈkos mozgat·sa szakadÈkba");
+		System.out.println("(1) J√°t√©kos mozgat√°sa √∫tra");
+		System.out.println("(2) J√°t√©kos mozgat√°sa m√©rlegre");
+		System.out.println("(3) J√°t√©kos mozgat√°sa falra");
+		System.out.println("(4) J√°t√©kos mozgat√°sa speci√°lis falra (nyitott port√°l)");
+		System.out.println("(5) J√°t√©kos mozgat√°sa szakad√©kba");
 		System.out.println("*************************************************************");
 	}
 
@@ -316,11 +325,11 @@ public class Main {
 	 */
 	private static void printMainMenu() {
 		System.out.println("*************************************************************");
-		System.out.println("(1) J·tÈkos mozgat·sa");
-		System.out.println("(2) Doboz interakciÛ");
-		System.out.println("(3) LˆvÈs");
-		System.out.println("(4) ZPM felvÈtele");
-		System.out.println("(5) KilÈpÈs");
+		System.out.println("(1) J√°t√©kos mozgat√°sa");
+		System.out.println("(2) Doboz interakci√≥");
+		System.out.println("(3) L√∂v√©s");
+		System.out.println("(4) ZPM felv√©tele");
+		System.out.println("(5) Kil√©p√©s");
 		System.out.println("*************************************************************");
 	}
 }

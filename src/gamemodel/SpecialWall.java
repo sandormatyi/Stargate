@@ -2,7 +2,7 @@ package gamemodel;
 
 import java.util.HashMap;
 
-import debug.SkeletonLogger;
+import debug.ProtoLogger;
 
 public class SpecialWall extends MapElement {
 
@@ -18,21 +18,27 @@ public class SpecialWall extends MapElement {
 	 */
 	@Override
 	public void handlePlayerArrive(Direction dir, Player player) {
-		SkeletonLogger.functionCalled(this, "handlePlayerArrive", new Object[] { dir, player });
-
 		Direction oppositeDirection = Direction.getOppositeDirection(dir);
 		Stargate stargate = stargates.get(oppositeDirection);
 
 		if (stargate != null) {
+			ProtoLogger.log(this.toString() + " mező " + oppositeDirection.toString() + " oldalán "
+					+ stargate.toString() + " csillagkapu van nyitva");
+
 			MapElement exitPosition = stargate.getExitPosition();
 			Direction exitDirection = stargate.getExitDirection();
 
 			if (exitPosition != null && exitDirection != null) {
+				ProtoLogger.log("A csillagkapu kijárata " + exitPosition.toString() + " " + exitDirection.toString()
+						+ " oldala");
+
 				player.setPosition(exitPosition);
+
+				ProtoLogger.log(player.toString() + " áthaladt a csillagkapun");
+
 				player.turn(exitDirection);
 				player.move();
 
-				SkeletonLogger.returnFromFunction(null);
 				return;
 			}
 		}
@@ -40,7 +46,6 @@ public class SpecialWall extends MapElement {
 		// If the player did not step into an open wormhole, move him back to
 		// the previous MapElement
 		super.handlePlayerArrive(oppositeDirection, player);
-		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
@@ -50,8 +55,6 @@ public class SpecialWall extends MapElement {
 	 */
 	@Override
 	public void handleProjectileArrive(Direction dir, Projectile projectile) {
-		SkeletonLogger.functionCalled(this, "handleProjectileArrive", new Object[] { dir, projectile });
-
 		projectile.setPosition(this);
 
 		Direction oppositeDirection = Direction.getOppositeDirection(dir);
@@ -63,8 +66,6 @@ public class SpecialWall extends MapElement {
 		}
 
 		projectile.destroy();
-
-		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
@@ -73,22 +74,27 @@ public class SpecialWall extends MapElement {
 	 */
 	@Override
 	public void handleBoxPutDown(Direction dir, Box box) {
-		SkeletonLogger.functionCalled(this, "handleBoxPutDown", new Object[] { dir, box });
-
 		Direction oppositeDirection = Direction.getOppositeDirection(dir);
 		Stargate stargate = stargates.get(oppositeDirection);
 
 		if (stargate != null) {
+			ProtoLogger.log(this.toString() + " mező " + oppositeDirection.toString() + " oldalán "
+					+ stargate.toString() + " csillagkapu van nyitva");
+
 			MapElement exitPosition = stargate.getExitPosition();
 			Direction exitDirection = stargate.getExitDirection();
 
 			if (exitPosition != null && exitDirection != null) {
+				ProtoLogger.log("A csillagkapu kijárata " + exitPosition.toString() + " " + exitDirection.toString()
+						+ " oldala");
+
 				MapElement destination = exitPosition.getNeighbour(exitDirection);
 
 				if (destination != null) {
+					ProtoLogger.log("A doboz áthaladt a csillagkapun");
+
 					destination.handleBoxPutDown(exitDirection, box);
 
-					SkeletonLogger.returnFromFunction(null);
 					return;
 				}
 			}
@@ -97,7 +103,6 @@ public class SpecialWall extends MapElement {
 		// If there is no open wormhole through the given direction, move it
 		// back to the previous MapElement
 		super.handleBoxPutDown(oppositeDirection, box);
-		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
@@ -105,11 +110,7 @@ public class SpecialWall extends MapElement {
 	 */
 	@Override
 	public void handleBoxPickUp(Box box) {
-		SkeletonLogger.functionCalled(this, "handleBoxPickup", new Object[] { box });
-
 		box.setPosition(null);
-
-		SkeletonLogger.returnFromFunction(null);
 	};
 
 	/*
@@ -118,28 +119,30 @@ public class SpecialWall extends MapElement {
 	 */
 	@Override
 	public Box getBox(Direction dir) {
-		SkeletonLogger.functionCalled(this, "getBox", new Object[] { dir });
-
 		Direction oppositeDirection = Direction.getOppositeDirection(dir);
 		Stargate stargate = stargates.get(oppositeDirection);
 
 		if (stargate != null) {
+			ProtoLogger.log(this.toString() + " mező " + oppositeDirection.toString() + " oldalán "
+					+ stargate.toString() + " csillagkapu van nyitva");
+
 			MapElement exitPosition = stargate.getExitPosition();
 			Direction exitDirection = stargate.getExitDirection();
 
 			if (exitPosition != null && exitDirection != null) {
+				ProtoLogger.log("A csillagkapu kijárata " + exitPosition.toString() + " " + exitDirection.toString()
+						+ " oldala");
+
 				MapElement destination = exitPosition.getNeighbour(exitDirection);
 
 				if (destination != null) {
-					Box box = destination.getBox(exitDirection);
+					ProtoLogger.log("A játékos átnyúlt a csillagkapun");
 
-					SkeletonLogger.returnFromFunction(box);
-					return box;
+					return destination.getBox(exitDirection);
 				}
 			}
 		}
 
-		SkeletonLogger.returnFromFunction(null);
 		return null;
 	}
 }

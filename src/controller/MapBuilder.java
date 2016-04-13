@@ -40,16 +40,6 @@ class MapBuilder {
 		System.out.println("  |  A  |  B  |  C  |  D  |  E  |  F  |  ");
 	}
 
-	/*
-	 * Ha ideiglenes felvennénk a a moveablebe egy koordináta stringet, ami
-	 * tartalmazza a koordinátáját (A1, etc..) akkor kiirathatnánk a térkép
-	 * alatt minden objektum helyét és így meg lenne oldva minden infó
-	 * 
-	 * Mert ha csak a körülött lévõket látná és a a térképet akkor valószínûleg
-	 * megint bénáznak majd és 50 percig keresik majd, hogy óóó ez melyik része
-	 * is a nagy térképnek
-	 */
-
 	public void buildProtoMap() {
 		// Initialize ZPMs
 		ZPM zpm1 = new ZPM();

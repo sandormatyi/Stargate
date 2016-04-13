@@ -2,7 +2,7 @@ package test;
 
 import controller.Controller;
 import controller.Game;
-import debug.SkeletonLogger;
+import debug.ProtoLogger;
 
 public class TestRunner {
 
@@ -11,7 +11,7 @@ public class TestRunner {
 	 * TestFactory class and runs it
 	 */
 	public static void runTest(TestType type) {
-		SkeletonLogger.disablePrint();
+		ProtoLogger.disablePrint();
 
 		Game game = new Game();
 		game.run();
@@ -27,12 +27,13 @@ public class TestRunner {
 			return;
 
 		try {
+			ProtoLogger.enablePrint();
 			test.setUp();
 
-			SkeletonLogger.enablePrint();
+			// ProtoLogger.enablePrint();
 			test.run();
 		} catch (Exception e) {
-			System.err.println("Error happened during " + test.getClass().getSimpleName());
+			ProtoLogger.logError("Error happened during " + test.getClass().getSimpleName());
 			e.printStackTrace();
 		}
 	}

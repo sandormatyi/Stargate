@@ -2,7 +2,6 @@ package controller;
 
 import java.util.HashSet;
 
-import debug.SkeletonLogger;
 import gamemodel.Direction;
 import gamemodel.Player;
 import gamemodel.Projectile;
@@ -61,16 +60,24 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 			player.turn(dir);
 		}
 
+		// TODO: Check both players
 		if (!player.isAlive()) {
-			game.stop(false);
+			game.stop(player, false);
 		}
 	}
 
 	/*
-	 * Make the player shoot a projectile
+	 * Make the player shoot a projectile of the first type
 	 */
-	public void shoot() {
-		player.shoot();
+	public void shootFirst() {
+		player.shootFirst();
+	}
+
+	/*
+	 * Make the player shoot a projectile of the second type
+	 */
+	public void shootSecond() {
+		player.shootSecond();
 	}
 
 	/*
@@ -97,8 +104,7 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 		zpmSet.remove(zpm);
 
 		if (zpmSet.isEmpty()) {
-			SkeletonLogger.resetLogDepth();
-			game.stop(true);
+			game.stop(null, true); // TODO
 		}
 	}
 
@@ -110,7 +116,6 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 		isProjectileMoving = true;
 
 		while (isProjectileMoving) {
-			SkeletonLogger.resetLogDepth();
 			projectile.move();
 		}
 	}

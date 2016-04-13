@@ -2,8 +2,6 @@ package gamemodel;
 
 import java.util.HashMap;
 
-import debug.SkeletonLogger;
-
 public class Stargate {
 
 	/*
@@ -35,17 +33,13 @@ public class Stargate {
 	 * Returns the position of the other Stargate
 	 */
 	public MapElement getExitPosition() {
-		SkeletonLogger.functionCalled(this, "getExitPosition", null);
-
 		ProjectileType otherType = ProjectileType.getOppositeType(type);
 		Stargate exitStargate = stargates.get(otherType);
 
 		if (exitStargate != null) {
-			SkeletonLogger.returnFromFunction(exitStargate.position);
 			return exitStargate.position;
 		}
 
-		SkeletonLogger.returnFromFunction(null);
 		return null;
 	}
 
@@ -53,22 +47,18 @@ public class Stargate {
 	 * Returns the other Stargate's direction relative to its position
 	 */
 	public Direction getExitDirection() {
-		SkeletonLogger.functionCalled(this, "getExitDirection", null);
-
 		ProjectileType otherType = ProjectileType.getOppositeType(type);
 		Stargate exitStargate = stargates.get(otherType);
 
 		if (exitStargate != null) {
-			SkeletonLogger.returnFromFunction(exitStargate.direction);
 			return exitStargate.direction;
 		}
 
-		SkeletonLogger.returnFromFunction(null);
 		return null;
 	}
 
 	@Override
 	public String toString() {
-		return getClass().getSimpleName() + "_" + type.toString();
+		return type.toString();
 	}
 }

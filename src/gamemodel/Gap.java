@@ -1,6 +1,6 @@
 package gamemodel;
 
-import debug.SkeletonLogger;
+import debug.ProtoLogger;
 
 public class Gap extends MapElement {
 
@@ -9,12 +9,10 @@ public class Gap extends MapElement {
 	 */
 	@Override
 	public void handlePlayerArrive(Direction dir, Player player) {
-		SkeletonLogger.functionCalled(this, "handlePlayerArrive", new Object[] { dir, player });
+		ProtoLogger.log("Sikeresen átlépett a következő mezőre: " + this.toString());
 
 		player.setPosition(this);
 		player.die();
-
-		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
@@ -22,11 +20,7 @@ public class Gap extends MapElement {
 	 */
 	@Override
 	public void handleProjectileArrive(Direction dir, Projectile projectile) {
-		SkeletonLogger.functionCalled(this, "handleProjectileArrive", new Object[] { dir, projectile });
-
 		projectile.setPosition(this);
-
-		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
@@ -34,11 +28,10 @@ public class Gap extends MapElement {
 	 */
 	@Override
 	public void handleBoxPutDown(Direction dir, Box box) {
-		SkeletonLogger.functionCalled(this, "handleBoxPutDown", new Object[] { dir, box });
+		ProtoLogger.log("Sikeres dobozletétel a(z) " + this.toString() + " mezőre");
+		ProtoLogger.log("Egy doboz elpusztult a(z) " + this.toString() + " mezőn");
 
 		box.setPosition(this);
 		box.respawn();
-
-		SkeletonLogger.returnFromFunction(null);
 	}
 }

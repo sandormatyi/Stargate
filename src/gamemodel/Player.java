@@ -1,14 +1,14 @@
 package gamemodel;
 
-import debug.SkeletonLogger;
+import debug.ProtoLogger;
 import gamemodel.events.ModelEventSource;
 
 public class Player extends Movable {
 
 	private Direction direction;
 	private boolean isAlive = true;
-	private ProjectileType projType = ProjectileType.YELLOW;
 	private Box box = null;
+	protected ProjectileType[] projTypes = new ProjectileType[] { ProjectileType.BLUE, ProjectileType.YELLOW };
 
 	public Player(MapElement position, Direction direction) {
 		super(position);
@@ -20,11 +20,7 @@ public class Player extends Movable {
 	 */
 	@Override
 	public void arriveOnMapElement(Direction dir, MapElement element) {
-		SkeletonLogger.functionCalled(this, "arriveOnMapElement", new Object[] { dir, element });
-
 		element.handlePlayerArrive(dir, this);
-
-		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
@@ -32,11 +28,7 @@ public class Player extends Movable {
 	 */
 	@Override
 	public void leaveMapElement(MapElement element) {
-		SkeletonLogger.functionCalled(this, "leaveMapElement", new Object[] { element });
-
 		element.handlePlayerLeave(this);
-
-		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
@@ -44,20 +36,20 @@ public class Player extends Movable {
 	 */
 	@Override
 	public void move() {
-		SkeletonLogger.functionCalled(this, "move", null);
+		MapElement nextPosition = position.getNeighbour(direction);
 
-		this.leaveMapElement(position);
-
-		MapElement nextposition = position.getNeighbour(direction);
-
-		if (nextposition != null) {
-			arriveOnMapElement(direction, nextposition);
-		} else {
-			System.err.println("Player tried to step on a MapElement that does not exist!");
+		// TODO: Remove before upload - for debug purposes only
+		if (nextPosition == null) {
+			ProtoLogger.logError("Player tried to step on a MapElement that does not exist");
 			arriveOnMapElement(Direction.getOppositeDirection(direction), position);
 		}
 
-		SkeletonLogger.returnFromFunction(null);
+		ProtoLogger.logCommand(this.toString() + " a(z) " + position.toString() + " mezőről a(z) "
+				+ nextPosition.toString() + " mezőre próbál lépni");
+
+		this.leaveMapElement(position);
+
+		arriveOnMapElement(direction, nextPosition);
 	}
 
 	/*
@@ -78,43 +70,48 @@ public class Player extends Movable {
 	 * Turn the player to a direction
 	 */
 	public void turn(Direction direction) {
-		SkeletonLogger.functionCalled(this, "turn", new Object[] { direction });
+		ProtoLogger.logCommand(this.toString() + " elfordult " + direction.toString() + " irányba");
 
 		this.direction = direction;
-
-		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
-	 * Shoot a projectile
+	 * Shoot a projectile of the first type
 	 */
-	public void shoot() {
-		SkeletonLogger.functionCalled(this, "shoot", null);
+	public void shootFirst() {
+		Projectile projectile = new Projectile(position, direction, projTypes[0]);
 
-		Projectile projectile = new Projectile(position, direction, projType);
+		ProtoLogger.logCommand(
+				this.toString() + " " + projectile.toString() + " lövedéket lőtt " + direction.toString() + " irányba");
 
 		// Notify the listeners that a projectile has been created
 		ModelEventSource.notifyProjectileCreated(projectile);
+	}
 
-		if (projType == ProjectileType.BLUE) {
-			projType = ProjectileType.YELLOW;
-		} else {
-			projType = ProjectileType.BLUE;
-		}
+	/*
+	 * Shoot a projectile of the second type
+	 */
+	public void shootSecond() {
+		Projectile projectile = new Projectile(position, direction, projTypes[1]);
 
-		SkeletonLogger.returnFromFunction(null);
+		ProtoLogger.logCommand(
+				this.toString() + " " + projectile.toString() + " lövedéket lőtt " + direction.toString() + " irányba");
+
+		// Notify the listeners that a projectile has been created
+		ModelEventSource.notifyProjectileCreated(projectile);
 	}
 
 	/*
 	 * Pick up a box from the next mapElement
 	 */
 	public void pickUpBox() {
-		SkeletonLogger.functionCalled(this, "pickUpBox", null);
-
 		if (box == null) {
 			MapElement nextPosition = position.getNeighbour(direction);
 
 			if (nextPosition != null) {
+				ProtoLogger.logCommand(this.toString() + " megpróbál felvenni egy dobozt a(z) "
+						+ nextPosition.toString() + " mezőről");
+
 				box = nextPosition.getBox(direction);
 
 				if (box != null) {
@@ -122,34 +119,29 @@ public class Player extends Movable {
 				}
 			}
 		}
-
-		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
 	 * Put down a box to the next mapElement
 	 */
 	public void putDownBox() {
-		SkeletonLogger.functionCalled(this, "putDownBox", null);
-
 		MapElement nextPosition = position.getNeighbour(direction);
 		if (nextPosition != null) {
+			ProtoLogger.logCommand(
+					this.toString() + " megpróbál letenni egy dobozt a(z) " + nextPosition.toString() + " mezőre");
+
 			box.arriveOnMapElement(direction, nextPosition);
 			box = null;
 		}
-
-		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
 	 * Set the isAlive to false
 	 */
 	public void die() {
-		SkeletonLogger.functionCalled(this, "die", null);
+		ProtoLogger.log(this.toString() + " meghalt a(z) " + position.toString() + " mezőn");
 
 		isAlive = false;
-
-		SkeletonLogger.returnFromFunction(null);
 	}
 
 	public int getWeight() {

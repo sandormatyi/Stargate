@@ -21,7 +21,7 @@ class BoxPutDownWormholeTest extends Test {
 		// Turn West
 		controller.moveOrTurnPlayer(Direction.WEST);
 		// Shoot
-		controller.shoot();
+		controller.shootFirst();
 		// Turn north
 		controller.moveOrTurnPlayer(Direction.NORTH);
 		// Pick up box
@@ -35,7 +35,7 @@ class BoxPutDownWormholeTest extends Test {
 		// turn north
 		controller.moveOrTurnPlayer(Direction.NORTH);
 		// shoot
-		controller.shoot();
+		controller.shootSecond();
 	}
 
 	@Override

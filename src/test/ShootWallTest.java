@@ -26,7 +26,7 @@ class ShootWallTest extends Test {
 	@Override
 	public void run() {
 		// Shoot projectile
-		controller.shoot();
+		controller.shootFirst();
 
 	}
 

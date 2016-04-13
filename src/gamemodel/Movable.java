@@ -1,7 +1,5 @@
 package gamemodel;
 
-import debug.SkeletonLogger;
-
 public abstract class Movable {
 	/*
 	 * Moveable's position
@@ -16,11 +14,7 @@ public abstract class Movable {
 	 * Set the position
 	 */
 	public void setPosition(MapElement position) {
-		SkeletonLogger.functionCalled(this, "setPosition", new Object[] { position });
-
 		this.position = position;
-
-		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
@@ -37,7 +31,7 @@ public abstract class Movable {
 	 * Override in the descendants
 	 */
 	public void move() {
-		// throw new NotImplementedException();
+		// Do nothing
 	}
 
 	/*

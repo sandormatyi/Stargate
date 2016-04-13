@@ -19,11 +19,11 @@ class BoxPickUpWormholeTest extends Test {
 		// turn NORTH
 		controller.moveOrTurnPlayer(Direction.NORTH);
 		// shoot
-		controller.shoot();
+		controller.shootFirst();
 		// turn SOUTH
 		controller.moveOrTurnPlayer(Direction.SOUTH);
 		// shoot
-		controller.shoot();
+		controller.shootSecond();
 		// turn EAST
 		controller.moveOrTurnPlayer(Direction.EAST);
 		// pick up box

@@ -1,6 +1,6 @@
 package gamemodel;
 
-import debug.SkeletonLogger;
+import debug.ProtoLogger;
 
 public class Box extends Movable {
 	/*
@@ -22,12 +22,7 @@ public class Box extends Movable {
 	 */
 	@Override
 	public void arriveOnMapElement(Direction dir, MapElement element) {
-		// Signal that the arriveOnMapElement method was called
-		SkeletonLogger.functionCalled(this, "arriveOnMapElement", new Object[] { element });
-		// Put Down box
 		element.handleBoxPutDown(dir, this);
-		// Signal that the method returned
-		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
@@ -35,25 +30,17 @@ public class Box extends Movable {
 	 */
 	@Override
 	public void leaveMapElement(MapElement element) {
-		// Signal that the leaveMapElement method was called
-		SkeletonLogger.functionCalled(this, "leaveMapElement", new Object[] { element });
-		// Pick up box
 		element.handleBoxPickUp(this);
-		// Signal that the method returned
-		SkeletonLogger.returnFromFunction(null);
 	}
 
 	/*
 	 * Box has been destroyed. Set back the location to the init position.
 	 */
 	public void respawn() {
-		// Signal that the respawn method was called
-		SkeletonLogger.functionCalled(this, "respawn", null);
-		// Leave Current MapElement
 		leaveMapElement(position);
-		// Reinitialize to the starting position
+
+		ProtoLogger.log("Egy doboz létrejön a(z) " + initPosition.toString() + " mezőn");
+
 		arriveOnMapElement(null, initPosition);
-		// Signal that the method returned
-		SkeletonLogger.returnFromFunction(null);
 	}
 }

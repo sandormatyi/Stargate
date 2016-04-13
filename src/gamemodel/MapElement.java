@@ -2,7 +2,7 @@ package gamemodel;
 
 import java.util.HashMap;
 
-import debug.SkeletonLogger;
+import debug.ProtoLogger;
 
 public abstract class MapElement {
 
@@ -18,12 +18,7 @@ public abstract class MapElement {
 	 * Getter for neighbour MapElement in a specific direction.
 	 */
 	public MapElement getNeighbour(Direction dir) {
-		SkeletonLogger.functionCalled(this, "getNeighbour", new Object[] { dir });
-
-		MapElement neighbour = neighbours.get(dir);
-
-		SkeletonLogger.returnFromFunction(neighbour);
-		return neighbour;
+		return neighbours.get(dir);
 	}
 
 	/*
@@ -37,9 +32,6 @@ public abstract class MapElement {
 	 * Getter for the box, that is on this MapElement, if any.
 	 */
 	public Box getBox(Direction dir) {
-		SkeletonLogger.functionCalled(this, "getBox", new Object[] { dir });
-
-		SkeletonLogger.returnFromFunction(box);
 		return box;
 	}
 
@@ -48,30 +40,27 @@ public abstract class MapElement {
 	 * default.
 	 */
 	public void handlePlayerArrive(Direction dir, Player player) {
-		SkeletonLogger.functionCalled(this, "handlePlayerArrive", new Object[] { dir, player });
+		Direction oppositeDirection = Direction.getOppositeDirection(dir);
+		MapElement neighbour = getNeighbour(oppositeDirection);
 
-		Direction opdir = Direction.getOppositeDirection(dir);
-		this.getNeighbour(opdir).handlePlayerArrive(opdir, player);
+		ProtoLogger.log("Sikertelen lépés: " + player.toString() + " visszalökődött az előző " + neighbour.toString()
+				+ " mezőre");
 
-		SkeletonLogger.returnFromFunction(null);
+		neighbour.handlePlayerArrive(oppositeDirection, player);
 	}
 
 	/*
 	 * Funcion for player leave. Does nothing by default.
 	 */
 	public void handlePlayerLeave(Player player) {
-		SkeletonLogger.functionCalled(this, "handlePlayerLeave", null);
-
-		SkeletonLogger.returnFromFunction(null);
+		// Do nothing
 	}
 
 	/*
 	 * Funcion for projectile arrival. Does nothing by default
 	 */
 	public void handleProjectileArrive(Direction dir, Projectile projectile) {
-		SkeletonLogger.functionCalled(this, "handleProjectileArrive", new Object[] { dir, projectile });
-
-		SkeletonLogger.returnFromFunction(null);
+		// Do nothing
 	}
 
 	/*
@@ -79,28 +68,27 @@ public abstract class MapElement {
 	 * tile by default.
 	 */
 	public void handleBoxPutDown(Direction dir, Box box) {
-		SkeletonLogger.functionCalled(this, "handleBoxPutDown", new Object[] { dir, box });
+		Direction oppositeDirection = Direction.getOppositeDirection(dir);
+		MapElement neighbour = getNeighbour(oppositeDirection);
 
-		Direction opdir = Direction.getOppositeDirection(dir);
-		this.getNeighbour(opdir).handleBoxPutDown(opdir, box);
+		ProtoLogger.log("Sikertelen dobozletétel: A doboz visszalökődik az előző " + neighbour.toString() + " mezőre");
 
-		SkeletonLogger.returnFromFunction(null);
+		neighbour.handleBoxPutDown(oppositeDirection, box);
 	}
 
 	/*
 	 * Function for box picking up from this tile. Does nothing by default.
 	 */
 	public void handleBoxPickUp(Box box) {
-		SkeletonLogger.functionCalled(this, "handleBoxPickUp", new Object[] { box });
-
-		SkeletonLogger.returnFromFunction(null);
+		// Do nothing
 	}
 
 	/*
-	 * Get the Class name as String
+	 * Get the coordinate and the type of the MapElement as a string
 	 */
 	@Override
 	public String toString() {
+		// TODO
 		return this.getClass().getSimpleName();
 	}
 }
