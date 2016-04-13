@@ -115,7 +115,9 @@ public abstract class Player extends Movable {
 				box = nextPosition.getBox(direction);
 
 				if (box != null) {
+					nextPosition.decrementWeight();
 					box.leaveMapElement(nextPosition);
+					position.incrementWeight();
 				}
 			}
 		}
@@ -125,13 +127,18 @@ public abstract class Player extends Movable {
 	 * Put down a box to the next mapElement
 	 */
 	public void putDownBox() {
-		MapElement nextPosition = position.getNeighbour(direction);
-		if (nextPosition != null) {
-			ProtoLogger.logCommand(
-					this.toString() + " megpróbál letenni egy dobozt a(z) " + nextPosition.toString() + " mezőre");
+		if (box != null) {
+			MapElement nextPosition = position.getNeighbour(direction);
 
-			box.arriveOnMapElement(direction, nextPosition);
-			box = null;
+			if (nextPosition != null) {
+				ProtoLogger.logCommand(
+						this.toString() + " megpróbál letenni egy dobozt a(z) " + nextPosition.toString() + " mezőre");
+
+				nextPosition.incrementWeight();
+				box.arriveOnMapElement(direction, nextPosition);
+				position.decrementWeight();
+				box = null;
+			}
 		}
 	}
 

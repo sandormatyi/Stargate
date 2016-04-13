@@ -84,6 +84,20 @@ public abstract class MapElement {
 	}
 
 	/*
+	 * Increments the weight on this MapElement
+	 */
+	public void incrementWeight() {
+		// Do nothing
+	}
+
+	/*
+	 * Decrements the weight on this MapElement
+	 */
+	public void decrementWeight() {
+		// Do nothing
+	}
+
+	/*
 	 * Get the coordinate and the type of the MapElement as a string
 	 */
 	@Override

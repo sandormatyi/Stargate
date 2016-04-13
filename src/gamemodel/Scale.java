@@ -61,11 +61,16 @@ public class Scale extends MapElement {
 	}
 
 	/*
-	 * The projectile harmlessly goes through
+	 * Increment weightCount and open the door if it is above the limit
 	 */
 	@Override
-	public void handleProjectileArrive(Direction dir, Projectile projectile) {
-		projectile.setPosition(this);
+	public void handleBoxPutDown(Direction dir, Box box) {
+		box.setPosition(this);
+
+		if (this.box != null)
+			this.box.respawn();
+
+		this.box = box;
 	}
 
 	/*
@@ -74,7 +79,44 @@ public class Scale extends MapElement {
 	@Override
 	public void handleBoxPickUp(Box box) {
 		this.box.setPosition(null);
-		weightCount--;
+
+		this.box = null;
+	}
+
+	/*
+	 * The projectile harmlessly goes through
+	 */
+	@Override
+	public void handleProjectileArrive(Direction dir, Projectile projectile) {
+		projectile.setPosition(this);
+	}
+
+	/*
+	 * Increments the weight on the scale
+	 */
+	@Override
+	public void incrementWeight() {
+		int previousWeightCount = weightCount;
+		weightCount += 1;
+
+		ProtoLogger.log("A(z) " + this.toString() + " mezőre 1 egységnyi súly került, összesen " + weightCount
+				+ " súly van rajta");
+
+		if (weightCount >= weightLimit && previousWeightCount < weightLimit && door != null) {
+			ProtoLogger.log(
+					"Mivel legalább " + weightLimit + " súly van a mérlegen, a(z) " + door.toString() + " kinyílt");
+
+			door.setOpened(true);
+		}
+	}
+
+	/*
+	 * Decrements the weight on the scale
+	 */
+	@Override
+	public void decrementWeight() {
+		int previousWeightCount = weightCount;
+		weightCount -= 1;
 
 		if (weightCount < 0)
 			ProtoLogger.logError("Weight count of scale cannot be negative");
@@ -82,37 +124,11 @@ public class Scale extends MapElement {
 		ProtoLogger.log("A(z) " + this.toString() + " mezőről 1 egységnyi súly lekerült, összesen " + weightCount
 				+ " súly van rajta");
 
-		if (door != null && weightCount < weightLimit) {
+		if (weightCount < weightLimit && previousWeightCount >= weightLimit && door != null) {
 			ProtoLogger.log(
 					"Mivel nincsen legalább " + weightLimit + " súly a mérlegen, a(z) " + door.toString() + " bezárul");
 
 			door.setOpened(false);
 		}
-
-		this.box = null;
-	}
-
-	/*
-	 * Increment weightCount and open the door if it is above the limit
-	 */
-	@Override
-	public void handleBoxPutDown(Direction dir, Box box) {
-		box.setPosition(this);
-		weightCount++;
-
-		ProtoLogger.log("A(z) " + this.toString() + " mezőre 1 egységnyi súly került, összesen " + weightCount
-				+ " súly van rajta");
-
-		if (door != null && weightCount >= weightLimit) {
-			ProtoLogger.log(
-					"Mivel legalább " + weightLimit + " súly van a mérlegen, a(z) " + door.toString() + " kinyílt");
-
-			door.setOpened(true);
-		}
-
-		if (this.box != null)
-			this.box.respawn();
-
-		this.box = box;
 	}
 }
