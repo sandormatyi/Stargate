@@ -8,11 +8,14 @@ public abstract class MapElement {
 
 	private HashMap<Direction, MapElement> neighbours = new HashMap<Direction, MapElement>();
 	protected Box box = null;
+	protected String coord;
 
 	/*
-	 * Proto Test protected String Coord; void setCoord(String name){ Coord =
-	 * name; }
+	 * Constructor that takes the coordinates of the MapElement as a parameter
 	 */
+	public MapElement(String coord) {
+		this.coord = coord;
+	}
 
 	/*
 	 * Getter for neighbour MapElement in a specific direction.
@@ -102,7 +105,6 @@ public abstract class MapElement {
 	 */
 	@Override
 	public String toString() {
-		// TODO
-		return this.getClass().getSimpleName();
+		return coord + " (" + this.getClass().getSimpleName() + ")";
 	}
 }

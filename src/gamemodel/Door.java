@@ -4,6 +4,13 @@ import debug.ProtoLogger;
 
 public class Door extends MapElement {
 
+	/*
+	 * Constructor inherited from base class
+	 */
+	public Door(String coord) {
+		super(coord);
+	}
+
 	private boolean isOpened = false;
 
 	/*

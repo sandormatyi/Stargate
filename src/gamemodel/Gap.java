@@ -5,6 +5,13 @@ import debug.ProtoLogger;
 public class Gap extends MapElement {
 
 	/*
+	 * Constructor inherited from base class
+	 */
+	public Gap(String coord) {
+		super(coord);
+	}
+
+	/*
 	 * Player arrives and character dies.
 	 */
 	@Override

@@ -7,6 +7,13 @@ import debug.ProtoLogger;
 public class SpecialWall extends MapElement {
 
 	/*
+	 * Constructor inherited from base class
+	 */
+	public SpecialWall(String coord) {
+		super(coord);
+	}
+
+	/*
 	 * A HashMap that stores the open stargates by their relative position to
 	 * the field
 	 */

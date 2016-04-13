@@ -4,6 +4,13 @@ import debug.ProtoLogger;
 
 public class Scale extends MapElement {
 
+	/*
+	 * Constructor inherited from base class
+	 */
+	public Scale(String coord) {
+		super(coord);
+	}
+
 	private int weightCount = 0;
 	static final private int weightLimit = 2;
 	private Door door = null;

@@ -4,6 +4,13 @@ import debug.ProtoLogger;
 
 public class Road extends MapElement {
 
+	/*
+	 * Constructor inherited from base class
+	 */
+	public Road(String coord) {
+		super(coord);
+	}
+
 	private ZPM zpm = null;
 
 	/*

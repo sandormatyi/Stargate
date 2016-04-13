@@ -3,6 +3,13 @@ package gamemodel;
 public class Wall extends MapElement {
 
 	/*
+	 * Constructor inherited from base class
+	 */
+	public Wall(String coord) {
+		super(coord);
+	}
+
+	/*
 	 * Projectile arrives on this tile.
 	 */
 	@Override
