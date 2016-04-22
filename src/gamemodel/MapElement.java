@@ -20,6 +20,13 @@ public abstract class MapElement {
 	}
 
 	/*
+	 * Returns the coordinate of the MapElement
+	 */
+	public String getCoord() {
+		return coord;
+	}
+
+	/*
 	 * Getter for neighbour MapElement in a specific direction.
 	 */
 	public MapElement getNeighbour(Direction dir) {

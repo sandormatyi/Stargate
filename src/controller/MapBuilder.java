@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Vector;
 
 import gamemodel.Box;
 import gamemodel.Direction;
@@ -73,6 +74,9 @@ class MapBuilder {
 		HashMap<Integer, Scale> scales = new HashMap<Integer, Scale>();
 		HashMap<Integer, Door> doors = new HashMap<Integer, Door>();
 
+		// Store the roads to initialize MapHelper
+		Vector<Road> roads = new Vector<Road>();
+
 		FileReader input = new FileReader(resURL.getPath());
 		BufferedReader bufRead = new BufferedReader(input);
 
@@ -102,6 +106,7 @@ class MapBuilder {
 					// Create the MapElement of the appropriate type
 					if (mapElementType.equals("R")) {
 						mapElement = new Road(coord);
+						roads.addElement((Road) mapElement);
 					} else if (mapElementType.equals("W")) {
 						mapElement = new Wall(coord);
 					} else if (mapElementType.equals("G")) {
@@ -125,8 +130,7 @@ class MapBuilder {
 						throw new MapBuilderException("A pályalem leírása hibás: " + mapElementString + ".", coord);
 
 					// Check the second part of the map file entry for
-					// additional
-					// objects on the field
+					// additional objects on the field
 					if (mapParts.length > 1) {
 						char[] extraObjects = mapParts[1].toUpperCase().toCharArray();
 
@@ -203,6 +207,9 @@ class MapBuilder {
 
 				scale.setDoor(door);
 			}
+
+			// Initialize MapHelper
+			MapHelper.setRoads(roads);
 
 			// Iterate through the stored MapElements and set their neighbours
 			for (int y = 0; y < mapElements.size(); y++) {
