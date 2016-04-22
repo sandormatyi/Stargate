@@ -1,5 +1,8 @@
 package controller;
 
+import java.io.IOException;
+
+import controller.MapBuilder.MapBuilderException;
 import debug.ProtoLogger;
 import gamemodel.Player;
 import gamemodel.events.ModelEventSource;
@@ -60,8 +63,10 @@ public class Game {
 
 		try {
 			builder.buildMapFromFile(mapFile);
-		} catch (Exception e) {
-			ProtoLogger.logError(e.getMessage());
+		} catch (IOException e) {
+			ProtoLogger.logError(e.toString());
+		} catch (MapBuilderException e) {
+			ProtoLogger.logError(e.toString());
 		}
 
 		controller = builder.createController(this);

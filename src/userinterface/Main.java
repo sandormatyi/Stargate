@@ -14,6 +14,7 @@ public class Main {
 	public static void main(String[] args) {
 		try {
 			System.setOut(new PrintStream(System.out, true, "UTF-8"));
+			System.setErr(new PrintStream(System.err, true, "UTF-8"));
 		} catch (UnsupportedEncodingException e1) {
 			System.err.println(
 					"The standard output does not support UTF-8 encoding: some characters may appear incorrectly");

@@ -2,6 +2,7 @@ package test;
 
 import controller.Controller;
 import controller.Game;
+import controller.InputProcessor;
 import debug.ProtoLogger;
 
 public class TestRunner {
@@ -11,7 +12,7 @@ public class TestRunner {
 	 * TestFactory class and runs it
 	 */
 	public static void runTest(TestType type) {
-		ProtoLogger.disablePrint();
+		// ProtoLogger.disablePrint();
 
 		Game game = new Game(type.getMapFilePath());
 		game.run();
@@ -21,19 +22,14 @@ public class TestRunner {
 		if (controller == null)
 			return;
 
-		Test test = TestFactory.createTest(controller, type);
-
-		if (test == null)
-			return;
+		InputProcessor inputProcessor = new InputProcessor(controller);
 
 		try {
 			ProtoLogger.enablePrint();
-			test.setUp();
 
-			// ProtoLogger.enablePrint();
-			test.run();
+			inputProcessor.processInputFile(type.getInputFilePath());
 		} catch (Exception e) {
-			ProtoLogger.logError("Error happened during " + test.getClass().getSimpleName());
+			ProtoLogger.logError("Error happened during test: " + type.name());
 			e.printStackTrace();
 		}
 	}

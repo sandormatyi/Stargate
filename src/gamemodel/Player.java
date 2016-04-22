@@ -5,14 +5,13 @@ import gamemodel.events.ModelEventSource;
 
 public abstract class Player extends Movable {
 
-	private Direction direction;
+	private Direction direction = Direction.NORTH;
 	private boolean isAlive = true;
 	private Box box = null;
 	protected ProjectileType[] projTypes;
 
-	public Player(MapElement position, Direction direction) {
+	public Player(MapElement position) {
 		super(position);
-		this.direction = direction;
 	}
 
 	/*

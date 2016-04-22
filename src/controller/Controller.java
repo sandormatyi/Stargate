@@ -79,7 +79,7 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 		}
 
 		for (Player p : players.values()) {
-			if (!p.isAlive())
+			if (p != null && !p.isAlive())
 				game.stop(player, false);
 		}
 	}

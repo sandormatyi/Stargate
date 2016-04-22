@@ -3,43 +3,9 @@ package debug;
 public class ProtoLogger {
 
 	/*
-	 * The current log depth
-	 */
-	@Deprecated
-	private static int logDepth = 0;
-
-	/*
 	 * The logger only prints to the output if this field is true
 	 */
-	private static boolean printEnabled = false;
-
-	/*
-	 * Increments the log depth
-	 */
-	@Deprecated
-	public static void incrementLogDepth() {
-		logDepth++;
-	}
-
-	/*
-	 * Decrements the log depth
-	 */
-	@Deprecated
-	public static void decrementLogDepth() {
-		logDepth--;
-
-		if (logDepth < 0) {
-			logDepth = 0;
-		}
-	}
-
-	/*
-	 * Resets the log depth
-	 */
-	@Deprecated
-	public static void resetLogDepth() {
-		logDepth = 0;
-	}
+	private static boolean printEnabled = true;
 
 	/*
 	 * Enables printing to the standard output
@@ -79,6 +45,6 @@ public class ProtoLogger {
 	 * Prints the given error to the standard error output
 	 */
 	public static void logError(String error) {
-		System.out.println("!!! " + error + " !!!");
+		System.err.println("!!! " + error + " !!!");
 	}
 }
