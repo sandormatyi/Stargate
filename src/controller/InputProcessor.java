@@ -8,6 +8,7 @@ import java.net.URL;
 import java.security.InvalidParameterException;
 
 import debug.ProtoLogger;
+import debug.RandomGenerator;
 import gamemodel.Direction;
 
 public class InputProcessor {
@@ -133,9 +134,9 @@ public class InputProcessor {
 				throw new InvalidParameterException("Nem értelmezhető parancs: " + inputLine);
 			} else {
 				if (words[1].equals("on")) {
-					// TODO
+					RandomGenerator.enableRandom();
 				} else if (words[1].equals("off")) {
-					// TODO
+					RandomGenerator.disableRandom();
 				}
 			}
 		} else {

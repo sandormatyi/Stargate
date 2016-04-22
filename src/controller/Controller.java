@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Random;
 
 import debug.ProtoLogger;
+import debug.RandomGenerator;
 import gamemodel.Direction;
 import gamemodel.Player;
 import gamemodel.Projectile;
@@ -188,7 +188,7 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 		isReplicatorMoving = (replicator != null);
 
 		while (isReplicatorMoving)
-			moveOrTurnReplicator(Direction.values()[new Random().nextInt(Direction.values().length)]);
+			moveOrTurnReplicator(Direction.values()[RandomGenerator.getRandomNumber(Direction.values().length)]);
 	}
 
 	/*
