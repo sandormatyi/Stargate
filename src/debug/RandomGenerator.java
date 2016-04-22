@@ -30,11 +30,11 @@ public class RandomGenerator {
 
 	/*
 	 * Returns a random number that is less than the given bound if randomness
-	 * is allowed. Otherwise, it just returns 1
+	 * is allowed. Otherwise, it just returns 0
 	 */
 	public static int getRandomNumber(int bound) {
 		if (!isRandom)
-			return 1;
+			return 0;
 
 		return random.nextInt(bound);
 	}
