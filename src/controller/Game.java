@@ -12,9 +12,21 @@ public class Game {
 	private Controller controller = null;
 
 	/*
+	 * The relative path of the map file for the current game
+	 */
+	private String mapFile;
+
+	/*
 	 * The score of the player
 	 */
 	private int score = 0;
+
+	/*
+	 * Constructor for starting a game with a given map file
+	 */
+	public Game(String mapFile) {
+		this.mapFile = mapFile;
+	}
 
 	/*
 	 * Returns the player's score
@@ -46,7 +58,11 @@ public class Game {
 
 		MapBuilder builder = new MapBuilder();
 
-		builder.buildSkeletonMap();
+		try {
+			builder.buildMapFromFile(mapFile);
+		} catch (Exception e) {
+			ProtoLogger.logError(e.getMessage());
+		}
 
 		controller = builder.createController(this);
 	}

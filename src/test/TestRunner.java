@@ -13,7 +13,7 @@ public class TestRunner {
 	public static void runTest(TestType type) {
 		ProtoLogger.disablePrint();
 
-		Game game = new Game();
+		Game game = new Game(type.getMapFilePath());
 		game.run();
 
 		Controller controller = game.getController();
