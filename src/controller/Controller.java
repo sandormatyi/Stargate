@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
 
 import debug.ProtoLogger;
 import gamemodel.Direction;
@@ -42,6 +43,11 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 	 * Stores the current state of the Projectile
 	 */
 	private boolean isProjectileMoving = false;
+
+	/*
+	 * Stores the current state of the Projectile
+	 */
+	private boolean isReplicatorMoving = false;
 
 	/*
 	 * Default constructor
@@ -176,6 +182,16 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 	}
 
 	/*
+	 * Move the replicator until it dies
+	 */
+	public void moveReplicatorUntilDeath() {
+		isReplicatorMoving = (replicator != null);
+
+		while (isReplicatorMoving)
+			moveOrTurnReplicator(Direction.values()[new Random().nextInt(Direction.values().length)]);
+	}
+
+	/*
 	 * Increment Score and if there are no more ZPMs on the map, stop the game
 	 */
 	@Override
@@ -214,6 +230,8 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 	 */
 	@Override
 	public void onReplicatorDestroyed(Replicator replicator) {
+		isReplicatorMoving = false;
+
 		this.replicator = null;
 	}
 }

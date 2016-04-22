@@ -117,7 +117,7 @@ public class InputProcessor {
 				// TODO: Print status string
 			} else {
 				if (words[1].equals("random")) {
-					// TODO: Needs new method in Controller
+					controller.moveReplicatorUntilDeath();
 				} else {
 					Direction dir = Direction.fromString(words[1]);
 
