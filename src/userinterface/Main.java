@@ -65,8 +65,20 @@ public class Main {
 						handleZpmTestCall(choice);
 						br.readLine();
 						break;
-					// Exits from program
 					case 5:
+						printReplicatorMenu();
+						choice = Integer.parseInt(br.readLine());
+						handleReplicatorTestCall(choice);
+						br.readLine();
+						break;
+					case 6:
+						System.out.println("-------------------------------------------------------------");
+						System.out.println("Egyik játékos megöli a másikat");
+						System.out.println("-------------------------------------------------------------");
+						TestRunner.runTest(TestType.PlayerKillsOtherPlayer);
+						break;
+					// Exits from program
+					case 7:
 						System.exit(0);
 						// Handles wrong input
 					default:
@@ -86,6 +98,31 @@ public class Main {
 	}
 
 	/*
+	 * Handle Replicator test calls.
+	 */
+	private static void handleReplicatorTestCall(int choice) throws IOException {
+		switch (choice) {
+		case 1:
+			System.out.println("-------------------------------------------------------------");
+			System.out.println("Replikátor szakadékba esik");
+			System.out.println("-------------------------------------------------------------");
+			TestRunner.runTest(TestType.ReplicatorMoveGap);
+			break;
+		// Handles wrong input, then prints menu again and reads new choice,
+		// finally calls this method again with new choice
+		default:
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+			int newChoice = 0;
+			System.out.println("Nem megfelelő menüpontot választottál ki!");
+			System.out.println("A lehetőségeid:");
+			printReplicatorMenu();
+			newChoice = Integer.parseInt(br.readLine());
+			handleReplicatorTestCall(newChoice);
+			break;
+		}
+	}
+
+	/*
 	 * Handle ZPM test calls.
 	 */
 	private static void handleZpmTestCall(int choice) throws IOException {
@@ -95,7 +132,13 @@ public class Main {
 			System.out.println("-------------------------------------------------------------");
 			System.out.println("Utolsó ZPM felvétele");
 			System.out.println("-------------------------------------------------------------");
-			TestRunner.runTest(TestType.ZPM);
+			TestRunner.runTest(TestType.LastZPM);
+			break;
+		case 2:
+			System.out.println("-------------------------------------------------------------");
+			System.out.println("Két ZPM felvétele");
+			System.out.println("-------------------------------------------------------------");
+			TestRunner.runTest(TestType.TwoZPMs);
 			break;
 		// Handles wrong input, then prints menu again and reads new choice,
 		// finally calls this method again with new choice
@@ -129,6 +172,12 @@ public class Main {
 			System.out.println("Lövés speciális falra");
 			System.out.println("-------------------------------------------------------------");
 			TestRunner.runTest(TestType.ShootSpecialWall);
+			break;
+		case 3:
+			System.out.println("-------------------------------------------------------------");
+			System.out.println("Lövés replikátorra");
+			System.out.println("-------------------------------------------------------------");
+			TestRunner.runTest(TestType.ShootReplicator);
 			break;
 		// Handles wrong input, then prints menu again and reads new choice,
 		// finally calls this method again with new choice
@@ -274,11 +323,21 @@ public class Main {
 	}
 
 	/*
+	 * Print Replicator menu.
+	 */
+	private static void printReplicatorMenu() {
+		System.out.println("*************************************************************");
+		System.out.println("(1) Replikátor szakadékba esik");
+		System.out.println("*************************************************************");
+	}
+
+	/*
 	 * Print ZPM menu.
 	 */
 	private static void printZpmMenu() {
 		System.out.println("*************************************************************");
 		System.out.println("(1) Utolsó ZPM felvétele");
+		System.out.println("(2) Két ZPM felvétele");
 		System.out.println("*************************************************************");
 	}
 
@@ -289,6 +348,7 @@ public class Main {
 		System.out.println("*************************************************************");
 		System.out.println("(1) Lövés falra");
 		System.out.println("(2) Lövés speciális falra");
+		System.out.println("(3) Lövés replikátorra");
 		System.out.println("*************************************************************");
 	}
 
@@ -330,7 +390,9 @@ public class Main {
 		System.out.println("(2) Doboz interakció");
 		System.out.println("(3) Lövés");
 		System.out.println("(4) ZPM felvétele");
-		System.out.println("(5) Kilépés");
+		System.out.println("(5) Replikátor mozgatása");
+		System.out.println("(6) Egyik játékos megöli a másikat");
+		System.out.println("(7) Kilépés");
 		System.out.println("*************************************************************");
 	}
 }
