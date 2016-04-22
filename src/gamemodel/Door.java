@@ -1,8 +1,17 @@
 package gamemodel;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import debug.ProtoLogger;
 
 public class Door extends MapElement {
+
+	/*
+	 * A list that contains references to the players that are currently
+	 * standing on the door
+	 */
+	Set<Player> players = new HashSet<Player>();
 
 	/*
 	 * Constructor inherited from base class
@@ -21,7 +30,8 @@ public class Door extends MapElement {
 		this.isOpened = isOpened;
 
 		if (isOpened = false) {
-			// TODO: Kill any player that is on the MapElement
+			for (Player p : players)
+				p.die();
 
 			if (replicator != null)
 				replicator.destroy();
@@ -42,9 +52,18 @@ public class Door extends MapElement {
 			ProtoLogger.log("Sikeresen átlépett a következö mezőre: " + this.toString());
 
 			player.setPosition(this);
+			players.add(player);
 		} else {
 			super.handlePlayerArrive(dir, player);
 		}
+	}
+
+	/*
+	 * Removes the player from the stored references
+	 */
+	@Override
+	public void handlePlayerLeave(Player player) {
+		players.remove(player);
 	}
 
 	/*
