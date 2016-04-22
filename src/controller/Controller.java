@@ -1,7 +1,9 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 
 import debug.ProtoLogger;
 import gamemodel.Direction;
@@ -61,6 +63,20 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 	}
 
 	/*
+	 * Returns a list of references of the existing players
+	 */
+	public List<Player> getPlayers() {
+		List<Player> playerList = new ArrayList<Player>();
+
+		for (Player p : players.values()) {
+			if (p != null)
+				playerList.add(p);
+		}
+
+		return playerList;
+	}
+
+	/*
 	 * Move or turn the player depending on the player's current direction and
 	 * check if the game is over
 	 */
@@ -78,9 +94,23 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 			player.turn(dir);
 		}
 
+		// Check if the players are still alive
 		for (Player p : players.values()) {
-			if (p != null && !p.isAlive())
-				game.stop(player, false);
+			if (p != null && !p.isAlive()) {
+				game.stop(false);
+				return;
+			}
+		}
+	}
+
+	/*
+	 * Move or turn the replicator depending on its current direction
+	 */
+	public void moveOrTurnReplicator(Direction dir) {
+		if (replicator.getDirection() == dir) {
+			replicator.move();
+		} else {
+			replicator.turn(dir);
 		}
 	}
 
@@ -124,6 +154,14 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 		}
 
 		player.pickUpBox();
+
+		// Check if the players are still alive
+		for (Player p : players.values()) {
+			if (p != null && !p.isAlive()) {
+				game.stop(false);
+				return;
+			}
+		}
 	}
 
 	/*
@@ -141,16 +179,16 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 	}
 
 	/*
-	 * Increment Score and if it's the last one, end the game
+	 * Increment Score and if there are no more ZPMs on the map, stop the game
 	 */
 	@Override
-	public void onZPMPickedUp(ZPM zpm) {
-		game.incrementScore();
+	public void onZPMPickedUp(Player player, ZPM zpm) {
+		game.incrementScore(player);
 
 		zpmSet.remove(zpm);
 
 		if (zpmSet.isEmpty()) {
-			game.stop(null, true); // TODO
+			game.stop(true);
 		}
 	}
 

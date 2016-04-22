@@ -3,6 +3,7 @@ package gamemodel.events;
 import java.util.HashSet;
 import java.util.Set;
 
+import gamemodel.Player;
 import gamemodel.Projectile;
 import gamemodel.ZPM;
 
@@ -57,9 +58,9 @@ public class ModelEventSource {
 	/*
 	 * Notifies the listeners that a ZPM has been picked up
 	 */
-	public static void notifyZPMPickedUp(ZPM zpm) {
+	public static void notifyZPMPickedUp(Player player, ZPM zpm) {
 		for (IZPMPickedUpListener listener : zpmListeners)
-			listener.onZPMPickedUp(zpm);
+			listener.onZPMPickedUp(player, zpm);
 	}
 
 	/*

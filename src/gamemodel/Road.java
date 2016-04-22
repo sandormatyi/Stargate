@@ -30,7 +30,7 @@ public class Road extends MapElement {
 		player.setPosition(this);
 
 		if (zpm != null) {
-			zpm.handlePickUp();
+			zpm.handlePickUp(player);
 		}
 	}
 

@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import controller.MapBuilder.MapBuilderException;
 import debug.ProtoLogger;
@@ -20,9 +21,9 @@ public class Game {
 	private String mapFile;
 
 	/*
-	 * The score of the player
+	 * The score of the players
 	 */
-	private int score = 0;
+	private HashMap<Player, Integer> scores = new HashMap<Player, Integer>();
 
 	/*
 	 * Constructor for starting a game with a given map file
@@ -34,15 +35,28 @@ public class Game {
 	/*
 	 * Returns the player's score
 	 */
-	public int getScore() {
+	public int getScore(Player player) {
+		Integer score = scores.get(player);
+
+		if (score == null) {
+			scores.put(player, 0);
+			return 0;
+		}
+
 		return score;
 	}
 
 	/*
 	 * Increments the player's score
 	 */
-	public void incrementScore() {
-		score++;
+	public void incrementScore(Player player) {
+		Integer score = scores.get(player);
+
+		if (score == null) {
+			scores.put(player, 1);
+		} else {
+			scores.put(player, score + 1);
+		}
 	}
 
 	/*
@@ -73,15 +87,44 @@ public class Game {
 	}
 
 	/*
-	 * Stop the game. The player that caused the game to end is given as a
-	 * parameter
+	 * Stop the game. If the game ended with the last ZPM picked up, the player
+	 * with the highest score wins. If the game ended with the death of a
+	 * player, the surviving player wins.
 	 */
-	public void stop(Player player, boolean isVictory) {
-		// TODO: Make a distinction between single- and multiplayer games
+	public void stop(boolean isVictory) {
+		Player winner = null;
+
 		if (isVictory) {
-			ProtoLogger.logCommand("A játék véget ért, a játékos nyert");
+			int maxScore = -1;
+
+			for (Player p : controller.getPlayers()) {
+				int score = getScore(p);
+				if (score > maxScore) {
+					winner = p;
+					maxScore = score;
+				} else if (score == maxScore) {
+					// If there are more than one winners, it is a draw
+					winner = null;
+				}
+			}
 		} else {
-			ProtoLogger.logCommand("A játék véget ért, a játékos vesztett");
+			for (Player p : controller.getPlayers()) {
+				if (p.isAlive()) {
+					// If there are more than one winners, it is a draw
+					if (winner != null) {
+						winner = null;
+						break;
+					} else {
+						winner = p;
+					}
+				}
+			}
+		}
+
+		if (winner != null) {
+			ProtoLogger.logCommand("A játék véget ért, " + winner.toString() + " nyert");
+		} else {
+			ProtoLogger.logCommand("A játék véget ért, nincsen győztes");
 		}
 
 		controller = null;

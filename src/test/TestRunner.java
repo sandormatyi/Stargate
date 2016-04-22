@@ -22,7 +22,7 @@ public class TestRunner {
 		if (controller == null)
 			return;
 
-		InputProcessor inputProcessor = new InputProcessor(controller);
+		InputProcessor inputProcessor = new InputProcessor(game);
 
 		try {
 			ProtoLogger.enablePrint();

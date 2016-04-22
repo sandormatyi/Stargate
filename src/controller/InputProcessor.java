@@ -12,6 +12,11 @@ import gamemodel.Direction;
 
 public class InputProcessor {
 	/*
+	 * The game that recevies the input
+	 */
+	private Game game;
+
+	/*
 	 * The controller that receives the commands
 	 */
 	private Controller controller;
@@ -19,8 +24,9 @@ public class InputProcessor {
 	/*
 	 * Constructor function
 	 */
-	public InputProcessor(Controller controller) {
-		this.controller = controller;
+	public InputProcessor(Game game) {
+		this.game = game;
+		this.controller = game.getController();
 	}
 
 	/*
@@ -58,10 +64,13 @@ public class InputProcessor {
 		String[] words = inputLine.toLowerCase().split(" ");
 
 		if (words[0].equals("restart")) {
-			// TODO
+			game.stop(true);
+			game.run();
+
+			controller = game.getController();
 		} else if (words[0].equals("oneill")) {
 			if (words.length == 1) {
-				// TODO
+				// TODO: Print status string
 			} else {
 				if (words[1].equals("proj1")) {
 					controller.shootFirst(PlayerType.ONeill);
@@ -83,7 +92,7 @@ public class InputProcessor {
 			}
 		} else if (words[0].equals("jaffa")) {
 			if (words.length == 1) {
-				// TODO
+				// TODO: Print status string
 			} else {
 				if (words[1].equals("proj1")) {
 					controller.shootFirst(PlayerType.Jaffa);
@@ -105,15 +114,15 @@ public class InputProcessor {
 			}
 		} else if (words[0].equals("replicator")) {
 			if (words.length == 1) {
-				// TODO
+				// TODO: Print status string
 			} else {
 				if (words[1].equals("random")) {
-					// TODO
+					// TODO: Needs new method in Controller
 				} else {
 					Direction dir = Direction.fromString(words[1]);
 
 					if (dir != null) {
-						// TODO
+						controller.moveOrTurnReplicator(dir);
 					} else {
 						throw new InvalidParameterException("Nem értelmezhető parancs: " + inputLine);
 					}

@@ -65,7 +65,7 @@ public class Replicator extends Movable {
 	public void destroy() {
 		ProtoLogger.log(this.toString() + " megsemmisült a(z) " + position.toString() + " mezőn");
 
-		// TODO ?
+		// TODO
 	}
 
 	@Override
