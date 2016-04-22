@@ -12,10 +12,11 @@ import gamemodel.Projectile;
 import gamemodel.Replicator;
 import gamemodel.ZPM;
 import gamemodel.events.IProjectileStateListener;
+import gamemodel.events.IReplicatorDestroyedListener;
 import gamemodel.events.IZPMPickedUpListener;
 import gamemodel.events.ModelEventSource;
 
-public class Controller implements IZPMPickedUpListener, IProjectileStateListener {
+public class Controller implements IZPMPickedUpListener, IProjectileStateListener, IReplicatorDestroyedListener {
 
 	/*
 	 * The object representing the current game
@@ -55,11 +56,7 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 
 		ModelEventSource.subscribe((IZPMPickedUpListener) this);
 		ModelEventSource.subscribe((IProjectileStateListener) this);
-	}
-
-	public void unsubscribe() {
-		ModelEventSource.unsubscribe((IZPMPickedUpListener) this);
-		ModelEventSource.unsubscribe((IProjectileStateListener) this);
+		ModelEventSource.subscribe((IReplicatorDestroyedListener) this);
 	}
 
 	/*
@@ -210,5 +207,13 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 	@Override
 	public void onProjectileDestroyed(Projectile projectile) {
 		isProjectileMoving = false;
+	}
+
+	/*
+	 * If a replicator is destroyed, remove the reference to it
+	 */
+	@Override
+	public void onReplicatorDestroyed(Replicator replicator) {
+		this.replicator = null;
 	}
 }

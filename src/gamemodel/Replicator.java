@@ -1,6 +1,7 @@
 package gamemodel;
 
 import debug.ProtoLogger;
+import gamemodel.events.ModelEventSource;
 
 public class Replicator extends Movable {
 	private Direction direction = Direction.NORTH;
@@ -65,7 +66,7 @@ public class Replicator extends Movable {
 	public void destroy() {
 		ProtoLogger.log(this.toString() + " megsemmisült a(z) " + position.toString() + " mezőn");
 
-		// TODO
+		ModelEventSource.notifyReplicatorDestroyed(this);
 	}
 
 	@Override
