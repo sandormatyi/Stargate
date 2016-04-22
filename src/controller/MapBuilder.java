@@ -81,13 +81,16 @@ class MapBuilder {
 		BufferedReader bufRead = new BufferedReader(input);
 
 		try {
-			String rawLine = null;
-
 			// Keep track of the current row index
 			char rowIndex = 'A';
 
 			// Parse the fields of the map and store the in the temporary matrix
-			while ((rawLine = bufRead.readLine()) != null) {
+			while (true) {
+				String rawLine = bufRead.readLine();
+
+				if (rawLine == null)
+					break;
+
 				String[] processedLineArray = rawLine.replaceAll("[ \t]", "").split(",");
 
 				List<MapElement> mapElementRow = new ArrayList<MapElement>(processedLineArray.length);

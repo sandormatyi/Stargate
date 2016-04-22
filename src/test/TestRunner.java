@@ -12,15 +12,17 @@ public class TestRunner {
 	 * TestFactory class and runs it
 	 */
 	public static void runTest(TestType type) {
-		// ProtoLogger.disablePrint();
+		ProtoLogger.disablePrint();
 
 		Game game = new Game(type.getMapFilePath());
 		game.run();
 
 		Controller controller = game.getController();
 
-		if (controller == null)
+		if (controller == null) {
+			ProtoLogger.logError("Unable to create Controller for the game");
 			return;
+		}
 
 		InputProcessor inputProcessor = new InputProcessor(game);
 

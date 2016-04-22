@@ -43,10 +43,13 @@ public class InputProcessor {
 		BufferedReader bufRead = new BufferedReader(input);
 
 		try {
-			String inputLine = null;
-
 			// Parse the rows of the input file and process them
-			while ((inputLine = bufRead.readLine()) != null) {
+			while (true) {
+				String inputLine = bufRead.readLine();
+
+				if (inputLine == null)
+					break;
+
 				try {
 					processLine(inputLine);
 				} catch (InvalidParameterException e) {
