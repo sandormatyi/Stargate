@@ -11,6 +11,7 @@ import gamemodel.Direction;
 import gamemodel.Player;
 import gamemodel.Projectile;
 import gamemodel.Replicator;
+import gamemodel.Road;
 import gamemodel.ZPM;
 import gamemodel.events.IProjectileStateListener;
 import gamemodel.events.IReplicatorDestroyedListener;
@@ -48,6 +49,11 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 	 * Stores the current state of the Projectile
 	 */
 	private boolean isReplicatorMoving = false;
+
+	/*
+	 * O'neill last score
+	 */
+	private int lastOneillScore;
 
 	/*
 	 * Default constructor
@@ -197,12 +203,23 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 	@Override
 	public void onZPMPickedUp(Player player, ZPM zpm) {
 		game.incrementScore(player);
-
 		zpmSet.remove(zpm);
 
 		if (zpmSet.isEmpty()) {
 			game.stop(true);
 		}
+
+		Player oneill = players.get(PlayerType.ONeill);
+		if (lastOneillScore != game.getScore(oneill)) {
+			if (game.getScore(oneill) % 2 == 0) {
+				ZPM tempZpm = new ZPM();
+				Road randomRoad = MapHelper.getRandomRoad();
+				randomRoad.setZpm(tempZpm);
+				zpmSet.add(tempZpm);
+			}
+			lastOneillScore = game.getScore(oneill);
+		}
+
 	}
 
 	/*
