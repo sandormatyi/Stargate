@@ -78,7 +78,7 @@ public class Main {
 						TestRunner.runTest(TestType.PlayerKillsOtherPlayer);
 						break;
 					// Exits from program
-					case 7:
+					case 8:
 						System.exit(0);
 						// Handles wrong input
 					default:
@@ -392,7 +392,8 @@ public class Main {
 		System.out.println("(4) ZPM felvétele");
 		System.out.println("(5) Replikátor mozgatása");
 		System.out.println("(6) Egyik játékos megöli a másikat");
-		System.out.println("(7) Kilépés");
+		System.out.println("(7) Szöveges parancsok megadása");
+		System.out.println("(8) Kilépés");
 		System.out.println("*************************************************************");
 	}
 }
