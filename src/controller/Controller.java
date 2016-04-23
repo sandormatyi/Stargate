@@ -210,14 +210,15 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 		}
 
 		Player oneill = players.get(PlayerType.ONeill);
-		if (lastOneillScore != game.getScore(oneill)) {
-			if (game.getScore(oneill) % 2 == 0) {
+		int oneillScore = game.getScore(oneill);
+		if (lastOneillScore != oneillScore) {
+			if (oneillScore % 2 == 0) {
 				ZPM tempZpm = new ZPM();
 				Road randomRoad = MapHelper.getRandomRoad();
 				randomRoad.setZpm(tempZpm);
 				zpmSet.add(tempZpm);
 			}
-			lastOneillScore = game.getScore(oneill);
+			lastOneillScore = oneillScore;
 		}
 
 	}
