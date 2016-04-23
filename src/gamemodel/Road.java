@@ -30,7 +30,9 @@ public class Road extends MapElement {
 		player.setPosition(this);
 
 		if (zpm != null) {
+			ProtoLogger.log(player.toString() + " felvett egy ZPM-et");
 			zpm.handlePickUp(player);
+
 		}
 	}
 
