@@ -205,10 +205,6 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 		game.incrementScore(player);
 		zpmSet.remove(zpm);
 
-		if (zpmSet.isEmpty()) {
-			game.stop(true);
-		}
-
 		Player oneill = players.get(PlayerType.ONeill);
 		int oneillScore = game.getScore(oneill);
 		if (lastOneillScore != oneillScore) {
@@ -221,6 +217,9 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 			lastOneillScore = oneillScore;
 		}
 
+		if (zpmSet.isEmpty()) {
+			game.stop(true);
+		}
 	}
 
 	/*
