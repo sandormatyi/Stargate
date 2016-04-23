@@ -213,6 +213,7 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 				Road randomRoad = MapHelper.getRandomRoad();
 				randomRoad.setZpm(tempZpm);
 				zpmSet.add(tempZpm);
+				ProtoLogger.log("Egy új ZPM generálódott az " + randomRoad.toString() + " mezőn");
 			}
 			lastOneillScore = oneillScore;
 		}
