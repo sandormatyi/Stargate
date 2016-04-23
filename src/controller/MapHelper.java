@@ -29,7 +29,6 @@ public class MapHelper {
 	 */
 	public static void replaceWithRoad(Gap gap) {
 		Road road = new Road(gap.getCoord());
-
 		// Update the neighbours
 		for (Direction dir : Direction.values()) {
 			MapElement neighbour = gap.getNeighbour(dir);

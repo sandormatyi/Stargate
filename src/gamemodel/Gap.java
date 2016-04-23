@@ -39,10 +39,9 @@ public class Gap extends MapElement {
 		ProtoLogger.log("Sikeresen átlépett a következő mezőre: " + this.toString());
 
 		replicator.setPosition(this);
-
-		MapHelper.replaceWithRoad(this);
-
 		replicator.destroy();
+		MapHelper.replaceWithRoad(this);
+		ProtoLogger.log("A(z) " + this.toString() + " mező Road mezővé alakult");
 	}
 
 	/*
