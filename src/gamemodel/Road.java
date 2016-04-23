@@ -41,8 +41,11 @@ public class Road extends MapElement {
 	public void handleProjectileArrive(Direction dir, Projectile projectile) {
 		projectile.setPosition(this);
 
-		if (replicator != null)
+		if (replicator != null) {
 			replicator.destroy();
+			projectile.setPosition(this);
+			projectile.destroy();
+		}
 	}
 
 	/*
