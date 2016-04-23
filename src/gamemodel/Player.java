@@ -114,7 +114,7 @@ public abstract class Player extends Movable {
 				box = nextPosition.getBox(direction);
 
 				if (box != null) {
-					box.leaveMapElement(nextPosition);
+					box.leaveMapElement(box.position);
 					position.incrementWeight();
 				}
 			}
