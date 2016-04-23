@@ -1,0 +1,6 @@
+oneill west
+oneill proj1
+oneill pickup
+oneill east
+oneill proj2
+oneill putdown
