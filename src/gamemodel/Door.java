@@ -26,12 +26,12 @@ public class Door extends MapElement {
 	 * Opens or closes the door. When the door closes, it destroys the box if
 	 * there was on on the field
 	 */
-	public void setOpened(boolean isOpened) {
-		this.isOpened = isOpened;
-
-		if (isOpened = false) {
-			for (Player p : players)
+	public void setOpened(boolean isOpen) {
+		this.isOpened = isOpen;
+		if (this.isOpened == false) {
+			for (Player p : players) {
 				p.die();
+			}
 
 			if (replicator != null)
 				replicator.destroy();

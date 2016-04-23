@@ -52,7 +52,6 @@ public class Scale extends MapElement {
 	public void handlePlayerLeave(Player player) {
 		int playerWeight = player.getWeight();
 		weightCount -= playerWeight;
-
 		if (weightCount < 0)
 			ProtoLogger.logError("Weight count of scale cannot be negative");
 
@@ -62,7 +61,6 @@ public class Scale extends MapElement {
 		if (door != null && weightCount < weightLimit) {
 			ProtoLogger.log(
 					"Mivel nincsen legalább " + weightLimit + " súly a mérlegen, a(z) " + door.toString() + " bezárul");
-
 			door.setOpened(false);
 		}
 	}
