@@ -1,0 +1,3 @@
+ONeill elfordult EAST irányba
+ONeill megpróbál felvenni egy dobozt a(z) A2 (Road) mezőről
+	Sikeres dobozfelvétel a(z) A2 (Road) mezőről

@@ -1,0 +1,3 @@
+ONeill elfordult EAST irányba
+ONeill a(z) A1 (Road) mezőről a(z) A2 (Road) mezőre próbál lépni
+	Sikeresen átlépett a következő mezőre: A2 (Road)

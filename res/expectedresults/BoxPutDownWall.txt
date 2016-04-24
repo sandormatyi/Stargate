@@ -1,0 +1,8 @@
+ONeill elfordult EAST irányba
+ONeill megpróbál felvenni egy dobozt a(z) A2 (Road) mezőről
+	Sikeres dobozfelvétel a(z) A2 (Road) mezőről
+ONeill a(z) A1 (Road) mezőről a(z) A2 (Road) mezőre próbál lépni
+	Sikeresen átlépett a következő mezőre: A2 (Road)
+ONeill megpróbál letenni egy dobozt a(z) A3 (Wall) mezőre
+	Sikertelen dobozletétel: A doboz visszalökődik az előző A2 (Road) mezőre
+	Sikeres dobozletétel a(z) A2 (Road) mezőre
