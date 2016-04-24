@@ -7,7 +7,7 @@ public class RandomGenerator {
 	/*
 	 * A flag that determines the randomness of the generated numbers
 	 */
-	private static boolean isRandom = false;
+	private static boolean isRandom = true;
 
 	/*
 	 * A random number generator
