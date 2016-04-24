@@ -76,6 +76,7 @@ public class Main {
 						System.out.println("Egyik játékos megöli a másikat");
 						System.out.println("-------------------------------------------------------------");
 						TestRunner.runTest(TestType.PlayerKillsOtherPlayer);
+						br.readLine();
 						break;
 					// Exits from program
 					case 7:
