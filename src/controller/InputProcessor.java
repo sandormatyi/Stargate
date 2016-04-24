@@ -67,14 +67,9 @@ public class InputProcessor {
 	public void processLine(String inputLine) {
 		String[] words = inputLine.toLowerCase().split(" ");
 
-		if (words[0].equals("restart")) {
-			game.stop(true);
-			game.run();
-
-			controller = game.getController();
-		} else if (words[0].equals("oneill")) {
+		if (words[0].equals("oneill")) {
 			if (words.length == 1) {
-				// TODO: Print status string
+				throw new InvalidParameterException("Nem értelmezhető parancs: " + inputLine);
 			} else {
 				if (words[1].equals("proj1")) {
 					controller.shootFirst(PlayerType.ONeill);
@@ -96,7 +91,7 @@ public class InputProcessor {
 			}
 		} else if (words[0].equals("jaffa")) {
 			if (words.length == 1) {
-				// TODO: Print status string
+				throw new InvalidParameterException("Nem értelmezhető parancs: " + inputLine);
 			} else {
 				if (words[1].equals("proj1")) {
 					controller.shootFirst(PlayerType.Jaffa);
@@ -118,7 +113,7 @@ public class InputProcessor {
 			}
 		} else if (words[0].equals("replicator")) {
 			if (words.length == 1) {
-				// TODO: Print status string
+				throw new InvalidParameterException("Nem értelmezhető parancs: " + inputLine);
 			} else {
 				if (words[1].equals("random")) {
 					controller.moveReplicatorUntilDeath();
