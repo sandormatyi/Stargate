@@ -51,11 +51,6 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 	private boolean isReplicatorMoving = false;
 
 	/*
-	 * O'neill last score
-	 */
-	private int lastOneillScore;
-
-	/*
 	 * Default constructor
 	 */
 	public Controller(Game game, HashSet<ZPM> zpmSet, Player oneill, Player jaffa, Replicator replicator) {
@@ -205,17 +200,14 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 		game.incrementScore(player);
 		zpmSet.remove(zpm);
 
-		Player oneill = players.get(PlayerType.ONeill);
-		int oneillScore = game.getScore(oneill);
-		if (lastOneillScore != oneillScore) {
-			if (oneillScore % 2 == 0) {
+		if (player == players.get(PlayerType.ONeill)) {
+			if (game.getScore(player) % 2 == 0) {
 				ZPM tempZpm = new ZPM();
 				Road randomRoad = MapHelper.getRandomRoad();
 				randomRoad.setZpm(tempZpm);
 				zpmSet.add(tempZpm);
 				ProtoLogger.log("Egy új ZPM generálódott a(z) " + randomRoad.toString() + " mezőn");
 			}
-			lastOneillScore = oneillScore;
 		}
 
 		if (zpmSet.isEmpty()) {
