@@ -1,11 +1,18 @@
 package debug;
 
+import java.io.PrintStream;
+
 public class ProtoLogger {
 
 	/*
 	 * The logger only prints to the output if this field is true
 	 */
 	private static boolean printEnabled = true;
+
+	/*
+	 * The output stream to which the logger writes the messages
+	 */
+	private static PrintStream outStream = System.out;
 
 	/*
 	 * Enables printing to the standard output
@@ -22,13 +29,20 @@ public class ProtoLogger {
 	}
 
 	/*
+	 * Redirects the output of the logger to the given PrintStream
+	 */
+	public static void redirectOutput(PrintStream printStream) {
+		outStream = printStream;
+	}
+
+	/*
 	 * Prints the given text to the standard output
 	 */
 	public static void log(String output) {
 		if (!printEnabled)
 			return;
 
-		System.out.println("\t" + output);
+		outStream.println("\t" + output);
 	}
 
 	/*
@@ -38,13 +52,13 @@ public class ProtoLogger {
 		if (!printEnabled)
 			return;
 
-		System.out.println(output);
+		outStream.println(output);
 	}
 
 	/*
 	 * Prints the given error to the standard error output
 	 */
 	public static void logError(String error) {
-		System.err.println("!!! " + error + " !!!");
+		outStream.println("!!! " + error + " !!!");
 	}
 }

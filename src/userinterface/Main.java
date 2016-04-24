@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 
+import debug.ProtoLogger;
+import test.PrototypeValidator;
 import test.TestRunner;
 import test.TestType;
 
@@ -13,7 +15,10 @@ public class Main {
 
 	public static void main(String[] args) {
 		try {
-			System.setOut(new PrintStream(System.out, true, "UTF-8"));
+			PrintStream outStream = new PrintStream(System.out, true, "UTF-8");
+			System.setOut(outStream);
+			ProtoLogger.redirectOutput(outStream);
+
 			System.setErr(new PrintStream(System.err, true, "UTF-8"));
 		} catch (UnsupportedEncodingException e1) {
 			System.err.println(
@@ -78,10 +83,18 @@ public class Main {
 						TestRunner.runTest(TestType.PlayerKillsOtherPlayer);
 						br.readLine();
 						break;
+					case 7:
+						System.out.println("-------------------------------------------------------------");
+						System.out.println("Összes teszteset lefuttatása és ellenőrzése");
+						System.out.println("-------------------------------------------------------------");
+						new PrototypeValidator().runAllTestsAndCompareResults();
+						br.readLine();
+						break;
 					// Exits from program
 					case 8:
 						System.exit(0);
-						// Handles wrong input
+						break;
+					// Handles wrong input
 					default:
 						System.out.println("Nem megfelelő menüpontot választottál ki!");
 						System.out.println("A lehetőségeid:");
@@ -393,7 +406,7 @@ public class Main {
 		System.out.println("(4) ZPM felvétele");
 		System.out.println("(5) Replikátor mozgatása");
 		System.out.println("(6) Egyik játékos megöli a másikat");
-		System.out.println("(7) Összes teszteset lefuttatása és összehasonlítása");
+		System.out.println("(7) Összes teszteset lefuttatása és ellenőrzése");
 		System.out.println("(8) Kilépés");
 		System.out.println("*************************************************************");
 	}
