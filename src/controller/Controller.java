@@ -252,4 +252,27 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 
 		this.replicator = null;
 	}
+
+	/*
+	 * Write out Object information
+	 */
+	public void objectInfo(Integer objectNumber) {
+		switch (objectNumber) {
+		case 1:
+			// ONeill
+			Player oneill = players.get(PlayerType.ONeill);
+			ProtoLogger.logCommand(oneill.toString() + " a(z) " + " mezőn van ");
+			break;
+		case 2:
+			// Jaffa
+			Player jaffa = players.get(PlayerType.Jaffa);
+			ProtoLogger.logCommand(jaffa.toString() + " a(z) " + " mezőn van ");
+			break;
+		case 3:
+			// Replicator
+			ProtoLogger.logCommand("A replicator a(z) " + " mezőn van ");
+			break;
+		}
+	}
+
 }
