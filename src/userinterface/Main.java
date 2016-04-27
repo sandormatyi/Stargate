@@ -1,5 +1,6 @@
 package userinterface;
 
+import java.awt.EventQueue;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,10 +11,22 @@ import debug.ProtoLogger;
 import test.PrototypeValidator;
 import test.TestRunner;
 import test.TestType;
+import userinterface.containers.Application;
 
 public class Main {
 
 	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				Application ex = new Application();
+				ex.setVisible(true);
+			}
+		});
+	}
+
+	// TODO: Remove before upload
+	public static void main_(String[] args) {
 		try {
 			PrintStream outStream = new PrintStream(System.out, true, "UTF-8");
 			System.setOut(outStream);
