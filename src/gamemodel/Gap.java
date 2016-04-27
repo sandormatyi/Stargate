@@ -8,7 +8,7 @@ public class Gap extends MapElement {
 	/*
 	 * Constructor inherited from base class
 	 */
-	public Gap(String coord) {
+	public Gap(Coord coord) {
 		super(coord);
 	}
 

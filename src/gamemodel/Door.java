@@ -16,7 +16,7 @@ public class Door extends MapElement {
 	/*
 	 * Constructor inherited from base class
 	 */
-	public Door(String coord) {
+	public Door(Coord coord) {
 		super(coord);
 	}
 

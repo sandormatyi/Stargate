@@ -6,23 +6,22 @@ import java.util.Stack;
 import debug.ProtoLogger;
 
 public abstract class MapElement {
-
 	private HashMap<Direction, MapElement> neighbours = new HashMap<Direction, MapElement>();
 	protected Stack<Box> boxes = new Stack<Box>();
 	protected Replicator replicator = null;
-	protected String coord;
+	protected Coord coord;
 
 	/*
 	 * Constructor that takes the coordinates of the MapElement as a parameter
 	 */
-	public MapElement(String coord) {
+	public MapElement(Coord coord) {
 		this.coord = coord;
 	}
 
 	/*
 	 * Returns the coordinate of the MapElement
 	 */
-	public String getCoord() {
+	public Coord getCoord() {
 		return coord;
 	}
 

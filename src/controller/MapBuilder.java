@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Vector;
 
 import gamemodel.Box;
+import gamemodel.Coord;
 import gamemodel.Direction;
 import gamemodel.Door;
 import gamemodel.Gap;
@@ -42,9 +43,9 @@ class MapBuilder {
 		/*
 		 * Stores the coordinate where the exception occured
 		 */
-		String coord;
+		Coord coord;
 
-		public MapBuilderException(String exception, String coord) {
+		public MapBuilderException(String exception, Coord coord) {
 			super(exception);
 
 			this.coord = coord;
@@ -82,7 +83,7 @@ class MapBuilder {
 
 		try {
 			// Keep track of the current row index
-			char rowIndex = 'A';
+			int rowIndex = 0;
 
 			// Parse the fields of the map and store the in the temporary matrix
 			while (true) {
@@ -95,11 +96,11 @@ class MapBuilder {
 
 				List<MapElement> mapElementRow = new ArrayList<MapElement>(processedLineArray.length);
 
-				int columnIndex = 1;
+				int columnIndex = 0;
 
 				for (String mapElementString : processedLineArray) {
 					// Store the MapElement described by the map file entry
-					String coord = String.format("%c%d", rowIndex, columnIndex);
+					Coord coord = new Coord(columnIndex, rowIndex);
 
 					String[] mapParts = mapElementString.split("_");
 					String mapElementType = mapParts[0].toUpperCase();
@@ -235,8 +236,7 @@ class MapBuilder {
 							currentElement.setNeighbour(Direction.NORTH, northNeighbour);
 							northNeighbour.setNeighbour(Direction.SOUTH, currentElement);
 						} else {
-							String coord = String.format("%c%d", 'A' + y, x + 1);
-							throw new MapBuilderException("Szabálytalan alakú pálya!", coord);
+							throw new MapBuilderException("Szabálytalan alakú pálya!", new Coord(x, y));
 						}
 					}
 				}

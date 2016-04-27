@@ -7,7 +7,7 @@ public class Scale extends MapElement {
 	/*
 	 * Constructor inherited from base class
 	 */
-	public Scale(String coord) {
+	public Scale(Coord coord) {
 		super(coord);
 	}
 

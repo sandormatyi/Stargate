@@ -5,7 +5,7 @@ public class Wall extends MapElement {
 	/*
 	 * Constructor inherited from base class
 	 */
-	public Wall(String coord) {
+	public Wall(Coord coord) {
 		super(coord);
 	}
 

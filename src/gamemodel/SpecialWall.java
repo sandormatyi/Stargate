@@ -9,7 +9,7 @@ public class SpecialWall extends MapElement {
 	/*
 	 * Constructor inherited from base class
 	 */
-	public SpecialWall(String coord) {
+	public SpecialWall(Coord coord) {
 		super(coord);
 	}
 

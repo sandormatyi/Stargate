@@ -11,6 +11,13 @@ public abstract class Movable {
 	}
 
 	/*
+	 * Get the position
+	 */
+	public MapElement getPosition() {
+		return position;
+	}
+
+	/*
 	 * Set the position
 	 */
 	public void setPosition(MapElement position) {
