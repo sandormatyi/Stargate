@@ -9,7 +9,6 @@ import java.security.InvalidParameterException;
 
 import javax.swing.SwingUtilities;
 
-import debug.ProtoLogger;
 import debug.RandomGenerator;
 import gamemodel.Direction;
 
@@ -53,21 +52,17 @@ public class InputProcessor {
 					break;
 
 				try {
-					SwingUtilities.invokeLater(new Runnable() {
-						@Override
-						public void run() {
-							processLine(inputLine);
-							try {
-								Thread.sleep(1000);
-							} catch (InterruptedException e) {
-								e.printStackTrace();
-							}
-						}
-					});
-
-				} catch (InvalidParameterException e) {
-					ProtoLogger.logError(e.getMessage());
+					Thread.sleep(1000);
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
 				}
+
+				SwingUtilities.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						processLine(inputLine);
+					}
+				});
 			}
 		} finally {
 			bufRead.close();

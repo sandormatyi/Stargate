@@ -43,4 +43,12 @@ public class Box extends Movable {
 
 		arriveOnMapElement(null, initPosition);
 	}
+
+	/*
+	 * Returns the path of the image file that represents the object
+	 */
+	@Override
+	public String getImagePath() {
+		return "images/box.png";
+	}
 }

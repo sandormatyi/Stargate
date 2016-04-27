@@ -148,6 +148,10 @@ class MapBuilder {
 								Box box = new Box(mapElement);
 								try {
 									box.arriveOnMapElement(null, mapElement);
+
+									// Send a notification that a Movable was
+									// created
+									ControllerEventSource.notifyMovableChanged(box);
 								} catch (Exception e) {
 									throw new MapBuilderException("Az adott mezőre nem lehet dobozt letenni!", coord);
 								}
@@ -158,6 +162,10 @@ class MapBuilder {
 
 								oneill = new ONeill(mapElement);
 								oneill.arriveOnMapElement(null, mapElement);
+
+								// Send a notification that a Movable was
+								// created
+								ControllerEventSource.notifyMovableChanged(oneill);
 								break;
 							case 'J':
 								if (jaffa != null)
@@ -165,6 +173,10 @@ class MapBuilder {
 
 								jaffa = new Jaffa(mapElement);
 								jaffa.arriveOnMapElement(null, mapElement);
+
+								// Send a notification that a Movable was
+								// created
+								ControllerEventSource.notifyMovableChanged(jaffa);
 								break;
 							case 'Z':
 								ZPM zpm = new ZPM();
@@ -182,6 +194,10 @@ class MapBuilder {
 
 								replicator = new Replicator(mapElement);
 								replicator.arriveOnMapElement(null, mapElement);
+
+								// Send a notification that a Movable was
+								// created
+								ControllerEventSource.notifyMovableChanged(replicator);
 								break;
 							default:
 								throw new MapBuilderException("Ismeretlen pályaelem: " + extraObjects[i], coord);

@@ -10,17 +10,18 @@ import javax.swing.SwingUtilities;
 
 import controller.GameRunner;
 import debug.ProtoLogger;
+import debug.UILogger;
 import test.PrototypeValidator;
 import test.TestType;
 import userinterface.containers.Application;
 
 public class Main {
-
 	public static void main(String[] args) {
 		try {
 			PrintStream outStream = new PrintStream(System.out, true, "UTF-8");
 			System.setOut(outStream);
 			ProtoLogger.redirectOutput(outStream);
+			UILogger.redirectOutput(outStream);
 
 			System.setErr(new PrintStream(System.err, true, "UTF-8"));
 		} catch (UnsupportedEncodingException e1) {
@@ -28,6 +29,10 @@ public class Main {
 					"The standard output does not support UTF-8 encoding: some characters may appear incorrectly");
 		}
 
+		printMenu();
+	}
+
+	public static void runTest(final TestType type) {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -36,16 +41,20 @@ public class Main {
 			}
 		});
 
-		SwingUtilities.invokeLater(new Runnable() {
+		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				GameRunner.runTest(TestType.PlayerMoveWormhole);
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				GameRunner.runTest(type);
 			}
-		});
+		}).start();
 	}
 
-	// TODO: Remove before upload
-	public static void main_(String[] args) {
+	public static void printMenu() {
 
 		BufferedReader br = null;
 		try {
@@ -102,7 +111,7 @@ public class Main {
 						System.out.println("-------------------------------------------------------------");
 						System.out.println("Egyik játékos megöli a másikat");
 						System.out.println("-------------------------------------------------------------");
-						GameRunner.runTest(TestType.PlayerKillsOtherPlayer);
+						runTest(TestType.PlayerKillsOtherPlayer);
 						br.readLine();
 						break;
 					case 7:
@@ -142,7 +151,7 @@ public class Main {
 			System.out.println("-------------------------------------------------------------");
 			System.out.println("Replikátor szakadékba esik");
 			System.out.println("-------------------------------------------------------------");
-			GameRunner.runTest(TestType.ReplicatorMoveGap);
+			runTest(TestType.ReplicatorMoveGap);
 			break;
 		// Handles wrong input, then prints menu again and reads new choice,
 		// finally calls this method again with new choice
@@ -168,13 +177,13 @@ public class Main {
 			System.out.println("-------------------------------------------------------------");
 			System.out.println("Utolsó ZPM felvétele");
 			System.out.println("-------------------------------------------------------------");
-			GameRunner.runTest(TestType.LastZPM);
+			runTest(TestType.LastZPM);
 			break;
 		case 2:
 			System.out.println("-------------------------------------------------------------");
 			System.out.println("Két ZPM felvétele");
 			System.out.println("-------------------------------------------------------------");
-			GameRunner.runTest(TestType.TwoZPMs);
+			runTest(TestType.TwoZPMs);
 			break;
 		// Handles wrong input, then prints menu again and reads new choice,
 		// finally calls this method again with new choice
@@ -200,20 +209,20 @@ public class Main {
 			System.out.println("-------------------------------------------------------------");
 			System.out.println("Lövés falra");
 			System.out.println("-------------------------------------------------------------");
-			GameRunner.runTest(TestType.ShootWall);
+			runTest(TestType.ShootWall);
 			break;
 		// Handles shoot on specialwall test
 		case 2:
 			System.out.println("-------------------------------------------------------------");
 			System.out.println("Lövés speciális falra");
 			System.out.println("-------------------------------------------------------------");
-			GameRunner.runTest(TestType.ShootSpecialWall);
+			runTest(TestType.ShootSpecialWall);
 			break;
 		case 3:
 			System.out.println("-------------------------------------------------------------");
 			System.out.println("Lövés replikátorra");
 			System.out.println("-------------------------------------------------------------");
-			GameRunner.runTest(TestType.ShootReplicator);
+			runTest(TestType.ShootReplicator);
 			break;
 		// Handles wrong input, then prints menu again and reads new choice,
 		// finally calls this method again with new choice
@@ -239,56 +248,56 @@ public class Main {
 			System.out.println("-------------------------------------------------------------");
 			System.out.println("Felvétel útról");
 			System.out.println("-------------------------------------------------------------");
-			GameRunner.runTest(TestType.BoxPickUpRoad);
+			runTest(TestType.BoxPickUpRoad);
 			break;
 		// Handles pick up from scale
 		case 2:
 			System.out.println("-------------------------------------------------------------");
 			System.out.println("Felvétel mérlegről");
 			System.out.println("-------------------------------------------------------------");
-			GameRunner.runTest(TestType.BoxPickUpScale);
+			runTest(TestType.BoxPickUpScale);
 			break;
 		// Handles pick up through wormhole
 		case 3:
 			System.out.println("-------------------------------------------------------------");
 			System.out.println("Felvétel portálon átnyúlva");
 			System.out.println("-------------------------------------------------------------");
-			GameRunner.runTest(TestType.BoxPickUpWormhole);
+			runTest(TestType.BoxPickUpWormhole);
 			break;
 		// Handles put down (road)
 		case 4:
 			System.out.println("-------------------------------------------------------------");
 			System.out.println("Lerakás útra");
 			System.out.println("-------------------------------------------------------------");
-			GameRunner.runTest(TestType.BoxPutDownRoad);
+			runTest(TestType.BoxPutDownRoad);
 			break;
 		// Handles put down (scale)
 		case 5:
 			System.out.println("-------------------------------------------------------------");
 			System.out.println("Lerakás mérlegre");
 			System.out.println("-------------------------------------------------------------");
-			GameRunner.runTest(TestType.BoxPutDownScale);
+			runTest(TestType.BoxPutDownScale);
 			break;
 		// Handles put down (gap)
 		case 6:
 			System.out.println("-------------------------------------------------------------");
 			System.out.println("Lerakás szakadékba");
 			System.out.println("-------------------------------------------------------------");
-			GameRunner.runTest(TestType.BoxPutDownGap);
+			runTest(TestType.BoxPutDownGap);
 			break;
 		// Handles put down (wall)
 		case 7:
 			System.out.println("-------------------------------------------------------------");
 			System.out.println("Lerakás falra");
 			System.out.println("-------------------------------------------------------------");
-			GameRunner.runTest(TestType.BoxPutDownWall);
+			runTest(TestType.BoxPutDownWall);
 			break;
 		// Handles put down (through wormhole)
 		case 8:
 			System.out.println("-------------------------------------------------------------");
 			System.out.println("Lerakás portálon keresztül");
 			System.out.println("-------------------------------------------------------------");
-			GameRunner.runTest(TestType.BoxPutDownWormhole);
+			runTest(TestType.BoxPutDownWormhole);
 			break;
 		// Handles wrong input, then prints menu again and reads new choice,
 		// finally calls this method again with new choice
@@ -314,35 +323,35 @@ public class Main {
 			System.out.println("-------------------------------------------------------------");
 			System.out.println("Játékos mozgatása útra");
 			System.out.println("-------------------------------------------------------------");
-			GameRunner.runTest(TestType.PlayerMoveRoad);
+			runTest(TestType.PlayerMoveRoad);
 			break;
 		// Handles player move to scale
 		case 2:
 			System.out.println("-------------------------------------------------------------");
 			System.out.println("Játékos mozgatása mérlegre");
 			System.out.println("-------------------------------------------------------------");
-			GameRunner.runTest(TestType.PlayerMoveScale);
+			runTest(TestType.PlayerMoveScale);
 			break;
 		// Handles player move to wall
 		case 3:
 			System.out.println("-------------------------------------------------------------");
 			System.out.println("Játékos mozgatása falra");
 			System.out.println("-------------------------------------------------------------");
-			GameRunner.runTest(TestType.PlayerMoveWall);
+			runTest(TestType.PlayerMoveWall);
 			break;
 		// Handles player move to portal (opened)
 		case 4:
 			System.out.println("-------------------------------------------------------------");
 			System.out.println("Játékos mozgatása speciális falra (nyitott portál)");
 			System.out.println("-------------------------------------------------------------");
-			GameRunner.runTest(TestType.PlayerMoveWormhole);
+			runTest(TestType.PlayerMoveWormhole);
 			break;
 		// Handles player move to gap
 		case 5:
 			System.out.println("-------------------------------------------------------------");
 			System.out.println("Játékos mozgatása szakadékba");
 			System.out.println("-------------------------------------------------------------");
-			GameRunner.runTest(TestType.PlayerMoveGap);
+			runTest(TestType.PlayerMoveGap);
 			break;
 		// Handles wrong input, then prints menu again and reads new choice,
 		// finally calls this method again with new choice

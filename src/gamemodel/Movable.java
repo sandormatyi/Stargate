@@ -1,5 +1,7 @@
 package gamemodel;
 
+import gamemodel.events.ModelEventSource;
+
 public abstract class Movable {
 	/*
 	 * Moveable's position
@@ -22,6 +24,8 @@ public abstract class Movable {
 	 */
 	public void setPosition(MapElement position) {
 		this.position = position;
+
+		ModelEventSource.notifyMovableChanged(this);
 	}
 
 	/*
@@ -39,6 +43,14 @@ public abstract class Movable {
 	 */
 	public void move() {
 		// Do nothing
+	}
+
+	/*
+	 * Returns the path of the image file that represents the object
+	 */
+	public String getImagePath() {
+		// TODO: Override in derived classes
+		return "images/dummy_movable.png";
 	}
 
 	/*

@@ -5,20 +5,27 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
+import javax.swing.SwingUtilities;
+
+import controller.events.ControllerEventSource;
 import debug.ProtoLogger;
 import debug.RandomGenerator;
+import gamemodel.Box;
 import gamemodel.Direction;
+import gamemodel.Movable;
 import gamemodel.Player;
 import gamemodel.Projectile;
 import gamemodel.Replicator;
 import gamemodel.Road;
 import gamemodel.ZPM;
+import gamemodel.events.IMovableStateListener;
 import gamemodel.events.IProjectileStateListener;
 import gamemodel.events.IReplicatorDestroyedListener;
 import gamemodel.events.IZPMPickedUpListener;
 import gamemodel.events.ModelEventSource;
 
-public class Controller implements IZPMPickedUpListener, IProjectileStateListener, IReplicatorDestroyedListener {
+public class Controller
+		implements IZPMPickedUpListener, IProjectileStateListener, IReplicatorDestroyedListener, IMovableStateListener {
 
 	/*
 	 * The object representing the current game
@@ -64,6 +71,7 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 		ModelEventSource.subscribe((IZPMPickedUpListener) this);
 		ModelEventSource.subscribe((IProjectileStateListener) this);
 		ModelEventSource.subscribe((IReplicatorDestroyedListener) this);
+		ModelEventSource.subscribe((IMovableStateListener) this);
 	}
 
 	/*
@@ -101,6 +109,9 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 		// Check if the players are still alive
 		for (Player p : players.values()) {
 			if (p != null && !p.isAlive()) {
+				// Send notification that a player has been killed
+				ControllerEventSource.notifyMovableDestroyed(p);
+
 				game.stop(false);
 				return;
 			}
@@ -157,11 +168,18 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 			return;
 		}
 
-		player.pickUpBox();
+		// TODO: Implement a nicer way of doing this
+		Box box = player.pickUpBox();
+
+		// Send notification that a movable has changed
+		ControllerEventSource.notifyMovableChanged(box);
 
 		// Check if the players are still alive
 		for (Player p : players.values()) {
 			if (p != null && !p.isAlive()) {
+				// Send notification that a player has been killed
+				ControllerEventSource.notifyMovableDestroyed(p);
+
 				game.stop(false);
 				return;
 			}
@@ -179,7 +197,11 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 			return;
 		}
 
-		player.putDownBox();
+		// TODO: Implement a nicer way of doing this
+		Box box = player.putDownBox();
+
+		// Send notification that a movable has changed
+		ControllerEventSource.notifyMovableChanged(box);
 	}
 
 	/*
@@ -219,12 +241,36 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 	 * Until the projectile is "alive", move it.
 	 */
 	@Override
-	public void onProjectileCreated(Projectile projectile) {
-		isProjectileMoving = true;
+	public void onProjectileCreated(final Projectile projectile) {
+		// Hand off the moving of the projectile to a background thread
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				isProjectileMoving = true;
 
-		while (isProjectileMoving) {
-			projectile.move();
-		}
+				while (isProjectileMoving) {
+					// The background thread needs to post to the event loop
+					SwingUtilities.invokeLater(new Runnable() {
+						@Override
+						public void run() {
+							projectile.move();
+
+							// Send notification that a movable has changed
+							ControllerEventSource.notifyMovableChanged(projectile);
+						}
+					});
+
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+
+				// Send notification that a movable has been destroyed
+				ControllerEventSource.notifyMovableDestroyed(projectile);
+			}
+		}).start();
 	}
 
 	/*
@@ -242,7 +288,16 @@ public class Controller implements IZPMPickedUpListener, IProjectileStateListene
 	public void onReplicatorDestroyed(Replicator replicator) {
 		isReplicatorMoving = false;
 
+		// Send notification that a movable has been destroyed
+		ControllerEventSource.notifyMovableDestroyed(replicator);
+
 		this.replicator = null;
+	}
+
+	@Override
+	public void onMovableChanged(Movable movable) {
+		if (movable != null)
+			ControllerEventSource.notifyMovableChanged(movable);
 	}
 
 }

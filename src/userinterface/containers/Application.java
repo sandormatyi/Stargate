@@ -2,12 +2,16 @@ package userinterface.containers;
 
 import javax.swing.JFrame;
 
+import controller.events.ControllerEventSource;
+
 public class Application extends JFrame {
 
 	/*
 	 * Initializes the application window
 	 */
 	public Application() {
+		ControllerEventSource.clear();
+
 		GamePanel panel = new GamePanel();
 		panel.initialize();
 		add(panel);
@@ -18,7 +22,7 @@ public class Application extends JFrame {
 		setResizable(false);
 
 		setTitle("Stargate");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 	}
 

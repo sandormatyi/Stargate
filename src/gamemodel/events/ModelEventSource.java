@@ -3,6 +3,7 @@ package gamemodel.events;
 import java.util.HashSet;
 import java.util.Set;
 
+import gamemodel.Movable;
 import gamemodel.Player;
 import gamemodel.Projectile;
 import gamemodel.Replicator;
@@ -26,6 +27,11 @@ public class ModelEventSource {
 	private static Set<IReplicatorDestroyedListener> replicatorListeners = new HashSet<IReplicatorDestroyedListener>();
 
 	/*
+	 * A list of the subscribed IMovableStateListeners
+	 */
+	private static Set<IMovableStateListener> movableStateListeners = new HashSet<IMovableStateListener>();
+
+	/*
 	 * Add a new IZpmPickedUpListener
 	 */
 	public static void subscribe(IZPMPickedUpListener listener) {
@@ -47,12 +53,20 @@ public class ModelEventSource {
 	}
 
 	/*
+	 * Add a new IMovableStateListener
+	 */
+	public static void subscribe(IMovableStateListener listener) {
+		movableStateListeners.add(listener);
+	}
+
+	/*
 	 * Unsubscribe all observers
 	 */
 	public static void clear() {
 		projectileListeners.clear();
 		zpmListeners.clear();
 		replicatorListeners.clear();
+		movableStateListeners.clear();
 	}
 
 	/*
@@ -85,5 +99,13 @@ public class ModelEventSource {
 	public static void notifyReplicatorDestroyed(Replicator replicator) {
 		for (IReplicatorDestroyedListener listener : replicatorListeners)
 			listener.onReplicatorDestroyed(replicator);
+	}
+
+	/*
+	 * Notifies the listeners that a Movable has been changed
+	 */
+	public static void notifyMovableChanged(Movable movable) {
+		for (IMovableStateListener listener : movableStateListeners)
+			listener.onMovableChanged(movable);
 	}
 }

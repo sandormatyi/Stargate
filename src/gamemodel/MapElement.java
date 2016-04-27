@@ -132,11 +132,11 @@ public abstract class MapElement {
 	}
 
 	/*
-	 * Returns the path of the image file that represents the class
+	 * Returns the path of the image file that represents the object
 	 */
 	public String getImagePath() {
 		// TODO: Override in derived classes
-		return "images/dummy.png";
+		return "images/dummy_mapelement.png";
 	}
 
 	/*

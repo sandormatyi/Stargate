@@ -71,6 +71,15 @@ public class Projectile extends Movable {
 	}
 
 	/*
+	 * Returns the path of the image file that represents the object
+	 */
+	@Override
+	public String getImagePath() {
+		// TODO: Override in derived classes
+		return "images/projectile.png";
+	}
+
+	/*
 	 * Get the Class name as String
 	 */
 	@Override

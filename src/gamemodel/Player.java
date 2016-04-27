@@ -103,7 +103,7 @@ public abstract class Player extends Movable {
 	/*
 	 * Pick up a box from the next mapElement
 	 */
-	public void pickUpBox() {
+	public Box pickUpBox() {
 		if (box == null) {
 			MapElement nextPosition = position.getNeighbour(direction);
 
@@ -116,15 +116,19 @@ public abstract class Player extends Movable {
 				if (box != null) {
 					box.leaveMapElement(box.position);
 					position.incrementWeight();
+
+					return box;
 				}
 			}
 		}
+
+		return null;
 	}
 
 	/*
 	 * Put down a box to the next mapElement
 	 */
-	public void putDownBox() {
+	public Box putDownBox() {
 		if (box != null) {
 			MapElement nextPosition = position.getNeighbour(direction);
 
@@ -134,9 +138,14 @@ public abstract class Player extends Movable {
 
 				box.arriveOnMapElement(direction, nextPosition);
 				position.decrementWeight();
+				Box tempBox = box;
 				box = null;
+
+				return tempBox;
 			}
 		}
+
+		return null;
 	}
 
 	/*
