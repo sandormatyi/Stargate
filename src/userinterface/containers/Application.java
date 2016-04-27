@@ -2,16 +2,15 @@ package userinterface.containers;
 
 import javax.swing.JFrame;
 
-import controller.GameRunner;
-import test.TestType;
-
 public class Application extends JFrame {
 
 	/*
 	 * Initializes the application window
 	 */
 	public Application() {
-		add(new GamePanel());
+		GamePanel panel = new GamePanel();
+		panel.initialize();
+		add(panel);
 
 		pack();
 
@@ -20,10 +19,6 @@ public class Application extends JFrame {
 		setTitle("Stargate");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-
-		GameRunner.runTest(TestType.PlayerMoveWormhole);
-
-		invalidate();
 	}
 
 	/*

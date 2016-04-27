@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.security.InvalidParameterException;
 
+import javax.swing.SwingUtilities;
+
 import debug.ProtoLogger;
 import debug.RandomGenerator;
 import gamemodel.Direction;
@@ -45,13 +47,24 @@ public class InputProcessor {
 		try {
 			// Parse the rows of the input file and process them
 			while (true) {
-				String inputLine = bufRead.readLine();
+				final String inputLine = bufRead.readLine();
 
 				if (inputLine == null)
 					break;
 
 				try {
-					processLine(inputLine);
+					SwingUtilities.invokeLater(new Runnable() {
+						@Override
+						public void run() {
+							processLine(inputLine);
+							try {
+								Thread.sleep(1000);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+						}
+					});
+
 				} catch (InvalidParameterException e) {
 					ProtoLogger.logError(e.getMessage());
 				}

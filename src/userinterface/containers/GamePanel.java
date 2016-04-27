@@ -11,14 +11,19 @@ public class GamePanel extends JPanel {
 	/*
 	 * The component that draws the map
 	 */
-	private MapView mapView = new MapView();
+	private MapView mapView;
 
-	public GamePanel() {
-		setPreferredSize(new Dimension(400, 400));
+	public void initialize() {
+		mapView = new MapView(this);
 	}
 
 	@Override
 	public void paintComponent(Graphics g) {
 		mapView.drawMap(g);
+	}
+
+	@Override
+	public Dimension getPreferredSize() {
+		return new Dimension(400, 400);
 	}
 }

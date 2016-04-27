@@ -1,5 +1,6 @@
 package userinterface;
 
+import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.net.URL;
@@ -50,11 +51,18 @@ public class MapView implements IMapEventListener {
 	}
 
 	/*
+	 * The container of the MapView
+	 */
+	Container parent;
+
+	/*
 	 * The set of the UIMapElements for the current game
 	 */
 	private Set<UIMapElement> fields = new HashSet<UIMapElement>();
 
-	public MapView() {
+	public MapView(Container parent) {
+		this.parent = parent;
+
 		ControllerEventSource.subscribe(this);
 	}
 
@@ -76,5 +84,7 @@ public class MapView implements IMapEventListener {
 	@Override
 	public void onMapElementCreated(MapElement mapElement) {
 		fields.add(new UIMapElement(mapElement.getCoord(), mapElement.getImagePath()));
+
+		parent.invalidate();
 	}
 }

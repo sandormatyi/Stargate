@@ -1,11 +1,12 @@
 package userinterface;
 
-import java.awt.EventQueue;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
+
+import javax.swing.SwingUtilities;
 
 import controller.GameRunner;
 import debug.ProtoLogger;
@@ -27,11 +28,18 @@ public class Main {
 					"The standard output does not support UTF-8 encoding: some characters may appear incorrectly");
 		}
 
-		EventQueue.invokeLater(new Runnable() {
+		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
 				Application app = new Application();
 				app.setVisible(true);
+			}
+		});
+
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				GameRunner.runTest(TestType.PlayerMoveWormhole);
 			}
 		});
 	}
