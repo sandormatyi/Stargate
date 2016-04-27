@@ -2,8 +2,8 @@ package userinterface;
 
 import java.awt.Container;
 import java.awt.Graphics;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 import controller.events.ControllerEventSource;
 import controller.events.IMapEventListener;
@@ -17,9 +17,9 @@ public class MapView implements IMapEventListener {
 	Container parent;
 
 	/*
-	 * The set of the UIMapElements for the current game
+	 * The set of the UIElements for the current game
 	 */
-	private Set<UIElement> fields = new HashSet<UIElement>();
+	private Map<MapElement, UIElement> fields = new HashMap<MapElement, UIElement>();
 
 	public MapView(Container parent) {
 		this.parent = parent;
@@ -34,7 +34,7 @@ public class MapView implements IMapEventListener {
 		if (g == null)
 			return;
 
-		for (UIElement field : fields)
+		for (UIElement field : fields.values())
 			field.draw(g);
 	}
 
@@ -43,7 +43,7 @@ public class MapView implements IMapEventListener {
 	 */
 	@Override
 	public void onMapElementCreated(MapElement mapElement) {
-		fields.add(new UIElement(mapElement.getCoord(), mapElement.getImagePath()));
+		fields.put(mapElement, new UIElement(mapElement.getCoord(), mapElement.getImagePath()));
 
 		parent.invalidate();
 	}
