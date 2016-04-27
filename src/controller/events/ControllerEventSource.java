@@ -3,6 +3,8 @@ package controller.events;
 import java.util.HashSet;
 import java.util.Set;
 
+import gamemodel.MapElement;
+
 public class ControllerEventSource {
 
 	/*
@@ -51,5 +53,13 @@ public class ControllerEventSource {
 		mapEventListeners.clear();
 		movableEventListeners.clear();
 		gameEventListeners.clear();
+	}
+
+	/*
+	 * Notifies the observers that a MapElement was created
+	 */
+	public static void notifyMapElementCreated(MapElement mapElement) {
+		for (IMapEventListener listener : mapEventListeners)
+			listener.onMapElementCreated(mapElement);
 	}
 }

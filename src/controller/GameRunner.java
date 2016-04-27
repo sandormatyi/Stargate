@@ -1,11 +1,9 @@
-package test;
+package controller;
 
-import controller.Controller;
-import controller.Game;
-import controller.InputProcessor;
 import debug.ProtoLogger;
+import test.TestType;
 
-public class TestRunner {
+public class GameRunner {
 
 	/*
 	 * Create a game, create the specified test given as a parameter using

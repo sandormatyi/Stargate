@@ -132,6 +132,14 @@ public abstract class MapElement {
 	}
 
 	/*
+	 * Returns the path of the image file that represents the class
+	 */
+	public String getImagePath() {
+		// TODO: Override in derived classes
+		return "images/dummy.png";
+	}
+
+	/*
 	 * Get the coordinate and the type of the MapElement as a string
 	 */
 	@Override

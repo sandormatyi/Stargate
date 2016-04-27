@@ -10,6 +10,7 @@ import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 
+import controller.GameRunner;
 import debug.ProtoLogger;
 
 public class PrototypeValidator {
@@ -94,7 +95,7 @@ public class PrototypeValidator {
 				TestOutStream testStream = new TestOutStream(originalOutStream, test);
 				ProtoLogger.redirectOutput(testStream);
 
-				TestRunner.runTest(test);
+				GameRunner.runTest(test);
 
 				int errors = testStream.getIncorrectLines();
 

@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Vector;
 
+import controller.events.ControllerEventSource;
 import gamemodel.Box;
 import gamemodel.Coord;
 import gamemodel.Direction;
@@ -132,6 +133,9 @@ class MapBuilder {
 
 					if (mapElement == null)
 						throw new MapBuilderException("A pályalem leírása hibás: " + mapElementString + ".", coord);
+
+					// Send a notification that a MapElement was created
+					ControllerEventSource.notifyMapElementCreated(mapElement);
 
 					// Check the second part of the map file entry for
 					// additional objects on the field
