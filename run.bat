@@ -11,11 +11,11 @@ if errorlevel==1 (
 	
 
 chcp 65001 >nul
-echo Ha Command Promptbol futtatod a szkriptet, kerlek válts Lucida Console betutipusra!
+echo Ha Command Promptbol futtatod a szkriptet, kerlek valts Lucida Console betutipusra!
 echo.
 pause
 echo.
-echo Windows 7 és korabbi rendszereken a Command Prompt Unicode támogatasanak hianya miatt a kepernyore kiirt kimenet hibas lehet (ekezetet tartalmazo sorok vegen a sorvegi karakterek megismetlodnek). Ez azonban nem erinti a java altal irt és olvasott szoveget, igy a tesztek validalasat sem.
+echo Windows 7 es korabbi rendszereken a Command Prompt Unicode tamogatasanak hianya miatt a kepernyore kiirt kimenet hibas lehet (ekezetet tartalmazo sorok vegen a sorvegi karakterek megismetlodnek). Ez azonban nem erinti a java altal irt es olvasott szoveget, igy a tesztek validalasat sem.
 echo.
 pause
 echo.
