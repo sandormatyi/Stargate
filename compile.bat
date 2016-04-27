@@ -8,7 +8,7 @@ IF EXIST bin rmdir /s/q bin
 mkdir bin
 
 echo --- Compiling... ---
-javac -encoding UTF-8 -d .\bin src\controller\*.java src\controller\events\*.java src\debug\*.java src\gamemodel\*.java src\gamemodel\events\*.java src\test\*.java src\userinterface\*.java src\userinterface\containers\*.java
+javac -encoding UTF-8 -d .\bin src\controller\*.java src\controller\events\*.java src\debug\*.java src\gamemodel\*.java src\gamemodel\events\*.java src\test\*.java src\userinterface\*.java src\userinterface\containers\*.java src\userinterface\elements\*.java
 
 echo --- Copying resources... ---
 robocopy ./res ./bin /E >nul

@@ -15,6 +15,7 @@ public class Application extends JFrame {
 		pack();
 
 		setSize(500, 500);
+		setResizable(false);
 
 		setTitle("Stargate");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -27,5 +28,4 @@ public class Application extends JFrame {
 	public static int getScale() {
 		return 32;
 	}
-
 }
