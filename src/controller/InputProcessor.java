@@ -11,6 +11,7 @@ import javax.swing.SwingUtilities;
 
 import debug.RandomGenerator;
 import gamemodel.Direction;
+import userinterface.containers.Application;
 
 public class InputProcessor {
 	/*
@@ -52,7 +53,7 @@ public class InputProcessor {
 					break;
 
 				try {
-					Thread.sleep(1000);
+					Thread.sleep(Application.getInputDelay());
 				} catch (InterruptedException e1) {
 					e1.printStackTrace();
 				}

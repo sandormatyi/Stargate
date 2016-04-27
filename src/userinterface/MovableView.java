@@ -46,6 +46,14 @@ public class MovableView implements IMovableEventListener {
 	 */
 	@Override
 	public void onMovableChanged(Movable movable) {
+		if (movable == null)
+			return;
+
+		if (movable.getPosition() == null) {
+			movables.remove(movable);
+			return;
+		}
+
 		movables.put(movable, new UIElement(movable.getPosition().getCoord(), movable.getImagePath()));
 
 		UILogger.log(movable + " changed");

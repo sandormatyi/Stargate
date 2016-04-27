@@ -10,7 +10,6 @@ import javax.swing.SwingUtilities;
 import controller.events.ControllerEventSource;
 import debug.ProtoLogger;
 import debug.RandomGenerator;
-import gamemodel.Box;
 import gamemodel.Direction;
 import gamemodel.Movable;
 import gamemodel.Player;
@@ -23,6 +22,7 @@ import gamemodel.events.IProjectileStateListener;
 import gamemodel.events.IReplicatorDestroyedListener;
 import gamemodel.events.IZPMPickedUpListener;
 import gamemodel.events.ModelEventSource;
+import userinterface.containers.Application;
 
 public class Controller
 		implements IZPMPickedUpListener, IProjectileStateListener, IReplicatorDestroyedListener, IMovableStateListener {
@@ -168,11 +168,7 @@ public class Controller
 			return;
 		}
 
-		// TODO: Implement a nicer way of doing this
-		Box box = player.pickUpBox();
-
-		// Send notification that a movable has changed
-		ControllerEventSource.notifyMovableChanged(box);
+		player.pickUpBox();
 
 		// Check if the players are still alive
 		for (Player p : players.values()) {
@@ -197,11 +193,7 @@ public class Controller
 			return;
 		}
 
-		// TODO: Implement a nicer way of doing this
-		Box box = player.putDownBox();
-
-		// Send notification that a movable has changed
-		ControllerEventSource.notifyMovableChanged(box);
+		player.putDownBox();
 	}
 
 	/*
@@ -261,7 +253,7 @@ public class Controller
 					});
 
 					try {
-						Thread.sleep(500);
+						Thread.sleep(Application.getProjectileDelay());
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
