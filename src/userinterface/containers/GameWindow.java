@@ -4,6 +4,7 @@ import java.awt.FlowLayout;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -57,7 +58,8 @@ public class GameWindow extends JFrame implements IGameEventListener {
 	public void onGameOver(String winner) {
 		String messageString = (winner == null) ? "There is no winner" : "The winner is " + winner;
 
-		JOptionPane.showMessageDialog(this, messageString, "Game over", JOptionPane.PLAIN_MESSAGE);
+		JOptionPane.showMessageDialog(this, messageString, "Game over", JOptionPane.PLAIN_MESSAGE,
+				new ImageIcon("images/LZ.png"));
 
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
