@@ -46,7 +46,7 @@ public class MapView implements IMapEventListener {
 	 */
 	@Override
 	public void onMapElementCreated(MapElement mapElement) {
-		fields.put(mapElement, new UIElement(mapElement.getCoord(), mapElement.getImagePath()));
+		fields.put(mapElement, new UIElement(mapElement.getCoord(), UIUtility.getImage(mapElement)));
 
 		UILogger.log(mapElement + " changed");
 

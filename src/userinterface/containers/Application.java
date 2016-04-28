@@ -25,22 +25,4 @@ public class Application extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 	}
-
-	/*
-	 * Returns the scale of the game
-	 */
-	public static int getScale() {
-		return 32;
-	}
-
-	/*
-	 * Returns the delay between two steps of the projectile (in ms)
-	 */
-	public static int getProjectileDelay() {
-		return 250;
-	}
-
-	public static int getInputDelay() {
-		return 300;
-	}
 }

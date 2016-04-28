@@ -54,7 +54,7 @@ public class MovableView implements IMovableEventListener {
 			return;
 		}
 
-		movables.put(movable, new UIElement(movable.getPosition().getCoord(), movable.getImagePath()));
+		movables.put(movable, new UIElement(movable.getPosition().getCoord(), UIUtility.getImage(movable)));
 
 		UILogger.log(movable + " changed");
 

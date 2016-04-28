@@ -2,12 +2,9 @@ package userinterface.elements;
 
 import java.awt.Graphics;
 import java.awt.Image;
-import java.net.URL;
-
-import javax.swing.ImageIcon;
 
 import gamemodel.Coord;
-import userinterface.containers.Application;
+import userinterface.UIUtility;
 
 /*
  * The visual representation of a model object
@@ -26,12 +23,9 @@ public class UIElement {
 	/*
 	 * Constructor
 	 */
-	public UIElement(Coord position, String imagePath) {
+	public UIElement(Coord position, Image image) {
 		this.position = position;
-
-		URL imageURL = getClass().getClassLoader().getResource(imagePath);
-		if (imageURL != null)
-			this.image = new ImageIcon(imagePath).getImage();
+		this.image = image;
 	}
 
 	/*
@@ -39,6 +33,6 @@ public class UIElement {
 	 * object
 	 */
 	public void draw(Graphics g) {
-		g.drawImage(image, position.x * Application.getScale(), position.y * Application.getScale(), null);
+		g.drawImage(image, position.x * UIUtility.getScale(), position.y * UIUtility.getScale(), null);
 	}
 }

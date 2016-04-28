@@ -46,14 +46,6 @@ public abstract class Movable {
 	}
 
 	/*
-	 * Returns the path of the image file that represents the object
-	 */
-	public String getImagePath() {
-		// TODO: Override in derived classes
-		return "images/dummy_movable.png";
-	}
-
-	/*
 	 * Get the Class name as String
 	 */
 	@Override

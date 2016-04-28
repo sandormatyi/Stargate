@@ -22,7 +22,7 @@ import gamemodel.events.IProjectileStateListener;
 import gamemodel.events.IReplicatorDestroyedListener;
 import gamemodel.events.IZPMPickedUpListener;
 import gamemodel.events.ModelEventSource;
-import userinterface.containers.Application;
+import userinterface.UIUtility;
 
 public class Controller
 		implements IZPMPickedUpListener, IProjectileStateListener, IReplicatorDestroyedListener, IMovableStateListener {
@@ -253,7 +253,7 @@ public class Controller
 					});
 
 					try {
-						Thread.sleep(Application.getProjectileDelay());
+						Thread.sleep(UIUtility.getProjectileDelay());
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}

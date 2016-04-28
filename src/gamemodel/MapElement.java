@@ -132,13 +132,6 @@ public abstract class MapElement {
 	}
 
 	/*
-	 * Returns the path of the image file that represents the object
-	 */
-	public String getImagePath() {
-		return "images/" + getClass().getSimpleName().toLowerCase() + ".png";
-	}
-
-	/*
 	 * Get the coordinate and the type of the MapElement as a string
 	 */
 	@Override
