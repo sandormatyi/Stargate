@@ -239,11 +239,14 @@ public class Controller
 				randomRoad.setZpm(tempZpm);
 				zpmSet.add(tempZpm);
 				ProtoLogger.log("Egy új ZPM generálódott a(z) " + randomRoad.toString() + " mezőn");
+
+				// Send notification that a ZPM has been created
+				ControllerEventSource.notifyZPMCreated(tempZpm, randomRoad);
 			}
 		}
 
 		// Send notification that a ZPM has been picked up
-		ControllerEventSource.notifyZPMPickedUp(player);
+		ControllerEventSource.notifyZPMPickedUp(player, zpm);
 
 		if (zpmSet.isEmpty()) {
 			game.stop(true);

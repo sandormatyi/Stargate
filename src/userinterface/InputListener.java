@@ -20,6 +20,9 @@ public class InputListener implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		switch (e.getKeyCode()) {
+		/*
+		 * O'Neill's commands
+		 */
 		case KeyEvent.VK_W:
 			controller.moveOrTurnPlayer(PlayerType.ONeill, Direction.NORTH);
 			break;
@@ -40,6 +43,30 @@ public class InputListener implements KeyListener {
 			break;
 		case KeyEvent.VK_G:
 			controller.shootSecond(PlayerType.ONeill);
+			break;
+		/*
+		 * Jaffa's commands
+		 */
+		case KeyEvent.VK_UP:
+			controller.moveOrTurnPlayer(PlayerType.Jaffa, Direction.NORTH);
+			break;
+		case KeyEvent.VK_LEFT:
+			controller.moveOrTurnPlayer(PlayerType.Jaffa, Direction.WEST);
+			break;
+		case KeyEvent.VK_DOWN:
+			controller.moveOrTurnPlayer(PlayerType.Jaffa, Direction.SOUTH);
+			break;
+		case KeyEvent.VK_RIGHT:
+			controller.moveOrTurnPlayer(PlayerType.Jaffa, Direction.EAST);
+			break;
+		case KeyEvent.VK_CONTROL:
+			controller.pickUpOrPutDownBox(PlayerType.Jaffa);
+			break;
+		case KeyEvent.VK_1:
+			controller.shootFirst(PlayerType.Jaffa);
+			break;
+		case KeyEvent.VK_2:
+			controller.shootSecond(PlayerType.Jaffa);
 			break;
 		default:
 			break;

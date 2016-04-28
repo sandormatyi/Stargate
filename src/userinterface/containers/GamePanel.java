@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 import debug.UILogger;
+import userinterface.viewobjects.GameStateView;
 import userinterface.viewobjects.MapView;
 import userinterface.viewobjects.MovableView;
 
@@ -20,9 +21,15 @@ public class GamePanel extends JPanel {
 	 */
 	private MovableView movableView;
 
+	/*
+	 * The component that notifies of game events
+	 */
+	private GameStateView gameStateView;
+
 	public void initialize() {
 		mapView = new MapView(this);
 		movableView = new MovableView(this);
+		gameStateView = new GameStateView(this);
 	}
 
 	@Override
@@ -34,6 +41,7 @@ public class GamePanel extends JPanel {
 		UILogger.log("GamePanel.paintComponent()");
 
 		mapView.drawMap(g);
+		gameStateView.drawZPMs(g);
 		movableView.drawMovables(g);
 	}
 

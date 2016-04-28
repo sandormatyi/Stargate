@@ -187,6 +187,9 @@ class MapBuilder {
 
 								((Road) mapElement).setZpm(zpm);
 								zpmSet.add(zpm);
+
+								// Send notification that a ZPM was created
+								ControllerEventSource.notifyZPMCreated(zpm, mapElement);
 								break;
 							case 'R':
 								if (replicator != null)

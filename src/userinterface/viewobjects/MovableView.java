@@ -16,12 +16,12 @@ import userinterface.elements.UIElement;
 
 public class MovableView implements IMovableEventListener {
 	/*
-	 * The container of the MapView
+	 * The container of the GameObjectView
 	 */
 	Container parent;
 
 	/*
-	 * The set of the UIMapElements for the current game
+	 * The set of the UIElements belonging to movables for the current game
 	 */
 	private Map<Movable, UIElement> movables = new HashMap<Movable, UIElement>();
 

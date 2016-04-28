@@ -9,6 +9,7 @@ import debug.UILogger;
 import gamemodel.MapElement;
 import gamemodel.Movable;
 import gamemodel.Player;
+import gamemodel.ZPM;
 
 public class ControllerEventSource {
 
@@ -21,6 +22,11 @@ public class ControllerEventSource {
 	 * A list of the subscribed IMovableEventListeners
 	 */
 	private static Set<IMovableEventListener> movableEventListeners = new HashSet<IMovableEventListener>();
+
+	/*
+	 * A list of the subscribed IZPMEventListener
+	 */
+	private static Set<IZPMEventListener> zpmEventListeners = new HashSet<IZPMEventListener>();
 
 	/*
 	 * A list of the subscribed IGameEventListeners
@@ -46,6 +52,14 @@ public class ControllerEventSource {
 	/*
 	 * Subscribe a listener
 	 */
+	public static void subscribe(IZPMEventListener listener) {
+		if (listener != null)
+			zpmEventListeners.add(listener);
+	}
+
+	/*
+	 * Subscribe a listener
+	 */
 	public static void subscribe(IGameEventListener listener) {
 		if (listener != null)
 			gameEventListeners.add(listener);
@@ -57,6 +71,7 @@ public class ControllerEventSource {
 	public static void clear() {
 		mapEventListeners.clear();
 		movableEventListeners.clear();
+		zpmEventListeners.clear();
 		gameEventListeners.clear();
 	}
 
@@ -106,16 +121,31 @@ public class ControllerEventSource {
 	}
 
 	/*
-	 * Notifies the observers that a ZPM has been picked up
+	 * Notifies the observers that a ZPM has been created
 	 */
-	public static void notifyZPMPickedUp(final Player player) {
+	public static void notifyZPMCreated(final ZPM zpm, final MapElement position) {
 		assertIsOnUIThread();
 
-		for (final IGameEventListener listener : gameEventListeners)
+		for (final IZPMEventListener listener : zpmEventListeners)
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					listener.onZPMPickedUp(player);
+					listener.onZPMCreated(zpm, position);
+				}
+			});
+	}
+
+	/*
+	 * Notifies the observers that a ZPM has been picked up
+	 */
+	public static void notifyZPMPickedUp(final Player player, final ZPM zpm) {
+		assertIsOnUIThread();
+
+		for (final IZPMEventListener listener : zpmEventListeners)
+			SwingUtilities.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					listener.onZPMPickedUp(player, zpm);
 				}
 			});
 	}
