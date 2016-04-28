@@ -459,7 +459,7 @@ public class Main {
 		System.out.println("(5) Replikátor mozgatása");
 		System.out.println("(6) Egyik játékos megöli a másikat");
 		System.out.println("(7) Összes teszteset lefuttatása és ellenőrzése");
-		System.out.println("(8) Új játék indtása");
+		System.out.println("(8) Új játék indítása");
 		System.out.println("(9) Kilépés");
 		System.out.println("*************************************************************");
 	}
