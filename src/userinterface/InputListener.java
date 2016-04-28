@@ -59,13 +59,13 @@ public class InputListener implements KeyListener {
 		case KeyEvent.VK_RIGHT:
 			controller.moveOrTurnPlayer(PlayerType.Jaffa, Direction.EAST);
 			break;
-		case KeyEvent.VK_CONTROL:
+		case KeyEvent.VK_NUMPAD3:
 			controller.pickUpOrPutDownBox(PlayerType.Jaffa);
 			break;
-		case KeyEvent.VK_1:
+		case KeyEvent.VK_NUMPAD1:
 			controller.shootFirst(PlayerType.Jaffa);
 			break;
-		case KeyEvent.VK_2:
+		case KeyEvent.VK_NUMPAD2:
 			controller.shootSecond(PlayerType.Jaffa);
 			break;
 		default:
