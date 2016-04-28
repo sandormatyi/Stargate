@@ -2,6 +2,8 @@ package gamemodel;
 
 import java.util.HashMap;
 
+import gamemodel.events.ModelEventSource;
+
 public class Stargate {
 
 	/*
@@ -25,7 +27,17 @@ public class Stargate {
 	public static Stargate createStargate(MapElement position, ProjectileType type, Direction direction) {
 		Stargate stargate = new Stargate(position, type, direction);
 
+		if (stargates.containsKey(type)) {
+			Stargate stargateToBeRemoved = stargates.get(type);
+
+			((SpecialWall) stargateToBeRemoved.position).removeStargate(stargateToBeRemoved.direction);
+		}
+
 		stargates.put(type, stargate);
+
+		// Send notification that a Stargate has been opened
+		ModelEventSource.notifyStargateOpened(position, type, direction);
+
 		return stargate;
 	}
 

@@ -3,9 +3,12 @@ package gamemodel.events;
 import java.util.HashSet;
 import java.util.Set;
 
+import gamemodel.Direction;
+import gamemodel.MapElement;
 import gamemodel.Movable;
 import gamemodel.Player;
 import gamemodel.Projectile;
+import gamemodel.ProjectileType;
 import gamemodel.Replicator;
 import gamemodel.ZPM;
 
@@ -91,6 +94,14 @@ public class ModelEventSource {
 	public static void notifyProjectileDestroyed(Projectile projectile) {
 		for (IProjectileStateListener listener : projectileListeners)
 			listener.onProjectileDestroyed(projectile);
+	}
+
+	/*
+	 * Notifies the listeners that a Stargate has been opened
+	 */
+	public static void notifyStargateOpened(MapElement mapElement, ProjectileType type, Direction direction) {
+		for (IProjectileStateListener listener : projectileListeners)
+			listener.onStargateOpened(mapElement, type, direction);
 	}
 
 	/*

@@ -1,6 +1,8 @@
 package controller.events;
 
+import gamemodel.Direction;
 import gamemodel.MapElement;
+import gamemodel.ProjectileType;
 
 public interface IMapEventListener {
 
@@ -13,4 +15,9 @@ public interface IMapEventListener {
 	 * Called when a MapElement is removed
 	 */
 	void onMapElementRemoved(MapElement mapElement);
+
+	/*
+	 * Called when a stargate is opened
+	 */
+	void onStargateOpened(MapElement mapElement, ProjectileType type, Direction direction);
 }

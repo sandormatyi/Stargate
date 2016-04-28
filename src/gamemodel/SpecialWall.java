@@ -152,4 +152,11 @@ public class SpecialWall extends MapElement {
 
 		return null;
 	}
+
+	/*
+	 * Removes the Stargate from the SpecialWall
+	 */
+	public void removeStargate(Direction direction) {
+		stargates.remove(direction);
+	}
 }

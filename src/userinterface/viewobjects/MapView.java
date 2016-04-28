@@ -10,8 +10,11 @@ import javax.swing.SwingUtilities;
 import controller.events.ControllerEventSource;
 import controller.events.IMapEventListener;
 import debug.UILogger;
+import gamemodel.Direction;
 import gamemodel.MapElement;
+import gamemodel.ProjectileType;
 import userinterface.UIUtility;
+import userinterface.elements.RotatableElement;
 import userinterface.elements.UIElement;
 
 public class MapView implements IMapEventListener {
@@ -21,9 +24,14 @@ public class MapView implements IMapEventListener {
 	Container parent;
 
 	/*
-	 * The set of the UIElements for the current game
+	 * The set of the UIElements for the current map
 	 */
 	private Map<MapElement, UIElement> fields = new HashMap<MapElement, UIElement>();
+
+	/*
+	 * The set of the UIElements for the stargates
+	 */
+	private Map<ProjectileType, UIElement> stargates = new HashMap<ProjectileType, UIElement>();
 
 	public MapView(Container parent) {
 		this.parent = parent;
@@ -40,6 +48,9 @@ public class MapView implements IMapEventListener {
 
 		for (UIElement field : fields.values())
 			field.draw(g);
+
+		for (UIElement stargate : stargates.values())
+			stargate.draw(g);
 	}
 
 	/*
@@ -68,6 +79,25 @@ public class MapView implements IMapEventListener {
 		fields.remove(mapElement);
 
 		UILogger.log(mapElement + " removed");
+
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				parent.repaint();
+				UILogger.log("GamePanel.repaint()");
+			}
+		});
+	}
+
+	/*
+	 * Creates a new UIMapElement and stores it in the set
+	 */
+	@Override
+	public void onStargateOpened(MapElement mapElement, ProjectileType type, Direction direction) {
+		stargates.put(type, new RotatableElement(mapElement.getCoord(), UIUtility.getImage("stargate"),
+				UIUtility.getRotationAngle(direction)));
+
+		UILogger.log(type + " changed");
 
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override

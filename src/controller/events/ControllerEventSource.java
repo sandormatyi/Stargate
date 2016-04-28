@@ -6,9 +6,11 @@ import java.util.Set;
 import javax.swing.SwingUtilities;
 
 import debug.UILogger;
+import gamemodel.Direction;
 import gamemodel.MapElement;
 import gamemodel.Movable;
 import gamemodel.Player;
+import gamemodel.ProjectileType;
 import gamemodel.ZPM;
 
 public class ControllerEventSource {
@@ -101,6 +103,22 @@ public class ControllerEventSource {
 				@Override
 				public void run() {
 					listener.onMapElementRemoved(mapElement);
+				}
+			});
+	}
+
+	/*
+	 * Notifies the observers that a Stargate was opened
+	 */
+	public static void notifyStargateOpened(final MapElement mapElement, final ProjectileType type,
+			final Direction direction) {
+		assertIsOnUIThread();
+
+		for (final IMapEventListener listener : mapEventListeners)
+			SwingUtilities.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					listener.onStargateOpened(mapElement, type, direction);
 				}
 			});
 	}

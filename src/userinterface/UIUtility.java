@@ -21,7 +21,21 @@ public class UIUtility {
 		URL resURL = UIUtility.class.getClassLoader().getResource("images/gameobjects/" + relPath + ".png");
 
 		if (resURL == null) {
-			UILogger.log("File not found: images/gameobjects" + relPath + ".png");
+			UILogger.log("File not found: images/gameobjects/" + relPath + ".png");
+			return null;
+		}
+
+		return new ImageIcon(resURL).getImage();
+	}
+
+	/*
+	 * Returns the image that represents the object on the user interface
+	 */
+	public static Image getImage(String relPath) {
+		URL resURL = UIUtility.class.getClassLoader().getResource("images/gameobjects/" + relPath + ".png");
+
+		if (resURL == null) {
+			UILogger.log("File not found: images/gameobjects/" + relPath + ".png");
 			return null;
 		}
 

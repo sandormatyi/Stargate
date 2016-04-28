@@ -11,9 +11,11 @@ import controller.events.ControllerEventSource;
 import debug.ProtoLogger;
 import debug.RandomGenerator;
 import gamemodel.Direction;
+import gamemodel.MapElement;
 import gamemodel.Movable;
 import gamemodel.Player;
 import gamemodel.Projectile;
+import gamemodel.ProjectileType;
 import gamemodel.Replicator;
 import gamemodel.Road;
 import gamemodel.ZPM;
@@ -335,6 +337,14 @@ public class Controller
 	}
 
 	/*
+	 * Forwards the notification to the ControllerEventSource observers
+	 */
+	@Override
+	public void onStargateOpened(MapElement mapElement, ProjectileType type, Direction direction) {
+		ControllerEventSource.notifyStargateOpened(mapElement, type, direction);
+	}
+
+	/*
 	 * If a replicator is destroyed, remove the reference to it
 	 */
 	@Override
@@ -342,6 +352,9 @@ public class Controller
 		isReplicatorMoving = false;
 	}
 
+	/*
+	 * Forwards the notification to the ControllerEventSource observers
+	 */
 	@Override
 	public void onMovableChanged(Movable movable) {
 		if (movable != null)
