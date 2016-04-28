@@ -180,6 +180,8 @@ public class Controller
 	/*
 	 * Make the player pick up a box
 	 */
+	// TODO: Delete after tests have run successfully
+	@Deprecated
 	void pickUpBox(PlayerType playerType) {
 		Player player = players.get(playerType);
 
@@ -205,6 +207,8 @@ public class Controller
 	/*
 	 * Make the player put down a box
 	 */
+	// TODO: Delete after tests have run successfully
+	@Deprecated
 	void putDownBox(PlayerType playerType) {
 		Player player = players.get(playerType);
 
