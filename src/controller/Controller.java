@@ -260,9 +260,6 @@ public class Controller
 						e.printStackTrace();
 					}
 				}
-
-				// Send notification that a movable has been destroyed
-				ControllerEventSource.notifyMovableDestroyed(replicator);
 			}
 		}).start();
 	}
@@ -313,9 +310,6 @@ public class Controller
 						@Override
 						public void run() {
 							projectile.move();
-
-							// Send notification that a movable has changed
-							ControllerEventSource.notifyMovableChanged(projectile);
 						}
 					});
 
@@ -325,9 +319,6 @@ public class Controller
 						e.printStackTrace();
 					}
 				}
-
-				// Send notification that a movable has been destroyed
-				ControllerEventSource.notifyMovableDestroyed(projectile);
 			}
 		}).start();
 	}
@@ -338,6 +329,9 @@ public class Controller
 	@Override
 	public void onProjectileDestroyed(Projectile projectile) {
 		isProjectileMoving = false;
+
+		// Send notification that a movable has been destroyed
+		ControllerEventSource.notifyMovableDestroyed(projectile);
 	}
 
 	/*
@@ -354,6 +348,9 @@ public class Controller
 	@Override
 	public void onReplicatorDestroyed(Replicator replicator) {
 		isReplicatorMoving = false;
+
+		// Send notification that a movable has been destroyed
+		ControllerEventSource.notifyMovableDestroyed(replicator);
 	}
 
 	/*
