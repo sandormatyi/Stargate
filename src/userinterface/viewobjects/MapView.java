@@ -94,8 +94,8 @@ public class MapView implements IMapEventListener {
 	 */
 	@Override
 	public void onStargateOpened(MapElement mapElement, ProjectileType type, Direction direction) {
-		stargates.put(type, new RotatableElement(mapElement.getCoord(), UIUtility.getImage("stargate"),
-				UIUtility.getRotationAngle(direction)));
+		stargates.put(type, new RotatableElement(mapElement.getCoord(),
+				UIUtility.getImage("stargate_" + type.name().toLowerCase()), UIUtility.getRotationAngle(direction)));
 
 		UILogger.log(type + " changed");
 

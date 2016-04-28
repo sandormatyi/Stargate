@@ -1,6 +1,5 @@
 package userinterface;
 
-import java.awt.Color;
 import java.awt.Image;
 import java.net.URL;
 import java.security.InvalidParameterException;
@@ -9,7 +8,6 @@ import javax.swing.ImageIcon;
 
 import debug.UILogger;
 import gamemodel.Direction;
-import gamemodel.ProjectileType;
 
 public class UIUtility {
 
@@ -68,24 +66,6 @@ public class UIUtility {
 	 */
 	public static int getInputDelay() {
 		return 750;
-	}
-
-	/*
-	 * Gets the color described by the ProjectileType
-	 */
-	public static Color getColor(ProjectileType type) {
-		switch (type) {
-		case YELLOW:
-			return Color.yellow;
-		case BLUE:
-			return Color.blue;
-		case GREEN:
-			return Color.green;
-		case RED:
-			return Color.red;
-		default:
-			throw new InvalidParameterException();
-		}
 	}
 
 	/*
