@@ -86,6 +86,17 @@ public class Controller implements IModelEventListener {
 	}
 
 	/*
+	 * Disposes all the controller's resources
+	 */
+	void gameOver() {
+		isProjectileMoving = false;
+		isReplicatorMoving = false;
+		players.clear();
+		replicator = null;
+		zpmSet.clear();
+	}
+
+	/*
 	 * Move or turn the player depending on the player's current direction and
 	 * check if the game is over
 	 */

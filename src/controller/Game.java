@@ -130,6 +130,7 @@ public class Game {
 
 		// Send notification that the game is over
 		ControllerEventSource.notifyGameOver(winner);
+		controller.gameOver();
 
 		controller = null;
 	}
