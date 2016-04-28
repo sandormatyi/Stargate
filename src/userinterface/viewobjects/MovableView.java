@@ -1,4 +1,4 @@
-package userinterface;
+package userinterface.viewobjects;
 
 import java.awt.Container;
 import java.awt.Graphics;
@@ -11,6 +11,7 @@ import controller.events.ControllerEventSource;
 import controller.events.IMovableEventListener;
 import debug.UILogger;
 import gamemodel.Movable;
+import userinterface.UIUtility;
 import userinterface.elements.UIElement;
 
 public class MovableView implements IMovableEventListener {

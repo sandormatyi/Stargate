@@ -15,7 +15,7 @@ import userinterface.UIUtility;
 
 public class InputProcessor {
 	/*
-	 * The game that recevies the input
+	 * The game that receives the input
 	 */
 	private Game game;
 

@@ -8,6 +8,7 @@ import java.io.UnsupportedEncodingException;
 
 import javax.swing.SwingUtilities;
 
+import controller.Controller;
 import controller.GameRunner;
 import debug.ProtoLogger;
 import debug.UILogger;
@@ -52,6 +53,19 @@ public class Main {
 				GameRunner.runTest(type);
 			}
 		}).start();
+	}
+
+	public static void startGame() {
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				Application app = new Application();
+				app.setVisible(true);
+
+				Controller controller = GameRunner.startGame();
+				app.addKeyListener(new InputListener(controller));
+			}
+		});
 	}
 
 	public static void printMenu() {
@@ -121,8 +135,15 @@ public class Main {
 						new PrototypeValidator().runAllTestsAndCompareResults();
 						br.readLine();
 						break;
-					// Exits from program
 					case 8:
+						System.out.println("-------------------------------------------------------------");
+						System.out.println("Új játék indítása");
+						System.out.println("-------------------------------------------------------------");
+						startGame();
+						br.readLine();
+						break;
+					// Exits from program
+					case 9:
 						System.exit(0);
 						break;
 					// Handles wrong input
@@ -438,7 +459,8 @@ public class Main {
 		System.out.println("(5) Replikátor mozgatása");
 		System.out.println("(6) Egyik játékos megöli a másikat");
 		System.out.println("(7) Összes teszteset lefuttatása és ellenőrzése");
-		System.out.println("(8) Kilépés");
+		System.out.println("(8) Új játék indtása");
+		System.out.println("(9) Kilépés");
 		System.out.println("*************************************************************");
 	}
 }

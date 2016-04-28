@@ -224,6 +224,9 @@ public class Controller
 			}
 		}
 
+		// Send notification that a ZPM has been picked up
+		ControllerEventSource.notifyZPMPickedUp(player);
+
 		if (zpmSet.isEmpty()) {
 			game.stop(true);
 		}

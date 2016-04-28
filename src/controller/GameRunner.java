@@ -33,4 +33,23 @@ public class GameRunner {
 			e.printStackTrace();
 		}
 	}
+
+	/*
+	 * Start the game
+	 */
+	public static Controller startGame() {
+		ProtoLogger.disablePrint();
+
+		Game game = new Game("maps/GameMap.txt");
+		game.run();
+
+		Controller controller = game.getController();
+
+		if (controller == null)
+			ProtoLogger.logError("Unable to create Controller for the game");
+
+		ProtoLogger.enablePrint();
+
+		return controller;
+	}
 }

@@ -6,8 +6,8 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 import debug.UILogger;
-import userinterface.MapView;
-import userinterface.MovableView;
+import userinterface.viewobjects.MapView;
+import userinterface.viewobjects.MovableView;
 
 public class GamePanel extends JPanel {
 	/*

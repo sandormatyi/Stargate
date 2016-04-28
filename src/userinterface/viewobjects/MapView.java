@@ -1,4 +1,4 @@
-package userinterface;
+package userinterface.viewobjects;
 
 import java.awt.Container;
 import java.awt.Graphics;
@@ -11,6 +11,7 @@ import controller.events.ControllerEventSource;
 import controller.events.IMapEventListener;
 import debug.UILogger;
 import gamemodel.MapElement;
+import userinterface.UIUtility;
 import userinterface.elements.UIElement;
 
 public class MapView implements IMapEventListener {
