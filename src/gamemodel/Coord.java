@@ -14,6 +14,8 @@ public class Coord {
 
 	@Override
 	public String toString() {
-		return String.format("[%d;%d]", x, y);
+		// return String.format("[%d;%d]", x, y);
+		char firstCoord = (char) ('A' + x);
+		return String.format("%c%d", firstCoord, y + 1);
 	}
 }
