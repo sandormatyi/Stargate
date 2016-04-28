@@ -53,6 +53,13 @@ public abstract class Movable {
 	}
 
 	/*
+	 * Returns the relative path of the image representing the object
+	 */
+	public String getImagePath() {
+		return getClass().getSimpleName().toLowerCase();
+	}
+
+	/*
 	 * Get the Class name as String
 	 */
 	@Override

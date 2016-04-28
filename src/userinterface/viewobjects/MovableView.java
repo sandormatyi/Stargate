@@ -61,8 +61,8 @@ public class MovableView implements IMovableEventListener {
 		if (movable.getDirection() == null) {
 			uiElement = new UIElement(movable.getPosition().getCoord(), UIUtility.getImage(movable));
 		} else {
-			uiElement = new RotatableElement(movable.getPosition().getCoord(), UIUtility.getImage(movable),
-					UIUtility.getRotationAngle(movable.getDirection()));
+			uiElement = new RotatableElement(movable.getPosition().getCoord(),
+					UIUtility.getImage(movable.getImagePath()), UIUtility.getRotationAngle(movable.getDirection()));
 		}
 
 		movables.put(movable, uiElement);

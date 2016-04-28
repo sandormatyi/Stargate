@@ -79,6 +79,14 @@ public class Projectile extends Movable {
 	}
 
 	/*
+	 * Returns the relative path of the image representing the object
+	 */
+	@Override
+	public String getImagePath() {
+		return super.getImagePath() + "_" + type.name().toLowerCase();
+	}
+
+	/*
 	 * Get the Class name as String
 	 */
 	@Override
