@@ -25,7 +25,6 @@ public class GameWindow extends JFrame implements IGameEventListener {
 		add(leftSidePanel);
 
 		GamePanel panel = new GamePanel();
-		panel.initialize();
 		add(panel);
 
 		SidePanel rightSidePanel = new SidePanel("images/jaffa_static.png");
@@ -41,6 +40,8 @@ public class GameWindow extends JFrame implements IGameEventListener {
 
 		ControllerEventSource.clear();
 		ControllerEventSource.subscribe(this);
+
+		panel.initialize();
 	}
 
 	/*
