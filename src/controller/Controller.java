@@ -218,10 +218,36 @@ public class Controller
 	 * Move the replicator until it dies
 	 */
 	public void moveReplicatorUntilDeath() {
-		isReplicatorMoving = (replicator != null);
+		// Hand off the moving of the replicator to a background thread
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				isReplicatorMoving = (replicator != null);
 
-		while (isReplicatorMoving)
-			moveOrTurnReplicator(Direction.values()[RandomGenerator.getRandomNumber(Direction.values().length)]);
+				while (isReplicatorMoving) {
+					// The background thread needs to post to the event loop
+					SwingUtilities.invokeLater(new Runnable() {
+						@Override
+						public void run() {
+							moveOrTurnReplicator(
+									Direction.values()[RandomGenerator.getRandomNumber(Direction.values().length)]);
+
+							// Send notification that a movable has changed
+							ControllerEventSource.notifyMovableChanged(replicator);
+						}
+					});
+
+					try {
+						Thread.sleep(UIUtility.getReplicatorDelay());
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+
+				// Send notification that a movable has been destroyed
+				ControllerEventSource.notifyMovableDestroyed(replicator);
+			}
+		}).start();
 	}
 
 	/*
@@ -303,11 +329,6 @@ public class Controller
 	@Override
 	public void onReplicatorDestroyed(Replicator replicator) {
 		isReplicatorMoving = false;
-
-		// Send notification that a movable has been destroyed
-		ControllerEventSource.notifyMovableDestroyed(replicator);
-
-		this.replicator = null;
 	}
 
 	@Override

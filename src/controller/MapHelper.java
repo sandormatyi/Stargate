@@ -2,6 +2,7 @@ package controller;
 
 import java.util.Vector;
 
+import controller.events.ControllerEventSource;
 import debug.ProtoLogger;
 import debug.RandomGenerator;
 import gamemodel.Direction;
@@ -29,6 +30,7 @@ public class MapHelper {
 	 */
 	public static void replaceWithRoad(Gap gap) {
 		Road road = new Road(gap.getCoord());
+
 		// Update the neighbours
 		for (Direction dir : Direction.values()) {
 			MapElement neighbour = gap.getNeighbour(dir);
@@ -38,6 +40,10 @@ public class MapHelper {
 				neighbour.setNeighbour(Direction.getOppositeDirection(dir), road);
 			}
 		}
+
+		// Send notification that the Gap has been replaced
+		ControllerEventSource.notifyMapElementRemoved(gap);
+		ControllerEventSource.notifyMapElementCreated(road);
 	}
 
 	/*

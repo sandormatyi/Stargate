@@ -50,6 +50,9 @@ public class GameRunner {
 
 		ProtoLogger.enablePrint();
 
+		// Start the replicator
+		controller.moveReplicatorUntilDeath();
+
 		return controller;
 	}
 }

@@ -91,6 +91,21 @@ public class ControllerEventSource {
 	}
 
 	/*
+	 * Notifies the observers that a MapElement was removed
+	 */
+	public static void notifyMapElementRemoved(final MapElement mapElement) {
+		assertIsOnUIThread();
+
+		for (final IMapEventListener listener : mapEventListeners)
+			SwingUtilities.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					listener.onMapElementRemoved(mapElement);
+				}
+			});
+	}
+
+	/*
 	 * Notifies the observers that a Movable has been changed
 	 */
 	public static void notifyMovableChanged(final Movable movable) {

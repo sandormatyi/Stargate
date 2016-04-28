@@ -59,4 +59,22 @@ public class MapView implements IMapEventListener {
 			}
 		});
 	}
+
+	/*
+	 * Removes the MapElement from the set
+	 */
+	@Override
+	public void onMapElementRemoved(MapElement mapElement) {
+		fields.remove(mapElement);
+
+		UILogger.log(mapElement + " removed");
+
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				parent.repaint();
+				UILogger.log("GamePanel.repaint()");
+			}
+		});
+	}
 }
