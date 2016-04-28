@@ -11,7 +11,7 @@ import gamemodel.Coord;
 public class RotatableElement extends UIElement {
 
 	public RotatableElement(Coord position, Image image, int rotationAngle) {
-		super(position, image);
+		super(position);
 
 		// Create a buffered image with transparency
 		BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null),

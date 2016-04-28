@@ -18,10 +18,17 @@ public class UIElement {
 	/*
 	 * The on-screen position of the game model object
 	 */
-	private Coord position;
+	protected Coord position;
 
 	/*
-	 * Constructor
+	 * Protected constructor to call from subclasses
+	 */
+	protected UIElement(Coord position) {
+		this.position = position;
+	}
+
+	/*
+	 * Default public constructor
 	 */
 	public UIElement(Coord position, Image image) {
 		this.position = position;
