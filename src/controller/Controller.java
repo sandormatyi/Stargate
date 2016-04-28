@@ -283,8 +283,12 @@ public class Controller implements IModelEventListener {
 
 		if (player == players.get(PlayerType.ONeill)) {
 			if (game.getScore(player) % 2 == 0) {
-				ZPM tempZpm = new ZPM();
 				Road randomRoad = MapHelper.getRandomRoad();
+
+				while (randomRoad.getZpm() != null)
+					randomRoad = MapHelper.getRandomRoad();
+
+				ZPM tempZpm = new ZPM();
 				randomRoad.setZpm(tempZpm);
 				zpmSet.add(tempZpm);
 				ProtoLogger.log("Egy új ZPM generálódott a(z) " + randomRoad.toString() + " mezőn");

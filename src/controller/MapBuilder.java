@@ -185,6 +185,11 @@ class MapBuilder {
 								if (!(mapElement instanceof Road))
 									throw new MapBuilderException("ZPM csak út típusú mezőn lehet!", coord);
 
+								Road road = (Road) mapElement;
+
+								if (road.getZpm() != null)
+									throw new MapBuilderException("Egy mezőn csak egy ZPM lehet!", coord);
+
 								((Road) mapElement).setZpm(zpm);
 								zpmSet.add(zpm);
 

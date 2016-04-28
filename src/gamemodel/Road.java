@@ -14,6 +14,13 @@ public class Road extends MapElement {
 	private ZPM zpm = null;
 
 	/*
+	 * Zpm getter
+	 */
+	public ZPM getZpm() {
+		return zpm;
+	}
+
+	/*
 	 * Zpm setter
 	 */
 	public void setZpm(ZPM zpm) {
