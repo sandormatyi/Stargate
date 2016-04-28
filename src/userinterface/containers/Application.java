@@ -15,6 +15,8 @@ public class Application extends JFrame implements IGameEventListener {
 	public Application() {
 		ControllerEventSource.clear();
 
+		ControllerEventSource.subscribe(this);
+
 		GamePanel panel = new GamePanel();
 		panel.initialize();
 		add(panel);
@@ -34,9 +36,10 @@ public class Application extends JFrame implements IGameEventListener {
 	 */
 	@Override
 	public void onGameOver(Player winner) {
-		String messageString = (winner == null) ? "Game over, there is no winner"
-				: "Game over, the winner is " + winner.toString();
+		String messageString = (winner == null) ? "There is no winner" : "The winner is " + winner.toString();
 
-		JOptionPane.showMessageDialog(this, messageString);
+		JOptionPane.showMessageDialog(this, messageString, "Game over", JOptionPane.PLAIN_MESSAGE);
+
+		dispose();
 	}
 }

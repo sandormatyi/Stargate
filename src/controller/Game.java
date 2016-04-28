@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import controller.MapBuilder.MapBuilderException;
+import controller.events.ControllerEventSource;
 import debug.ProtoLogger;
 import gamemodel.Player;
 import gamemodel.events.ModelEventSource;
@@ -126,6 +127,9 @@ public class Game {
 		} else {
 			ProtoLogger.logCommand("A játék véget ért, nincsen győztes");
 		}
+
+		// Send notification that the game is over
+		ControllerEventSource.notifyGameOver(winner);
 
 		controller = null;
 	}
