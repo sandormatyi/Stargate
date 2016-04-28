@@ -132,6 +132,13 @@ public abstract class MapElement {
 	}
 
 	/*
+	 * Returns the relative path of the image representing the object
+	 */
+	public String getImagePath() {
+		return getClass().getSimpleName().toLowerCase();
+	}
+
+	/*
 	 * Get the coordinate and the type of the MapElement as a string
 	 */
 	@Override

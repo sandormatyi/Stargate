@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import debug.ProtoLogger;
+import gamemodel.events.ModelEventSource;
 
 public class Door extends MapElement {
 
@@ -27,7 +28,11 @@ public class Door extends MapElement {
 	 * there was on on the field
 	 */
 	public void setOpened(boolean isOpen) {
+		if (this.isOpened == isOpen)
+			return;
+
 		this.isOpened = isOpen;
+
 		if (this.isOpened == false) {
 			for (Player p : players) {
 				p.die();
@@ -39,6 +44,8 @@ public class Door extends MapElement {
 			while (!boxes.empty())
 				boxes.pop().respawn();
 		}
+
+		ModelEventSource.notifyDoorStateChanged(this);
 	}
 
 	/*
@@ -134,5 +141,13 @@ public class Door extends MapElement {
 		if (!boxes.remove(box)) {
 			ProtoLogger.logError("Trying to remove a box from a field that does not contain the box");
 		}
+	}
+
+	/*
+	 * Returns the relative path of the image representing the object
+	 */
+	@Override
+	public String getImagePath() {
+		return super.getImagePath() + "_" + (isOpened ? "open" : "closed");
 	}
 }

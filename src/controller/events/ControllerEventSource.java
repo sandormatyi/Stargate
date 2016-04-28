@@ -7,6 +7,7 @@ import javax.swing.SwingUtilities;
 
 import debug.UILogger;
 import gamemodel.Direction;
+import gamemodel.Door;
 import gamemodel.MapElement;
 import gamemodel.Movable;
 import gamemodel.Player;
@@ -119,6 +120,21 @@ public class ControllerEventSource {
 				@Override
 				public void run() {
 					listener.onStargateOpened(mapElement, type, direction);
+				}
+			});
+	}
+
+	/*
+	 * Notifies the observers that a Door was opened or closed
+	 */
+	public static void notifyDoorStateChanged(final Door door) {
+		assertIsOnUIThread();
+
+		for (final IMapEventListener listener : mapEventListeners)
+			SwingUtilities.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					listener.onDoorStateChanged(door);
 				}
 			});
 	}

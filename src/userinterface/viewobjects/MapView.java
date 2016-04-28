@@ -11,6 +11,7 @@ import controller.events.ControllerEventSource;
 import controller.events.IMapEventListener;
 import debug.UILogger;
 import gamemodel.Direction;
+import gamemodel.Door;
 import gamemodel.MapElement;
 import gamemodel.ProjectileType;
 import userinterface.UIUtility;
@@ -58,7 +59,7 @@ public class MapView implements IMapEventListener {
 	 */
 	@Override
 	public void onMapElementCreated(MapElement mapElement) {
-		fields.put(mapElement, new UIElement(mapElement.getCoord(), UIUtility.getImage(mapElement)));
+		fields.put(mapElement, new UIElement(mapElement.getCoord(), UIUtility.getImage(mapElement.getImagePath())));
 
 		UILogger.log(mapElement + " changed");
 
@@ -98,6 +99,24 @@ public class MapView implements IMapEventListener {
 				UIUtility.getImage("stargate_" + type.name().toLowerCase()), UIUtility.getRotationAngle(direction)));
 
 		UILogger.log(type + " changed");
+
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				parent.repaint();
+				UILogger.log("GamePanel.repaint()");
+			}
+		});
+	}
+
+	/*
+	 * Updates the UIElement that belongs to the door
+	 */
+	@Override
+	public void onDoorStateChanged(Door door) {
+		fields.put(door, new UIElement(door.getCoord(), UIUtility.getImage(door.getImagePath())));
+
+		UILogger.log(door + " changed");
 
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override

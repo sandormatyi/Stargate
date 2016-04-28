@@ -11,6 +11,7 @@ import controller.events.ControllerEventSource;
 import debug.ProtoLogger;
 import debug.RandomGenerator;
 import gamemodel.Direction;
+import gamemodel.Door;
 import gamemodel.MapElement;
 import gamemodel.Movable;
 import gamemodel.Player;
@@ -19,15 +20,11 @@ import gamemodel.ProjectileType;
 import gamemodel.Replicator;
 import gamemodel.Road;
 import gamemodel.ZPM;
-import gamemodel.events.IMovableStateListener;
-import gamemodel.events.IProjectileStateListener;
-import gamemodel.events.IReplicatorDestroyedListener;
-import gamemodel.events.IZPMPickedUpListener;
+import gamemodel.events.IModelEventListener;
 import gamemodel.events.ModelEventSource;
 import userinterface.UIUtility;
 
-public class Controller
-		implements IZPMPickedUpListener, IProjectileStateListener, IReplicatorDestroyedListener, IMovableStateListener {
+public class Controller implements IModelEventListener {
 
 	/*
 	 * The object representing the current game
@@ -70,10 +67,7 @@ public class Controller
 		players.put(PlayerType.ONeill, oneill);
 		players.put(PlayerType.Jaffa, jaffa);
 
-		ModelEventSource.subscribe((IZPMPickedUpListener) this);
-		ModelEventSource.subscribe((IProjectileStateListener) this);
-		ModelEventSource.subscribe((IReplicatorDestroyedListener) this);
-		ModelEventSource.subscribe((IMovableStateListener) this);
+		ModelEventSource.subscribe(this);
 	}
 
 	/*
@@ -360,6 +354,14 @@ public class Controller
 	public void onMovableChanged(Movable movable) {
 		if (movable != null)
 			ControllerEventSource.notifyMovableChanged(movable);
+	}
+
+	/*
+	 * Forwards the notification to the ControllerEventSource observers
+	 */
+	@Override
+	public void onDoorStateChanged(Door door) {
+		ControllerEventSource.notifyDoorStateChanged(door);
 	}
 
 }

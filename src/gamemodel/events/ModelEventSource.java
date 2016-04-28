@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import gamemodel.Direction;
+import gamemodel.Door;
 import gamemodel.MapElement;
 import gamemodel.Movable;
 import gamemodel.Player;
@@ -15,68 +16,29 @@ import gamemodel.ZPM;
 public class ModelEventSource {
 
 	/*
-	 * A list of the subscribed IZpmPickedUpListeners
+	 * A list of the subscribed IModelEventListeners
 	 */
-	private static Set<IZPMPickedUpListener> zpmListeners = new HashSet<IZPMPickedUpListener>();
+	private static Set<IModelEventListener> modelEventListeners = new HashSet<IModelEventListener>();
 
 	/*
-	 * A list of the subscribed IProjectileCreatedListeners
+	 * Add a new IModelEventListener
 	 */
-	private static Set<IProjectileStateListener> projectileListeners = new HashSet<IProjectileStateListener>();
-
-	/*
-	 * A list of the subscribed IReplicatorDestroyedListeners
-	 */
-	private static Set<IReplicatorDestroyedListener> replicatorListeners = new HashSet<IReplicatorDestroyedListener>();
-
-	/*
-	 * A list of the subscribed IMovableStateListeners
-	 */
-	private static Set<IMovableStateListener> movableStateListeners = new HashSet<IMovableStateListener>();
-
-	/*
-	 * Add a new IZpmPickedUpListener
-	 */
-	public static void subscribe(IZPMPickedUpListener listener) {
-		zpmListeners.add(listener);
-	}
-
-	/*
-	 * Add a new IReplicatorDestroyedListener
-	 */
-	public static void subscribe(IReplicatorDestroyedListener listener) {
-		replicatorListeners.add(listener);
-	}
-
-	/*
-	 * Add a new IProjectileCreatedListener
-	 */
-	public static void subscribe(IProjectileStateListener listener) {
-		projectileListeners.add(listener);
-	}
-
-	/*
-	 * Add a new IMovableStateListener
-	 */
-	public static void subscribe(IMovableStateListener listener) {
-		movableStateListeners.add(listener);
+	public static void subscribe(IModelEventListener listener) {
+		modelEventListeners.add(listener);
 	}
 
 	/*
 	 * Unsubscribe all observers
 	 */
 	public static void clear() {
-		projectileListeners.clear();
-		zpmListeners.clear();
-		replicatorListeners.clear();
-		movableStateListeners.clear();
+		modelEventListeners.clear();
 	}
 
 	/*
 	 * Notifies the listeners that a ZPM has been picked up
 	 */
 	public static void notifyZPMPickedUp(Player player, ZPM zpm) {
-		for (IZPMPickedUpListener listener : zpmListeners)
+		for (IModelEventListener listener : modelEventListeners)
 			listener.onZPMPickedUp(player, zpm);
 	}
 
@@ -84,7 +46,7 @@ public class ModelEventSource {
 	 * Notifies the listeners that a Projectile has been created
 	 */
 	public static void notifyProjectileCreated(Projectile projectile) {
-		for (IProjectileStateListener listener : projectileListeners)
+		for (IModelEventListener listener : modelEventListeners)
 			listener.onProjectileCreated(projectile);
 	}
 
@@ -92,7 +54,7 @@ public class ModelEventSource {
 	 * Notifies the listeners that a Projectile has been destroyed
 	 */
 	public static void notifyProjectileDestroyed(Projectile projectile) {
-		for (IProjectileStateListener listener : projectileListeners)
+		for (IModelEventListener listener : modelEventListeners)
 			listener.onProjectileDestroyed(projectile);
 	}
 
@@ -100,7 +62,7 @@ public class ModelEventSource {
 	 * Notifies the listeners that a Stargate has been opened
 	 */
 	public static void notifyStargateOpened(MapElement mapElement, ProjectileType type, Direction direction) {
-		for (IProjectileStateListener listener : projectileListeners)
+		for (IModelEventListener listener : modelEventListeners)
 			listener.onStargateOpened(mapElement, type, direction);
 	}
 
@@ -108,7 +70,7 @@ public class ModelEventSource {
 	 * Notifies the listeners that a Replicator has been destroyed
 	 */
 	public static void notifyReplicatorDestroyed(Replicator replicator) {
-		for (IReplicatorDestroyedListener listener : replicatorListeners)
+		for (IModelEventListener listener : modelEventListeners)
 			listener.onReplicatorDestroyed(replicator);
 	}
 
@@ -116,7 +78,15 @@ public class ModelEventSource {
 	 * Notifies the listeners that a Movable has been changed
 	 */
 	public static void notifyMovableChanged(Movable movable) {
-		for (IMovableStateListener listener : movableStateListeners)
+		for (IModelEventListener listener : modelEventListeners)
 			listener.onMovableChanged(movable);
+	}
+
+	/*
+	 * Notifies the listeners that the state of a door has been changed
+	 */
+	public static void notifyDoorStateChanged(Door door) {
+		for (IModelEventListener listener : modelEventListeners)
+			listener.onDoorStateChanged(door);
 	}
 }
