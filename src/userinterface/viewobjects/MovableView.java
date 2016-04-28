@@ -12,6 +12,7 @@ import controller.events.IMovableEventListener;
 import debug.UILogger;
 import gamemodel.Movable;
 import userinterface.UIUtility;
+import userinterface.elements.RotatableElement;
 import userinterface.elements.UIElement;
 
 public class MovableView implements IMovableEventListener {
@@ -55,7 +56,16 @@ public class MovableView implements IMovableEventListener {
 			return;
 		}
 
-		movables.put(movable, new UIElement(movable.getPosition().getCoord(), UIUtility.getImage(movable)));
+		UIElement uiElement;
+
+		if (movable.getDirection() == null) {
+			uiElement = new UIElement(movable.getPosition().getCoord(), UIUtility.getImage(movable));
+		} else {
+			uiElement = new RotatableElement(movable.getPosition().getCoord(), UIUtility.getImage(movable),
+					UIUtility.getRotationAngle(movable.getDirection()));
+		}
+
+		movables.put(movable, uiElement);
 
 		UILogger.log(movable + " changed");
 

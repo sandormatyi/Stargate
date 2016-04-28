@@ -31,6 +31,14 @@ public class Projectile extends Movable {
 	}
 
 	/*
+	 * Get the direction of the projectile
+	 */
+	@Override
+	public Direction getDirection() {
+		return direction;
+	}
+
+	/*
 	 * Move the projectile to the next MapElement
 	 */
 	@Override

@@ -16,6 +16,7 @@ public class Replicator extends Movable {
 	/*
 	 * Get the direction of the replicator
 	 */
+	@Override
 	public Direction getDirection() {
 		return direction;
 	}
@@ -58,6 +59,8 @@ public class Replicator extends Movable {
 		ProtoLogger.logCommand(this.toString() + " elfordult " + direction.toString() + " irányba");
 
 		this.direction = direction;
+
+		ModelEventSource.notifyMovableChanged(this);
 	}
 
 	/*

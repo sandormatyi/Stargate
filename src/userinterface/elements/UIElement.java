@@ -13,7 +13,7 @@ public class UIElement {
 	/*
 	 * The image associated with the game model object
 	 */
-	private Image image;
+	protected Image image;
 
 	/*
 	 * The on-screen position of the game model object

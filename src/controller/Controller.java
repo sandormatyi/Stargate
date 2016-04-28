@@ -225,17 +225,28 @@ public class Controller
 				isReplicatorMoving = (replicator != null);
 
 				while (isReplicatorMoving) {
-					// The background thread needs to post to the event loop
-					SwingUtilities.invokeLater(new Runnable() {
+					final Direction dir = Direction.values()[RandomGenerator
+							.getRandomNumber(Direction.values().length)];
+
+					Runnable moveReplicator = new Runnable() {
 						@Override
 						public void run() {
-							moveOrTurnReplicator(
-									Direction.values()[RandomGenerator.getRandomNumber(Direction.values().length)]);
-
-							// Send notification that a movable has changed
-							ControllerEventSource.notifyMovableChanged(replicator);
+							moveOrTurnReplicator(dir);
 						}
-					});
+					};
+
+					// The background thread needs to post to the event loop
+					SwingUtilities.invokeLater(moveReplicator);
+
+					try {
+						Thread.sleep(UIUtility.getReplicatorDelay());
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+
+					// Move the replicator again
+					if (isReplicatorMoving)
+						SwingUtilities.invokeLater(moveReplicator);
 
 					try {
 						Thread.sleep(UIUtility.getReplicatorDelay());

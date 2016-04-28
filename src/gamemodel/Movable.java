@@ -4,7 +4,7 @@ import gamemodel.events.ModelEventSource;
 
 public abstract class Movable {
 	/*
-	 * Moveable's position
+	 * Movable's position
 	 */
 	protected MapElement position;
 
@@ -26,6 +26,13 @@ public abstract class Movable {
 		this.position = position;
 
 		ModelEventSource.notifyMovableChanged(this);
+	}
+
+	/*
+	 * Get the direction
+	 */
+	public Direction getDirection() {
+		return null;
 	}
 
 	/*

@@ -61,6 +61,7 @@ public abstract class Player extends Movable {
 	/*
 	 * Get the direction of the player
 	 */
+	@Override
 	public Direction getDirection() {
 		return direction;
 	}
@@ -79,6 +80,8 @@ public abstract class Player extends Movable {
 		ProtoLogger.logCommand(this.toString() + " elfordult " + direction.toString() + " irányba");
 
 		this.direction = direction;
+
+		ModelEventSource.notifyMovableChanged(this);
 	}
 
 	/*
