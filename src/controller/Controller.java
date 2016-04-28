@@ -289,8 +289,14 @@ public class Controller implements IModelEventListener {
 		game.incrementScore(player);
 		zpmSet.remove(zpm);
 
+		PlayerType type = null;
+		for (PlayerType t : players.keySet()) {
+			if (players.get(t) == player)
+				type = t;
+		}
+
 		// Send notification that a ZPM has been picked up
-		ControllerEventSource.notifyZPMPickedUp(player, zpm);
+		ControllerEventSource.notifyZPMPickedUp(type, zpm);
 
 		if (player == players.get(PlayerType.ONeill)) {
 			if (game.getScore(player) % 2 == 0) {

@@ -5,13 +5,13 @@ import java.util.Set;
 
 import javax.swing.SwingUtilities;
 
+import controller.PlayerType;
 import debug.UILogger;
 import gamemodel.Box;
 import gamemodel.Direction;
 import gamemodel.Door;
 import gamemodel.MapElement;
 import gamemodel.Movable;
-import gamemodel.Player;
 import gamemodel.ProjectileType;
 import gamemodel.ZPM;
 
@@ -218,14 +218,22 @@ public class ControllerEventSource {
 	/*
 	 * Notifies the observers that a ZPM has been picked up
 	 */
-	public static void notifyZPMPickedUp(final Player player, final ZPM zpm) {
+	public static void notifyZPMPickedUp(final PlayerType player, final ZPM zpm) {
 		assertIsOnUIThread();
 
 		for (final IZPMEventListener listener : zpmEventListeners)
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					listener.onZPMPickedUp(player, zpm);
+					listener.onZPMPickedUp(zpm);
+				}
+			});
+
+		for (final IGameEventListener listener : gameEventListeners)
+			SwingUtilities.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					listener.onScoreIncreased(player);
 				}
 			});
 	}
@@ -233,7 +241,7 @@ public class ControllerEventSource {
 	/*
 	 * Notifies the observers that the game is over
 	 */
-	public static void notifyGameOver(final Player winner) {
+	public static void notifyGameOver(final String winner) {
 		assertIsOnUIThread();
 
 		for (final IGameEventListener listener : gameEventListeners)

@@ -11,7 +11,6 @@ import controller.events.ControllerEventSource;
 import controller.events.IZPMEventListener;
 import debug.UILogger;
 import gamemodel.MapElement;
-import gamemodel.Player;
 import gamemodel.ZPM;
 import userinterface.UIUtility;
 import userinterface.elements.UIElement;
@@ -67,7 +66,7 @@ public class GameStateView implements IZPMEventListener {
 	 * Removes the ZPM from the set and invalidates the parent view
 	 */
 	@Override
-	public void onZPMPickedUp(Player player, ZPM zpm) {
+	public void onZPMPickedUp(ZPM zpm) {
 		zpms.remove(zpm);
 
 		UILogger.log(zpm + " removed");
