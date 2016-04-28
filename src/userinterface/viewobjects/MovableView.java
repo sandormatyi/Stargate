@@ -51,7 +51,7 @@ public class MovableView implements IMovableEventListener {
 			return;
 
 		if (movable.getPosition() == null) {
-			movables.remove(movable);
+			onMovableDestroyed(movable);
 			return;
 		}
 

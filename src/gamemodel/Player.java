@@ -66,6 +66,13 @@ public abstract class Player extends Movable {
 	}
 
 	/*
+	 * Returns the box of the player
+	 */
+	public Box getBox() {
+		return box;
+	}
+
+	/*
 	 * Turn the player to a direction
 	 */
 	public void turn(Direction direction) {

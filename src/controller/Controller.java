@@ -158,9 +158,27 @@ public class Controller
 	}
 
 	/*
+	 * Make the player pick up or put down a box
+	 */
+	public void pickUpOrPutDownBox(PlayerType playerType) {
+		Player player = players.get(playerType);
+
+		if (player == null) {
+			ProtoLogger.logError("Trying to pick up a box with a player that does not exist");
+			return;
+		}
+
+		if (player.getBox() == null) {
+			player.pickUpBox();
+		} else {
+			player.putDownBox();
+		}
+	}
+
+	/*
 	 * Make the player pick up a box
 	 */
-	public void pickUpBox(PlayerType playerType) {
+	void pickUpBox(PlayerType playerType) {
 		Player player = players.get(playerType);
 
 		if (player == null) {
@@ -185,7 +203,7 @@ public class Controller
 	/*
 	 * Make the player put down a box
 	 */
-	public void putDownBox(PlayerType playerType) {
+	void putDownBox(PlayerType playerType) {
 		Player player = players.get(playerType);
 
 		if (player == null) {

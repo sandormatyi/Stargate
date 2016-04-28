@@ -32,6 +32,17 @@ public class InputListener implements KeyListener {
 		case KeyEvent.VK_D:
 			controller.moveOrTurnPlayer(PlayerType.ONeill, Direction.EAST);
 			break;
+		case KeyEvent.VK_SPACE:
+			controller.pickUpOrPutDownBox(PlayerType.ONeill);
+			break;
+		case KeyEvent.VK_F:
+			controller.shootFirst(PlayerType.ONeill);
+			break;
+		case KeyEvent.VK_G:
+			controller.shootSecond(PlayerType.ONeill);
+			break;
+		default:
+			break;
 		}
 	}
 

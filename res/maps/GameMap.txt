@@ -1,0 +1,7 @@
+W,		W,		W,		W,		W,
+W,		R_O,	R,		R_Z,	W,
+W,		R_R,	R,		G,		W,
+W,		SW,		R_B,	S:1, 	W,
+W,		R,		R_J,	D:1,	W,
+W,		R,		SW,		R_Z,	W,
+W,		W,		W,		W,		W
