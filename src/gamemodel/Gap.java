@@ -55,4 +55,9 @@ public class Gap extends MapElement {
 		box.setPosition(this);
 		box.respawn();
 	}
+
+	@Override
+	public void handleBoxPickUp(Box box) {
+		box.setPosition(null);
+	}
 }

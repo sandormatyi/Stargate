@@ -23,8 +23,6 @@ public class Box extends Movable {
 	 */
 	@Override
 	public void arriveOnMapElement(Direction dir, MapElement element) {
-		ModelEventSource.notifyBoxPutDown(this, element);
-
 		element.handleBoxPutDown(dir, this);
 	}
 
@@ -33,8 +31,6 @@ public class Box extends Movable {
 	 */
 	@Override
 	public void leaveMapElement(MapElement element) {
-		ModelEventSource.notifyBoxPickedUp(this, element);
-
 		element.handleBoxPickUp(this);
 	}
 
@@ -43,10 +39,15 @@ public class Box extends Movable {
 	 */
 	@Override
 	public void setPosition(MapElement position) {
-		MapElement formerPosition = this.position;
+		MapElement savedPosition = this.position;
 
 		super.setPosition(position);
 
+		if (savedPosition == null) {
+			ModelEventSource.notifyBoxPutDown(this, position);
+		} else {
+			ModelEventSource.notifyBoxPickedUp(this, savedPosition);
+		}
 	}
 
 	/*

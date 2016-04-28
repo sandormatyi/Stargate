@@ -52,7 +52,7 @@ public class SpecialWall extends MapElement {
 
 		// If the player did not step into an open wormhole, move him back to
 		// the previous MapElement
-		super.handlePlayerArrive(oppositeDirection, player);
+		super.handlePlayerArrive(dir, player);
 	}
 
 	/*
@@ -109,7 +109,7 @@ public class SpecialWall extends MapElement {
 
 		// If there is no open wormhole through the given direction, move it
 		// back to the previous MapElement
-		super.handleBoxPutDown(oppositeDirection, box);
+		super.handleBoxPutDown(dir, box);
 	}
 
 	/*
