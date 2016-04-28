@@ -1,5 +1,6 @@
 package gamemodel.events;
 
+import gamemodel.Box;
 import gamemodel.Direction;
 import gamemodel.Door;
 import gamemodel.MapElement;
@@ -15,6 +16,16 @@ public interface IModelEventListener {
 	 * Called when the state of a movable is changed (after moving or turning)
 	 */
 	void onMovableChanged(Movable movable);
+
+	/*
+	 * Called when a box is picked up
+	 */
+	void onBoxPickedUp(Box box, MapElement mapElement);
+
+	/*
+	 * Called when a box is put down
+	 */
+	void onBoxPutDown(Box box, MapElement mapElement);
 
 	/*
 	 * Called when a projectile is created

@@ -10,6 +10,7 @@ import javax.swing.SwingUtilities;
 import controller.events.ControllerEventSource;
 import debug.ProtoLogger;
 import debug.RandomGenerator;
+import gamemodel.Box;
 import gamemodel.Direction;
 import gamemodel.Door;
 import gamemodel.MapElement;
@@ -166,6 +167,17 @@ public class Controller implements IModelEventListener {
 
 		if (player.getBox() == null) {
 			player.pickUpBox();
+
+			// Check if the players are still alive
+			for (Player p : players.values()) {
+				if (p != null && !p.isAlive()) {
+					// Send notification that a player has been killed
+					ControllerEventSource.notifyMovableDestroyed(p);
+
+					game.stop(false);
+					return;
+				}
+			}
 		} else {
 			player.putDownBox();
 		}
@@ -352,8 +364,7 @@ public class Controller implements IModelEventListener {
 	 */
 	@Override
 	public void onMovableChanged(Movable movable) {
-		if (movable != null)
-			ControllerEventSource.notifyMovableChanged(movable);
+		ControllerEventSource.notifyMovableChanged(movable);
 	}
 
 	/*
@@ -362,6 +373,22 @@ public class Controller implements IModelEventListener {
 	@Override
 	public void onDoorStateChanged(Door door) {
 		ControllerEventSource.notifyDoorStateChanged(door);
+	}
+
+	/*
+	 * Forwards the notification to the ControllerEventSource observers
+	 */
+	@Override
+	public void onBoxPickedUp(Box box, MapElement mapElement) {
+		ControllerEventSource.notifyBoxPickedUp(box, mapElement);
+	}
+
+	/*
+	 * Forwards the notification to the ControllerEventSource observers
+	 */
+	@Override
+	public void onBoxPutDown(Box box, MapElement mapElement) {
+		ControllerEventSource.notifyBoxPutDown(box, mapElement);
 	}
 
 }

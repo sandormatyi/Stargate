@@ -1,5 +1,6 @@
 package userinterface;
 
+import java.awt.Font;
 import java.awt.Image;
 import java.net.URL;
 import java.security.InvalidParameterException;
@@ -10,6 +11,10 @@ import debug.UILogger;
 import gamemodel.Direction;
 
 public class UIUtility {
+	/*
+	 * The main scale of the game
+	 */
+	private static final int scale = 32;
 
 	/*
 	 * Returns the image that represents the object on the user interface
@@ -44,7 +49,7 @@ public class UIUtility {
 	 * Returns the scale of the game
 	 */
 	public static int getScale() {
-		return 32;
+		return scale;
 	}
 
 	/*
@@ -84,5 +89,12 @@ public class UIUtility {
 		default:
 			throw new InvalidParameterException();
 		}
+	}
+
+	/*
+	 * Returns the font used to display the number of boxes
+	 */
+	public static Font getBoxCountFont() {
+		return new Font("Arial", Font.BOLD, scale / 2);
 	}
 }

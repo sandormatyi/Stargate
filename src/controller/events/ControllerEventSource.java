@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.swing.SwingUtilities;
 
 import debug.UILogger;
+import gamemodel.Box;
 import gamemodel.Direction;
 import gamemodel.Door;
 import gamemodel.MapElement;
@@ -165,6 +166,36 @@ public class ControllerEventSource {
 				@Override
 				public void run() {
 					listener.onMovableDestroyed(movable);
+				}
+			});
+	}
+
+	/*
+	 * Notifies the observers that a box has been put down
+	 */
+	public static void notifyBoxPutDown(final Box box, final MapElement mapElement) {
+		assertIsOnUIThread();
+
+		for (final IMovableEventListener listener : movableEventListeners)
+			SwingUtilities.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					listener.onBoxPutDown(box, mapElement);
+				}
+			});
+	}
+
+	/*
+	 * Notifies the observers that a box has been picked up
+	 */
+	public static void notifyBoxPickedUp(final Box box, final MapElement mapElement) {
+		assertIsOnUIThread();
+
+		for (final IMovableEventListener listener : movableEventListeners)
+			SwingUtilities.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					listener.onBoxPickedUp(box, mapElement);
 				}
 			});
 	}

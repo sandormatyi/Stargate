@@ -1,5 +1,6 @@
 package userinterface.elements;
 
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 
@@ -12,16 +13,45 @@ public class StackableElement extends UIElement {
 	 */
 	private int numberOfStacks;
 
-	public StackableElement(Coord position, Image image, int numberOfStacks) {
+	public StackableElement(Coord position, Image image) {
 		super(position, image);
 
-		this.numberOfStacks = numberOfStacks;
+		this.numberOfStacks = 1;
+	}
+
+	/*
+	 * Returns the number of stacks
+	 */
+	public int getStacks() {
+		return numberOfStacks;
+	}
+
+	/*
+	 * Increments the number of stacks
+	 */
+	public void incrementStacks() {
+		numberOfStacks++;
+	}
+
+	/*
+	 * Decrements the number of stacks
+	 */
+	public void decrementStacks() {
+		numberOfStacks--;
 	}
 
 	@Override
 	public void draw(Graphics g) {
 		super.draw(g);
 
-		g.drawString("" + numberOfStacks, position.x * UIUtility.getScale(), position.y * UIUtility.getScale());
+		Font savedFont = g.getFont();
+
+		int center_x = Math.round(((float) position.x + 0.33f) * UIUtility.getScale());
+		int center_y = Math.round(((float) position.y + 0.66f) * UIUtility.getScale());
+
+		g.setFont(UIUtility.getBoxCountFont());
+		g.drawString("" + numberOfStacks, center_x, center_y);
+
+		g.setFont(savedFont);
 	}
 }

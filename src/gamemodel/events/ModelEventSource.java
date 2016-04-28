@@ -3,6 +3,7 @@ package gamemodel.events;
 import java.util.HashSet;
 import java.util.Set;
 
+import gamemodel.Box;
 import gamemodel.Direction;
 import gamemodel.Door;
 import gamemodel.MapElement;
@@ -80,6 +81,22 @@ public class ModelEventSource {
 	public static void notifyMovableChanged(Movable movable) {
 		for (IModelEventListener listener : modelEventListeners)
 			listener.onMovableChanged(movable);
+	}
+
+	/*
+	 * Notifies the listeners that a box has been picked up
+	 */
+	public static void notifyBoxPickedUp(Box box, MapElement mapElement) {
+		for (IModelEventListener listener : modelEventListeners)
+			listener.onBoxPickedUp(box, mapElement);
+	}
+
+	/*
+	 * Notifies the listeners that a box has been put down
+	 */
+	public static void notifyBoxPutDown(Box box, MapElement mapElement) {
+		for (IModelEventListener listener : modelEventListeners)
+			listener.onBoxPutDown(box, mapElement);
 	}
 
 	/*

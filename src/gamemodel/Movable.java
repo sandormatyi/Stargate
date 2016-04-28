@@ -1,7 +1,5 @@
 package gamemodel;
 
-import gamemodel.events.ModelEventSource;
-
 public abstract class Movable {
 	/*
 	 * Movable's position
@@ -24,8 +22,6 @@ public abstract class Movable {
 	 */
 	public void setPosition(MapElement position) {
 		this.position = position;
-
-		ModelEventSource.notifyMovableChanged(this);
 	}
 
 	/*

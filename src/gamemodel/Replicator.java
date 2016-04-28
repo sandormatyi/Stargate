@@ -64,6 +64,16 @@ public class Replicator extends Movable {
 	}
 
 	/*
+	 * Set the position and notify the observers
+	 */
+	@Override
+	public void setPosition(MapElement position) {
+		super.setPosition(position);
+
+		ModelEventSource.notifyMovableChanged(this);
+	}
+
+	/*
 	 * Destroy the replicator
 	 */
 	public void destroy() {

@@ -85,6 +85,16 @@ public abstract class Player extends Movable {
 	}
 
 	/*
+	 * Set the position and notify the observers
+	 */
+	@Override
+	public void setPosition(MapElement position) {
+		super.setPosition(position);
+
+		ModelEventSource.notifyMovableChanged(this);
+	}
+
+	/*
 	 * Shoot a projectile of the first type
 	 */
 	public void shootFirst() {
@@ -144,10 +154,6 @@ public abstract class Player extends Movable {
 
 				box.arriveOnMapElement(direction, nextPosition);
 				position.decrementWeight();
-
-				// Send notification that the box has changed
-				ModelEventSource.notifyMovableChanged(box);
-
 				box = null;
 			}
 		}

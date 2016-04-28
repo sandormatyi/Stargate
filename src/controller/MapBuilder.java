@@ -149,9 +149,9 @@ class MapBuilder {
 								try {
 									box.arriveOnMapElement(null, mapElement);
 
-									// Send a notification that a Movable was
+									// Send a notification that a box was
 									// created
-									ControllerEventSource.notifyMovableChanged(box);
+									ControllerEventSource.notifyBoxPutDown(box, mapElement);
 								} catch (Exception e) {
 									throw new MapBuilderException("Az adott mezőre nem lehet dobozt letenni!", coord);
 								}
