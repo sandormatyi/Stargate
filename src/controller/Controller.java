@@ -271,6 +271,9 @@ public class Controller
 		game.incrementScore(player);
 		zpmSet.remove(zpm);
 
+		// Send notification that a ZPM has been picked up
+		ControllerEventSource.notifyZPMPickedUp(player, zpm);
+
 		if (player == players.get(PlayerType.ONeill)) {
 			if (game.getScore(player) % 2 == 0) {
 				ZPM tempZpm = new ZPM();
@@ -283,9 +286,6 @@ public class Controller
 				ControllerEventSource.notifyZPMCreated(tempZpm, randomRoad);
 			}
 		}
-
-		// Send notification that a ZPM has been picked up
-		ControllerEventSource.notifyZPMPickedUp(player, zpm);
 
 		if (zpmSet.isEmpty()) {
 			game.stop(true);
