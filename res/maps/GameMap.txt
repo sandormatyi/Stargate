@@ -1,4 +1,4 @@
-W,		W,		W,		W,		W,		W,		W,		W,		W,		W,		W,		W,		W,		W,		W,
+W,		W,		W,		W,		W,		SW,		SW,		W,		W,		W,		SW,		W,		W,		W,		W,
 W,		R_O,	R_B,	R_Z,	G,		R,		R_Z,	SW,		R_Z,	G,		S:3,	G,		D:3,	R_Z,	SW,
 W,		R_Z,	S:5,	G,		G,		R,		G,		W,		W,		G,		G,		G,		W,		R,		W,
 W,		SW,		R,		S:2, 	G,		G,		R_Z,	R,		W,		G,		G,		G,		G,		R,		W,
