@@ -97,4 +97,11 @@ public class UIUtility {
 	public static Font getBoxCountFont() {
 		return new Font("Arial", Font.BOLD, scale / 2);
 	}
+
+	/*
+	 * Returns the font used in the main menu
+	 */
+	public static Font getMenuButtonFont() {
+		return new Font("Arial", Font.BOLD, scale);
+	}
 }

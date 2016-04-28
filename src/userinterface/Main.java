@@ -8,13 +8,13 @@ import java.io.UnsupportedEncodingException;
 
 import javax.swing.SwingUtilities;
 
-import controller.Controller;
 import controller.GameRunner;
 import debug.ProtoLogger;
 import debug.UILogger;
 import test.PrototypeValidator;
 import test.TestType;
 import userinterface.containers.GameWindow;
+import userinterface.containers.MainWindow;
 
 public class Main {
 	public static void main(String[] args) {
@@ -34,12 +34,14 @@ public class Main {
 	}
 
 	public static void runTest(final TestType type) {
-		/*
-		 * SwingUtilities.invokeLater(new Runnable() {
-		 * 
-		 * @Override public void run() { GameWindow app = new GameWindow();
-		 * app.setVisible(true); } });
-		 */
+
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				GameWindow app = new GameWindow();
+				app.setVisible(true);
+			}
+		});
 
 		new Thread(new Runnable() {
 			@Override
@@ -58,11 +60,8 @@ public class Main {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				GameWindow app = new GameWindow();
+				MainWindow app = new MainWindow();
 				app.setVisible(true);
-
-				Controller controller = GameRunner.startGame();
-				app.addKeyListener(new InputListener(controller));
 			}
 		});
 	}

@@ -4,6 +4,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 import controller.events.ControllerEventSource;
 import controller.events.IGameEventListener;
@@ -11,21 +12,16 @@ import gamemodel.Player;
 
 public class GameWindow extends JFrame implements IGameEventListener {
 	/*
-	 * The layout of the window
-	 */
-	FlowLayout flowLayout = new FlowLayout();
-
-	/*
 	 * Initializes the application window
 	 */
 	public GameWindow() {
-		setLayout(flowLayout);
+		setLayout(new FlowLayout());
 
 		SidePanel leftSidePanel = new SidePanel("images/oneill_static.png");
 		add(leftSidePanel);
 
-		GamePanel panel = new GamePanel();
-		add(panel);
+		GamePanel gamePanel = new GamePanel();
+		add(gamePanel);
 
 		SidePanel rightSidePanel = new SidePanel("images/jaffa_static.png");
 		add(rightSidePanel);
@@ -35,13 +31,14 @@ public class GameWindow extends JFrame implements IGameEventListener {
 		setResizable(false);
 
 		setTitle("Stargate");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		// TODO: Change to EXIT_ON_CLOSE
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 
 		ControllerEventSource.clear();
 		ControllerEventSource.subscribe(this);
 
-		panel.initialize();
+		gamePanel.initialize();
 	}
 
 	/*
@@ -53,7 +50,13 @@ public class GameWindow extends JFrame implements IGameEventListener {
 
 		JOptionPane.showMessageDialog(this, messageString, "Game over", JOptionPane.PLAIN_MESSAGE);
 
-		// TODO: Go back to main menu
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				MainWindow mainWindow = new MainWindow();
+				mainWindow.setVisible(true);
+			}
+		});
 
 		dispose();
 	}
