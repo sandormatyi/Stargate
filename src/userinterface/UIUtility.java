@@ -56,7 +56,7 @@ public class UIUtility {
 	 * Returns the delay between two steps of the projectile (in ms)
 	 */
 	public static int getProjectileDelay() {
-		return 200;
+		return 50;
 	}
 
 	/*
@@ -70,7 +70,7 @@ public class UIUtility {
 	 * Returns the delay between two user inputs
 	 */
 	public static int getInputDelay() {
-		return 750;
+		return 1000;
 	}
 
 	/*
