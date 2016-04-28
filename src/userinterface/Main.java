@@ -14,7 +14,7 @@ import debug.ProtoLogger;
 import debug.UILogger;
 import test.PrototypeValidator;
 import test.TestType;
-import userinterface.containers.Application;
+import userinterface.containers.GameWindow;
 
 public class Main {
 	public static void main(String[] args) {
@@ -34,13 +34,12 @@ public class Main {
 	}
 
 	public static void runTest(final TestType type) {
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				Application app = new Application();
-				app.setVisible(true);
-			}
-		});
+		/*
+		 * SwingUtilities.invokeLater(new Runnable() {
+		 * 
+		 * @Override public void run() { GameWindow app = new GameWindow();
+		 * app.setVisible(true); } });
+		 */
 
 		new Thread(new Runnable() {
 			@Override
@@ -59,7 +58,7 @@ public class Main {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				Application app = new Application();
+				GameWindow app = new GameWindow();
 				app.setVisible(true);
 
 				Controller controller = GameRunner.startGame();
