@@ -95,7 +95,7 @@ public class UIUtility {
 	 * Returns the font used to display the number of boxes
 	 */
 	public static Font getBoxCountFont() {
-		return new Font("Arial", Font.BOLD, scale / 2);
+		return new Font("Consolas", Font.BOLD, 16);
 	}
 
 	/*
