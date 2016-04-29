@@ -3,6 +3,7 @@ package debug;
 import java.io.PrintStream;
 
 public class UILogger {
+	public static boolean isEnabled = false;
 
 	/*
 	 * The output stream to which the logger writes the messages
@@ -20,7 +21,7 @@ public class UILogger {
 	 * Prints the given text to the standard output
 	 */
 	public static void log(String output) {
-		// outStream.println("--- " + Thread.currentThread().getName() + ": " +
-		// output);
+		if (isEnabled)
+			outStream.println("--- " + Thread.currentThread().getName() + ": " + output);
 	}
 }

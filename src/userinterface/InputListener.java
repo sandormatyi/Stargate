@@ -74,6 +74,12 @@ public class InputListener implements KeyListener {
 		case KeyEvent.VK_NUMPAD2:
 			controller.shootSecond(PlayerType.Jaffa);
 			break;
+		/*
+		 * Debug
+		 */
+		case KeyEvent.VK_L:
+			UILogger.isEnabled = !UILogger.isEnabled;
+			break;
 		default:
 			break;
 		}
