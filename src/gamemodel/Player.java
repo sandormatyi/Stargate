@@ -128,8 +128,8 @@ public abstract class Player extends Movable {
 			MapElement nextPosition = position.getNeighbour(direction);
 
 			if (nextPosition != null) {
-				GameLogger.logCommand(this.toString() + " megpróbál felvenni egy dobozt a(z) "
-						+ nextPosition.toString() + " mezőről");
+				GameLogger.logCommand(this.toString() + " megpróbál felvenni egy dobozt a(z) " + nextPosition.toString()
+						+ " mezőről");
 
 				box = nextPosition.getBox(direction);
 
@@ -173,5 +173,12 @@ public abstract class Player extends Movable {
 			return 3;
 		} else
 			return 2;
+	}
+
+	/*
+	 * Returns the relative path of the image representing the object
+	 */
+	public String getImagePath() {
+		return super.getImagePath() + ((box == null) ? "" : "_box");
 	}
 }

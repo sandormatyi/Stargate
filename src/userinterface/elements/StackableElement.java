@@ -45,6 +45,9 @@ public class StackableElement extends UIElement {
 	public void draw(Graphics g) {
 		super.draw(g);
 
+		if (numberOfStacks < 2)
+			return;
+
 		Font savedFont = g.getFont();
 		Color savedColor = g.getColor();
 

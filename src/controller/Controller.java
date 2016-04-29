@@ -173,6 +173,10 @@ public class Controller implements IModelEventListener {
 		if (player.getBox() == null) {
 			player.pickUpBox();
 
+			// If the player did not pick up a box, return
+			if (player.getBox() == null)
+				return;
+
 			// Check if the players are still alive
 			for (Player p : players.values()) {
 				if (p != null && !p.isAlive()) {
@@ -186,6 +190,9 @@ public class Controller implements IModelEventListener {
 		} else {
 			player.putDownBox();
 		}
+
+		// Send notification to the listeners
+		ControllerEventSource.notifyMovableChanged(player);
 	}
 
 	/*
