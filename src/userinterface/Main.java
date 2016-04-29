@@ -5,7 +5,7 @@ import java.io.UnsupportedEncodingException;
 
 import javax.swing.SwingUtilities;
 
-import debug.ProtoLogger;
+import debug.GameLogger;
 import debug.UILogger;
 import userinterface.containers.MainWindow;
 
@@ -19,7 +19,7 @@ public class Main {
 		try {
 			PrintStream outStream = new PrintStream(System.out, true, "UTF-8");
 			System.setOut(outStream);
-			ProtoLogger.redirectOutput(outStream);
+			GameLogger.redirectOutput(outStream);
 			UILogger.redirectOutput(outStream);
 
 			System.setErr(new PrintStream(System.err, true, "UTF-8"));

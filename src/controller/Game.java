@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 import controller.MapBuilder.MapBuilderException;
 import controller.events.ControllerEventSource;
-import debug.ProtoLogger;
+import debug.GameLogger;
 import gamemodel.Player;
 import gamemodel.events.ModelEventSource;
 
@@ -79,9 +79,9 @@ public class Game {
 		try {
 			builder.buildMapFromFile(mapFile);
 		} catch (IOException e) {
-			ProtoLogger.logError(e.toString());
+			GameLogger.logError(e.toString());
 		} catch (MapBuilderException e) {
-			ProtoLogger.logError(e.toString());
+			GameLogger.logError(e.toString());
 		}
 
 		controller = builder.createController(this);
@@ -123,9 +123,9 @@ public class Game {
 		}
 
 		if (winner != null) {
-			ProtoLogger.logCommand("A játék véget ért, " + winner.toString() + " nyert");
+			GameLogger.logCommand("A játék véget ért, " + winner.toString() + " nyert");
 		} else {
-			ProtoLogger.logCommand("A játék véget ért, nincsen győztes");
+			GameLogger.logCommand("A játék véget ért, nincsen győztes");
 		}
 
 		// Send notification that the game is over

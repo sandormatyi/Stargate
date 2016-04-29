@@ -8,7 +8,7 @@ import java.util.List;
 import javax.swing.SwingUtilities;
 
 import controller.events.ControllerEventSource;
-import debug.ProtoLogger;
+import debug.GameLogger;
 import debug.RandomGenerator;
 import gamemodel.Box;
 import gamemodel.Direction;
@@ -104,7 +104,7 @@ public class Controller implements IModelEventListener {
 		Player player = players.get(playerType);
 
 		if (player == null) {
-			ProtoLogger.logError("Trying to move a player that does not exist");
+			GameLogger.logError("Trying to move a player that does not exist");
 			return;
 		}
 
@@ -144,7 +144,7 @@ public class Controller implements IModelEventListener {
 		Player player = players.get(playerType);
 
 		if (player == null) {
-			ProtoLogger.logError("Trying to shoot with a player that does not exist");
+			GameLogger.logError("Trying to shoot with a player that does not exist");
 			return;
 		}
 
@@ -158,7 +158,7 @@ public class Controller implements IModelEventListener {
 		Player player = players.get(playerType);
 
 		if (player == null) {
-			ProtoLogger.logError("Trying to shoot with a player that does not exist");
+			GameLogger.logError("Trying to shoot with a player that does not exist");
 			return;
 		}
 
@@ -172,7 +172,7 @@ public class Controller implements IModelEventListener {
 		Player player = players.get(playerType);
 
 		if (player == null) {
-			ProtoLogger.logError("Trying to pick up a box with a player that does not exist");
+			GameLogger.logError("Trying to pick up a box with a player that does not exist");
 			return;
 		}
 
@@ -268,7 +268,7 @@ public class Controller implements IModelEventListener {
 				ZPM tempZpm = new ZPM();
 				randomRoad.setZpm(tempZpm);
 				zpmSet.add(tempZpm);
-				ProtoLogger.log("Egy új ZPM generálódott a(z) " + randomRoad.toString() + " mezőn");
+				GameLogger.log("Egy új ZPM generálódott a(z) " + randomRoad.toString() + " mezőn");
 
 				// Send notification that a ZPM has been created
 				ControllerEventSource.notifyZPMCreated(tempZpm, randomRoad);

@@ -3,7 +3,7 @@ package gamemodel;
 import java.util.HashSet;
 import java.util.Set;
 
-import debug.ProtoLogger;
+import debug.GameLogger;
 import gamemodel.events.ModelEventSource;
 
 public class Door extends MapElement {
@@ -56,7 +56,7 @@ public class Door extends MapElement {
 	@Override
 	public void handlePlayerArrive(Direction dir, Player player) {
 		if (isOpened) {
-			ProtoLogger.log("Sikeresen átlépett a következö mezőre: " + this.toString());
+			GameLogger.log("Sikeresen átlépett a következö mezőre: " + this.toString());
 
 			player.setPosition(this);
 			players.add(player);
@@ -95,7 +95,7 @@ public class Door extends MapElement {
 	@Override
 	public void handleReplicatorArrive(Direction dir, Replicator replicator) {
 		if (isOpened) {
-			ProtoLogger.log("Sikeresen átlépett a következő mezőre: " + this.toString());
+			GameLogger.log("Sikeresen átlépett a következő mezőre: " + this.toString());
 
 			replicator.setPosition(this);
 			this.replicator = replicator;
@@ -119,7 +119,7 @@ public class Door extends MapElement {
 	@Override
 	public void handleBoxPutDown(Direction dir, Box box) {
 		if (isOpened) {
-			ProtoLogger.log("Sikeres dobozletétel a(z) " + this.toString() + " mezőre");
+			GameLogger.log("Sikeres dobozletétel a(z) " + this.toString() + " mezőre");
 
 			box.setPosition(this);
 
@@ -134,12 +134,12 @@ public class Door extends MapElement {
 	 */
 	@Override
 	public void handleBoxPickUp(Box box) {
-		ProtoLogger.log("Sikeres dobozfelvétel a(z) " + this.toString() + " mezőről");
+		GameLogger.log("Sikeres dobozfelvétel a(z) " + this.toString() + " mezőről");
 
 		box.setPosition(null);
 
 		if (!boxes.remove(box)) {
-			ProtoLogger.logError("Trying to remove a box from a field that does not contain the box");
+			GameLogger.logError("Trying to remove a box from a field that does not contain the box");
 		}
 	}
 

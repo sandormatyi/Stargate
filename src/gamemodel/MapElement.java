@@ -3,7 +3,7 @@ package gamemodel;
 import java.util.HashMap;
 import java.util.Stack;
 
-import debug.ProtoLogger;
+import debug.GameLogger;
 
 public abstract class MapElement {
 	private HashMap<Direction, MapElement> neighbours = new HashMap<Direction, MapElement>();
@@ -57,7 +57,7 @@ public abstract class MapElement {
 		Direction oppositeDirection = Direction.getOppositeDirection(dir);
 		MapElement neighbour = getNeighbour(oppositeDirection);
 
-		ProtoLogger.log("Sikertelen lépés: " + player.toString() + " visszalökődött az előző " + neighbour.toString()
+		GameLogger.log("Sikertelen lépés: " + player.toString() + " visszalökődött az előző " + neighbour.toString()
 				+ " mezőre");
 
 		neighbour.handlePlayerArrive(oppositeDirection, player);
@@ -84,7 +84,7 @@ public abstract class MapElement {
 		Direction oppositeDirection = Direction.getOppositeDirection(dir);
 		MapElement neighbour = getNeighbour(oppositeDirection);
 
-		ProtoLogger.log("Sikertelen lépés: " + replicator.toString() + " visszalökődött az előző "
+		GameLogger.log("Sikertelen lépés: " + replicator.toString() + " visszalökődött az előző "
 				+ neighbour.toString() + " mezőre");
 
 		neighbour.handleReplicatorArrive(oppositeDirection, replicator);
@@ -105,7 +105,7 @@ public abstract class MapElement {
 		Direction oppositeDirection = Direction.getOppositeDirection(dir);
 		MapElement neighbour = getNeighbour(oppositeDirection);
 
-		ProtoLogger.log("Sikertelen dobozletétel: A doboz visszalökődik az előző " + neighbour.toString() + " mezőre");
+		GameLogger.log("Sikertelen dobozletétel: A doboz visszalökődik az előző " + neighbour.toString() + " mezőre");
 
 		neighbour.handleBoxPutDown(oppositeDirection, box);
 	}

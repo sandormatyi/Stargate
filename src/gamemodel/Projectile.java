@@ -1,6 +1,6 @@
 package gamemodel;
 
-import debug.ProtoLogger;
+import debug.GameLogger;
 import gamemodel.events.ModelEventSource;
 
 public class Projectile extends Movable {
@@ -50,7 +50,7 @@ public class Projectile extends Movable {
 		if (nextposition != null) {
 			arriveOnMapElement(direction, nextposition);
 		} else {
-			ProtoLogger.logError("Projectile tried to move on a MapElement that does not exist");
+			GameLogger.logError("Projectile tried to move on a MapElement that does not exist");
 			destroy();
 		}
 	}
@@ -71,7 +71,7 @@ public class Projectile extends Movable {
 	public Stargate openStargate() {
 		Direction oppositeDirection = Direction.getOppositeDirection(direction);
 
-		ProtoLogger.log(this.toString() + " csillagkaput nyitott " + position.toString() + " mező "
+		GameLogger.log(this.toString() + " csillagkaput nyitott " + position.toString() + " mező "
 				+ oppositeDirection.toString() + " oldalán");
 
 		Stargate stargate = Stargate.createStargate(position, type, oppositeDirection);
@@ -83,7 +83,7 @@ public class Projectile extends Movable {
 	 * Destroy the projectile
 	 */
 	public void destroy() {
-		ProtoLogger.log(this.toString() + " lövedék megsemmisült a(z) " + position.toString() + " mezőn");
+		GameLogger.log(this.toString() + " lövedék megsemmisült a(z) " + position.toString() + " mezőn");
 
 		ModelEventSource.notifyProjectileDestroyed(this);
 	}

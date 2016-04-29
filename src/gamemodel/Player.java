@@ -1,6 +1,6 @@
 package gamemodel;
 
-import debug.ProtoLogger;
+import debug.GameLogger;
 import gamemodel.events.ModelEventSource;
 
 public abstract class Player extends Movable {
@@ -39,11 +39,11 @@ public abstract class Player extends Movable {
 
 		// TODO: Remove before upload - for debug purposes only
 		if (nextPosition == null) {
-			ProtoLogger.logError("Player tried to step on a MapElement that does not exist");
+			GameLogger.logError("Player tried to step on a MapElement that does not exist");
 			arriveOnMapElement(Direction.getOppositeDirection(direction), position);
 		}
 
-		ProtoLogger.logCommand(this.toString() + " a(z) " + position.toString() + " mezőről a(z) "
+		GameLogger.logCommand(this.toString() + " a(z) " + position.toString() + " mezőről a(z) "
 				+ nextPosition.toString() + " mezőre próbál lépni");
 
 		this.leaveMapElement(position);
@@ -77,7 +77,7 @@ public abstract class Player extends Movable {
 	 * Turn the player to a direction
 	 */
 	public void turn(Direction direction) {
-		ProtoLogger.logCommand(this.toString() + " elfordult " + direction.toString() + " irányba");
+		GameLogger.logCommand(this.toString() + " elfordult " + direction.toString() + " irányba");
 
 		this.direction = direction;
 
@@ -100,7 +100,7 @@ public abstract class Player extends Movable {
 	public void shootFirst() {
 		Projectile projectile = new Projectile(position, direction, projTypes[0]);
 
-		ProtoLogger.logCommand(
+		GameLogger.logCommand(
 				this.toString() + " " + projectile.toString() + " lövedéket lőtt " + direction.toString() + " irányba");
 
 		// Notify the listeners that a projectile has been created
@@ -113,7 +113,7 @@ public abstract class Player extends Movable {
 	public void shootSecond() {
 		Projectile projectile = new Projectile(position, direction, projTypes[1]);
 
-		ProtoLogger.logCommand(
+		GameLogger.logCommand(
 				this.toString() + " " + projectile.toString() + " lövedéket lőtt " + direction.toString() + " irányba");
 
 		// Notify the listeners that a projectile has been created
@@ -128,7 +128,7 @@ public abstract class Player extends Movable {
 			MapElement nextPosition = position.getNeighbour(direction);
 
 			if (nextPosition != null) {
-				ProtoLogger.logCommand(this.toString() + " megpróbál felvenni egy dobozt a(z) "
+				GameLogger.logCommand(this.toString() + " megpróbál felvenni egy dobozt a(z) "
 						+ nextPosition.toString() + " mezőről");
 
 				box = nextPosition.getBox(direction);
@@ -149,7 +149,7 @@ public abstract class Player extends Movable {
 			MapElement nextPosition = position.getNeighbour(direction);
 
 			if (nextPosition != null) {
-				ProtoLogger.logCommand(
+				GameLogger.logCommand(
 						this.toString() + " megpróbál letenni egy dobozt a(z) " + nextPosition.toString() + " mezőre");
 
 				box.arriveOnMapElement(direction, nextPosition);
@@ -163,7 +163,7 @@ public abstract class Player extends Movable {
 	 * Set the isAlive to false
 	 */
 	public void die() {
-		ProtoLogger.log(this.toString() + " meghalt a(z) " + position.toString() + " mezőn");
+		GameLogger.log(this.toString() + " meghalt a(z) " + position.toString() + " mezőn");
 
 		isAlive = false;
 	}

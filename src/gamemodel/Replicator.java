@@ -1,6 +1,6 @@
 package gamemodel;
 
-import debug.ProtoLogger;
+import debug.GameLogger;
 import gamemodel.events.ModelEventSource;
 
 public class Replicator extends Movable {
@@ -40,11 +40,11 @@ public class Replicator extends Movable {
 
 		// TODO: Remove before upload - for debug purposes only
 		if (nextPosition == null) {
-			ProtoLogger.logError(this.toString() + " tried to step on a MapElement that does not exist");
+			GameLogger.logError(this.toString() + " tried to step on a MapElement that does not exist");
 			arriveOnMapElement(Direction.getOppositeDirection(direction), position);
 		}
 
-		ProtoLogger.logCommand(this.toString() + " a(z) " + position.toString() + " mezőről a(z) "
+		GameLogger.logCommand(this.toString() + " a(z) " + position.toString() + " mezőről a(z) "
 				+ nextPosition.toString() + " mezőre próbál lépni");
 
 		this.leaveMapElement(position);
@@ -56,7 +56,7 @@ public class Replicator extends Movable {
 	 * Turn the replicator to a direction
 	 */
 	public void turn(Direction direction) {
-		ProtoLogger.logCommand(this.toString() + " elfordult " + direction.toString() + " irányba");
+		GameLogger.logCommand(this.toString() + " elfordult " + direction.toString() + " irányba");
 
 		this.direction = direction;
 
@@ -77,7 +77,7 @@ public class Replicator extends Movable {
 	 * Destroy the replicator
 	 */
 	public void destroy() {
-		ProtoLogger.log(this.toString() + " megsemmisült a(z) " + position.toString() + " mezőn");
+		GameLogger.log(this.toString() + " megsemmisült a(z) " + position.toString() + " mezőn");
 
 		leaveMapElement(position);
 

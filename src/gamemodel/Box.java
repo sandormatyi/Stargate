@@ -1,6 +1,6 @@
 package gamemodel;
 
-import debug.ProtoLogger;
+import debug.GameLogger;
 import gamemodel.events.ModelEventSource;
 
 public class Box extends Movable {
@@ -56,7 +56,7 @@ public class Box extends Movable {
 	public void respawn() {
 		leaveMapElement(position);
 
-		ProtoLogger.log("Egy doboz létrejön a(z) " + initPosition.toString() + " mezőn");
+		GameLogger.log("Egy doboz létrejön a(z) " + initPosition.toString() + " mezőn");
 
 		arriveOnMapElement(null, initPosition);
 	}

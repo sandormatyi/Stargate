@@ -2,7 +2,7 @@ package gamemodel;
 
 import java.util.HashMap;
 
-import debug.ProtoLogger;
+import debug.GameLogger;
 
 public class SpecialWall extends MapElement {
 
@@ -29,19 +29,19 @@ public class SpecialWall extends MapElement {
 		Stargate stargate = stargates.get(oppositeDirection);
 
 		if (stargate != null) {
-			ProtoLogger.log(this.toString() + " mező " + oppositeDirection.toString() + " oldalán "
+			GameLogger.log(this.toString() + " mező " + oppositeDirection.toString() + " oldalán "
 					+ stargate.toString() + " csillagkapu van nyitva");
 
 			MapElement exitPosition = stargate.getExitPosition();
 			Direction exitDirection = stargate.getExitDirection();
 
 			if (exitPosition != null && exitDirection != null) {
-				ProtoLogger.log("A csillagkapu kijárata " + exitPosition.toString() + " " + exitDirection.toString()
+				GameLogger.log("A csillagkapu kijárata " + exitPosition.toString() + " " + exitDirection.toString()
 						+ " oldala");
 
 				player.setPosition(exitPosition);
 
-				ProtoLogger.log(player.toString() + " áthaladt a csillagkapun");
+				GameLogger.log(player.toString() + " áthaladt a csillagkapun");
 
 				player.turn(exitDirection);
 				player.move();
@@ -85,20 +85,20 @@ public class SpecialWall extends MapElement {
 		Stargate stargate = stargates.get(oppositeDirection);
 
 		if (stargate != null) {
-			ProtoLogger.log(this.toString() + " mező " + oppositeDirection.toString() + " oldalán "
+			GameLogger.log(this.toString() + " mező " + oppositeDirection.toString() + " oldalán "
 					+ stargate.toString() + " csillagkapu van nyitva");
 
 			MapElement exitPosition = stargate.getExitPosition();
 			Direction exitDirection = stargate.getExitDirection();
 
 			if (exitPosition != null && exitDirection != null) {
-				ProtoLogger.log("A csillagkapu kijárata " + exitPosition.toString() + " " + exitDirection.toString()
+				GameLogger.log("A csillagkapu kijárata " + exitPosition.toString() + " " + exitDirection.toString()
 						+ " oldala");
 
 				MapElement destination = exitPosition.getNeighbour(exitDirection);
 
 				if (destination != null) {
-					ProtoLogger.log("A doboz áthaladt a csillagkapun");
+					GameLogger.log("A doboz áthaladt a csillagkapun");
 
 					destination.handleBoxPutDown(exitDirection, box);
 
@@ -130,20 +130,20 @@ public class SpecialWall extends MapElement {
 		Stargate stargate = stargates.get(oppositeDirection);
 
 		if (stargate != null) {
-			ProtoLogger.log(this.toString() + " mező " + oppositeDirection.toString() + " oldalán "
+			GameLogger.log(this.toString() + " mező " + oppositeDirection.toString() + " oldalán "
 					+ stargate.toString() + " csillagkapu van nyitva");
 
 			MapElement exitPosition = stargate.getExitPosition();
 			Direction exitDirection = stargate.getExitDirection();
 
 			if (exitPosition != null && exitDirection != null) {
-				ProtoLogger.log("A csillagkapu kijárata " + exitPosition.toString() + " " + exitDirection.toString()
+				GameLogger.log("A csillagkapu kijárata " + exitPosition.toString() + " " + exitDirection.toString()
 						+ " oldala");
 
 				MapElement destination = exitPosition.getNeighbour(exitDirection);
 
 				if (destination != null) {
-					ProtoLogger.log("A játékos átnyúlt a csillagkapun");
+					GameLogger.log("A játékos átnyúlt a csillagkapun");
 
 					return destination.getBox(exitDirection);
 				}

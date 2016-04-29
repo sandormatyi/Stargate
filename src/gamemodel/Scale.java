@@ -1,6 +1,6 @@
 package gamemodel;
 
-import debug.ProtoLogger;
+import debug.GameLogger;
 
 public class Scale extends MapElement {
 
@@ -27,18 +27,18 @@ public class Scale extends MapElement {
 	 */
 	@Override
 	public void handlePlayerArrive(Direction dir, Player player) {
-		ProtoLogger.log("Sikeresen átlépett a következő mezőre: " + this.toString());
+		GameLogger.log("Sikeresen átlépett a következő mezőre: " + this.toString());
 
 		player.setPosition(this);
 
 		int playerWeight = player.getWeight();
 		weightCount += playerWeight;
 
-		ProtoLogger.log("A(z) " + this.toString() + " mezőre " + playerWeight + " egységnyi súly került, összesen "
+		GameLogger.log("A(z) " + this.toString() + " mezőre " + playerWeight + " egységnyi súly került, összesen "
 				+ weightCount + " súly van rajta");
 
 		if (door != null && weightCount >= weightLimit) {
-			ProtoLogger.log(
+			GameLogger.log(
 					"Mivel legalább " + weightLimit + " súly van a mérlegen, a(z) " + door.toString() + " kinyílt");
 
 			door.setOpened(true);
@@ -53,13 +53,13 @@ public class Scale extends MapElement {
 		int playerWeight = player.getWeight();
 		weightCount -= playerWeight;
 		if (weightCount < 0)
-			ProtoLogger.logError("Weight count of scale cannot be negative");
+			GameLogger.logError("Weight count of scale cannot be negative");
 
-		ProtoLogger.log("A(z) " + this.toString() + " mezőről " + playerWeight + " egységnyi súly lekerült, összesen "
+		GameLogger.log("A(z) " + this.toString() + " mezőről " + playerWeight + " egységnyi súly lekerült, összesen "
 				+ weightCount + " súly van rajta");
 
 		if (door != null && weightCount < weightLimit) {
-			ProtoLogger.log(
+			GameLogger.log(
 					"Mivel nincsen legalább " + weightLimit + " súly a mérlegen, a(z) " + door.toString() + " bezárul");
 			door.setOpened(false);
 		}
@@ -70,7 +70,7 @@ public class Scale extends MapElement {
 	 */
 	@Override
 	public void handleBoxPutDown(Direction dir, Box box) {
-		ProtoLogger.log("Sikeres dobozletétel a(z) " + this.toString() + " mezőre");
+		GameLogger.log("Sikeres dobozletétel a(z) " + this.toString() + " mezőre");
 
 		box.setPosition(this);
 
@@ -84,12 +84,12 @@ public class Scale extends MapElement {
 	 */
 	@Override
 	public void handleBoxPickUp(Box box) {
-		ProtoLogger.log("Sikeres dobozfelvétel a(z) " + this.toString() + " mezőről");
+		GameLogger.log("Sikeres dobozfelvétel a(z) " + this.toString() + " mezőről");
 
 		box.setPosition(null);
 
 		if (!boxes.remove(box)) {
-			ProtoLogger.logError("Trying to remove a box from a field that does not contain the box");
+			GameLogger.logError("Trying to remove a box from a field that does not contain the box");
 		}
 
 		decrementWeight();
@@ -111,7 +111,7 @@ public class Scale extends MapElement {
 	 */
 	@Override
 	public void handleReplicatorArrive(Direction dir, Replicator replicator) {
-		ProtoLogger.log("Sikeresen átlépett a következő mezőre: " + this.toString());
+		GameLogger.log("Sikeresen átlépett a következő mezőre: " + this.toString());
 
 		replicator.setPosition(this);
 		this.replicator = replicator;
@@ -133,11 +133,11 @@ public class Scale extends MapElement {
 		int previousWeightCount = weightCount;
 		weightCount += 1;
 
-		ProtoLogger.log("A(z) " + this.toString() + " mezőre 1 egységnyi súly került, összesen " + weightCount
+		GameLogger.log("A(z) " + this.toString() + " mezőre 1 egységnyi súly került, összesen " + weightCount
 				+ " súly van rajta");
 
 		if (weightCount >= weightLimit && previousWeightCount < weightLimit && door != null) {
-			ProtoLogger.log(
+			GameLogger.log(
 					"Mivel legalább " + weightLimit + " súly van a mérlegen, a(z) " + door.toString() + " kinyílt");
 
 			door.setOpened(true);
@@ -153,13 +153,13 @@ public class Scale extends MapElement {
 		weightCount -= 1;
 
 		if (weightCount < 0)
-			ProtoLogger.logError("Weight count of scale cannot be negative");
+			GameLogger.logError("Weight count of scale cannot be negative");
 
-		ProtoLogger.log("A(z) " + this.toString() + " mezőről 1 egységnyi súly lekerült, összesen " + weightCount
+		GameLogger.log("A(z) " + this.toString() + " mezőről 1 egységnyi súly lekerült, összesen " + weightCount
 				+ " súly van rajta");
 
 		if (weightCount < weightLimit && previousWeightCount >= weightLimit && door != null) {
-			ProtoLogger.log(
+			GameLogger.log(
 					"Mivel nincsen legalább " + weightLimit + " súly a mérlegen, a(z) " + door.toString() + " bezárul");
 
 			door.setOpened(false);

@@ -1,6 +1,6 @@
 package gamemodel;
 
-import debug.ProtoLogger;
+import debug.GameLogger;
 
 public class Road extends MapElement {
 
@@ -32,12 +32,12 @@ public class Road extends MapElement {
 	 */
 	@Override
 	public void handlePlayerArrive(Direction dir, Player player) {
-		ProtoLogger.log("Sikeresen átlépett a következő mezőre: " + this.toString());
+		GameLogger.log("Sikeresen átlépett a következő mezőre: " + this.toString());
 
 		player.setPosition(this);
 
 		if (zpm != null) {
-			ProtoLogger.log(player.toString() + " felvett egy ZPM-et");
+			GameLogger.log(player.toString() + " felvett egy ZPM-et");
 			zpm.handlePickUp(player);
 			zpm = null;
 		}
@@ -62,7 +62,7 @@ public class Road extends MapElement {
 	 */
 	@Override
 	public void handleReplicatorArrive(Direction dir, Replicator replicator) {
-		ProtoLogger.log("Sikeresen átlépett a következő mezőre: " + this.toString());
+		GameLogger.log("Sikeresen átlépett a következő mezőre: " + this.toString());
 
 		replicator.setPosition(this);
 		this.replicator = replicator;
@@ -81,7 +81,7 @@ public class Road extends MapElement {
 	 */
 	@Override
 	public void handleBoxPutDown(Direction dir, Box box) {
-		ProtoLogger.log("Sikeres dobozletétel a(z) " + this.toString() + " mezőre");
+		GameLogger.log("Sikeres dobozletétel a(z) " + this.toString() + " mezőre");
 
 		box.setPosition(this);
 
@@ -93,12 +93,12 @@ public class Road extends MapElement {
 	 */
 	@Override
 	public void handleBoxPickUp(Box box) {
-		ProtoLogger.log("Sikeres dobozfelvétel a(z) " + this.toString() + " mezőről");
+		GameLogger.log("Sikeres dobozfelvétel a(z) " + this.toString() + " mezőről");
 
 		box.setPosition(null);
 
 		if (!boxes.remove(box)) {
-			ProtoLogger.logError("Trying to remove a box from a field that does not contain the box");
+			GameLogger.logError("Trying to remove a box from a field that does not contain the box");
 		}
 	}
 }

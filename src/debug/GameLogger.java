@@ -2,7 +2,7 @@ package debug;
 
 import java.io.PrintStream;
 
-public class ProtoLogger {
+public class GameLogger {
 
 	/*
 	 * The logger only prints to the output if this field is true
@@ -36,7 +36,7 @@ public class ProtoLogger {
 	}
 
 	/*
-	 * Prints the given text to the standard output
+	 * Prints the given text to the output of the logger
 	 */
 	public static void log(String output) {
 		if (!printEnabled)
@@ -46,13 +46,22 @@ public class ProtoLogger {
 	}
 
 	/*
-	 * Prints the given text to the standard output (without indentation)
+	 * Prints the given text to the output of the logger (without indentation)
 	 */
 	public static void logCommand(String output) {
 		if (!printEnabled)
 			return;
 
 		outStream.println(output);
+	}
+
+	/*
+	 * Prints the given title to the output of the logger
+	 */
+	public static void printTitle(String title) {
+		outStream.println("------------------------------------------------------------------------------------");
+		outStream.println(title);
+		outStream.println("------------------------------------------------------------------------------------");
 	}
 
 	/*

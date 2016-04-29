@@ -3,7 +3,7 @@ package controller;
 import java.util.Vector;
 
 import controller.events.ControllerEventSource;
-import debug.ProtoLogger;
+import debug.GameLogger;
 import debug.RandomGenerator;
 import gamemodel.Direction;
 import gamemodel.Gap;
@@ -53,7 +53,7 @@ public class MapHelper {
 		Road road = null;
 
 		if (roads == null) {
-			ProtoLogger.logError("A MapHelper nem lett inicializálva!");
+			GameLogger.logError("A MapHelper nem lett inicializálva!");
 		} else {
 			road = roads.elementAt(RandomGenerator.getRandomNumber(roads.size()));
 		}

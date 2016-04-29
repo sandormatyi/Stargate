@@ -1,6 +1,6 @@
 package controller;
 
-import debug.ProtoLogger;
+import debug.GameLogger;
 
 public class GameRunner {
 
@@ -8,7 +8,7 @@ public class GameRunner {
 	 * Start the game
 	 */
 	public static Controller startGame() {
-		ProtoLogger.disablePrint();
+		GameLogger.disablePrint();
 
 		Game game = new Game("maps/GameMap.txt");
 		game.run();
@@ -16,12 +16,10 @@ public class GameRunner {
 		Controller controller = game.getController();
 
 		if (controller == null)
-			ProtoLogger.logError("Unable to create Controller for the game");
+			GameLogger.logError("Unable to create Controller for the game");
 
-		ProtoLogger.enablePrint();
-		ProtoLogger.logCommand("------------------------------------------------------------------------------------");
-		ProtoLogger.logCommand("Új játék kezdődött");
-		ProtoLogger.logCommand("------------------------------------------------------------------------------------");
+		GameLogger.enablePrint();
+		GameLogger.printTitle("Új játék kezdődött");
 
 		// Start the replicator
 		controller.moveReplicatorUntilDeath();

@@ -1,7 +1,7 @@
 package gamemodel;
 
 import controller.MapHelper;
-import debug.ProtoLogger;
+import debug.GameLogger;
 
 public class Gap extends MapElement {
 
@@ -17,7 +17,7 @@ public class Gap extends MapElement {
 	 */
 	@Override
 	public void handlePlayerArrive(Direction dir, Player player) {
-		ProtoLogger.log("Sikeresen átlépett a következő mezőre: " + this.toString());
+		GameLogger.log("Sikeresen átlépett a következő mezőre: " + this.toString());
 
 		player.setPosition(this);
 		player.die();
@@ -36,12 +36,12 @@ public class Gap extends MapElement {
 	 */
 	@Override
 	public void handleReplicatorArrive(Direction dir, Replicator replicator) {
-		ProtoLogger.log("Sikeresen átlépett a következő mezőre: " + this.toString());
+		GameLogger.log("Sikeresen átlépett a következő mezőre: " + this.toString());
 
 		replicator.setPosition(this);
 		replicator.destroy();
 		MapHelper.replaceWithRoad(this);
-		ProtoLogger.log("A(z) " + this.toString() + " mező Road mezővé alakult");
+		GameLogger.log("A(z) " + this.toString() + " mező Road mezővé alakult");
 	}
 
 	/*
@@ -49,8 +49,8 @@ public class Gap extends MapElement {
 	 */
 	@Override
 	public void handleBoxPutDown(Direction dir, Box box) {
-		ProtoLogger.log("Sikeres dobozletétel a(z) " + this.toString() + " mezőre");
-		ProtoLogger.log("Egy doboz elpusztult a(z) " + this.toString() + " mezőn");
+		GameLogger.log("Sikeres dobozletétel a(z) " + this.toString() + " mezőre");
+		GameLogger.log("Egy doboz elpusztult a(z) " + this.toString() + " mezőn");
 
 		box.setPosition(this);
 		box.respawn();
