@@ -51,7 +51,7 @@ public class SidePanel extends JPanel {
 		Font savedFont = g.getFont();
 		Color savedColor = g.getColor();
 
-		g.setColor(Color.black);
+		g.setColor(Color.white);
 		g.setFont(UIUtility.getMenuButtonFont());
 
 		g.drawString(playerType.toString() + ":", 10, 30);
