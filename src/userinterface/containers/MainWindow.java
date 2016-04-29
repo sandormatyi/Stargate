@@ -15,9 +15,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import controller.Controller;
-import controller.GameRunner;
-import userinterface.InputListener;
 import userinterface.UIUtility;
 
 public class MainWindow extends JFrame {
@@ -74,10 +71,6 @@ public class MainWindow extends JFrame {
 						GameWindow gameWindow = new GameWindow();
 						gameWindow.setVisible(true);
 
-						// Start a new game
-						Controller controller = GameRunner.startGame();
-						gameWindow.addKeyListener(new InputListener(controller));
-
 						// Close the main window
 						MainWindow.this.dispose();
 					}
@@ -125,8 +118,7 @@ public class MainWindow extends JFrame {
 		setResizable(false);
 
 		setTitle("Stargate");
-		// TODO: Change to EXIT_ON_CLOSE
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 	}
 

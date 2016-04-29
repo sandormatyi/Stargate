@@ -1,4 +1,0 @@
-ONeill elfordult EAST irányba
-ONeill a(z) A1 (Road) mezőről a(z) A2 (Wall) mezőre próbál lépni
-	Sikertelen lépés: ONeill visszalökődött az előző A1 (Road) mezőre
-	Sikeresen átlépett a következő mezőre: A1 (Road)

@@ -9,9 +9,13 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
+import controller.Controller;
+import controller.GameRunner;
 import controller.PlayerType;
 import controller.events.ControllerEventSource;
 import controller.events.IGameEventListener;
+import userinterface.InputListener;
+import userinterface.Main;
 
 public class GameWindow extends JFrame implements IGameEventListener {
 	/*
@@ -23,8 +27,10 @@ public class GameWindow extends JFrame implements IGameEventListener {
 	 * Initializes the application window
 	 */
 	public GameWindow() {
+		// Set the layout manager
 		setLayout(new FlowLayout());
 
+		// Create and add the panels of the window
 		SidePanel leftSidePanel = new SidePanel(PlayerType.ONeill);
 		sidePanels.put(PlayerType.ONeill, leftSidePanel);
 		add(leftSidePanel);
@@ -41,7 +47,6 @@ public class GameWindow extends JFrame implements IGameEventListener {
 		setResizable(false);
 
 		setTitle("Stargate");
-		// TODO: Change to EXIT_ON_CLOSE
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 
@@ -49,6 +54,19 @@ public class GameWindow extends JFrame implements IGameEventListener {
 		ControllerEventSource.subscribe(this);
 
 		gamePanel.initialize();
+
+		// Start a new game and initalize the controls
+		final Controller controller = GameRunner.startGame();
+		addKeyListener(new InputListener(controller));
+
+		// When the window is closed, return to the main menu
+		addWindowListener(new java.awt.event.WindowAdapter() {
+			@Override
+			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+				controller.gameOver();
+				Main.showMenu();
+			}
+		});
 	}
 
 	/*

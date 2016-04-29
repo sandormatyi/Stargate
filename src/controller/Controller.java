@@ -88,7 +88,7 @@ public class Controller implements IModelEventListener {
 	/*
 	 * Disposes all the controller's resources
 	 */
-	void gameOver() {
+	public void gameOver() {
 		isProjectileMoving = false;
 		isReplicatorMoving = false;
 		players.clear();
@@ -195,49 +195,6 @@ public class Controller implements IModelEventListener {
 	}
 
 	/*
-	 * Make the player pick up a box
-	 */
-	// TODO: Delete after tests have run successfully
-	@Deprecated
-	void pickUpBox(PlayerType playerType) {
-		Player player = players.get(playerType);
-
-		if (player == null) {
-			ProtoLogger.logError("Trying to pick up a box with a player that does not exist");
-			return;
-		}
-
-		player.pickUpBox();
-
-		// Check if the players are still alive
-		for (Player p : players.values()) {
-			if (p != null && !p.isAlive()) {
-				// Send notification that a player has been killed
-				ControllerEventSource.notifyMovableDestroyed(p);
-
-				game.stop(false);
-				return;
-			}
-		}
-	}
-
-	/*
-	 * Make the player put down a box
-	 */
-	// TODO: Delete after tests have run successfully
-	@Deprecated
-	void putDownBox(PlayerType playerType) {
-		Player player = players.get(playerType);
-
-		if (player == null) {
-			ProtoLogger.logError("Trying to put down a box with a player that does not exist");
-			return;
-		}
-
-		player.putDownBox();
-	}
-
-	/*
 	 * Move the replicator until it dies
 	 */
 	public void moveReplicatorUntilDeath() {
@@ -251,6 +208,7 @@ public class Controller implements IModelEventListener {
 					final Direction dir = Direction.values()[RandomGenerator
 							.getRandomNumber(Direction.values().length)];
 
+					// Create the Runnable object that moves the replicator
 					Runnable moveReplicator = new Runnable() {
 						@Override
 						public void run() {
@@ -298,6 +256,8 @@ public class Controller implements IModelEventListener {
 		// Send notification that a ZPM has been picked up
 		ControllerEventSource.notifyZPMPickedUp(type, zpm);
 
+		// If it was the second ZPM picked up by ONeill, generate a new on on a
+		// random Road
 		if (player == players.get(PlayerType.ONeill)) {
 			if (game.getScore(player) % 2 == 0) {
 				Road randomRoad = MapHelper.getRandomRoad();

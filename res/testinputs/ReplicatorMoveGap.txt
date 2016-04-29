@@ -1,2 +1,0 @@
-replicator east
-replicator east

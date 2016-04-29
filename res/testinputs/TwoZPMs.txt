@@ -1,4 +1,0 @@
-zpm_random off
-oneill east
-oneill east
-oneill east

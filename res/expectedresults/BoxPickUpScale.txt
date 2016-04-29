@@ -1,5 +1,0 @@
-ONeill elfordult EAST irányba
-ONeill megpróbál felvenni egy dobozt a(z) A2 (Scale) mezőről
-	Sikeres dobozfelvétel a(z) A2 (Scale) mezőről
-	A(z) A2 (Scale) mezőről 1 egységnyi súly lekerült, összesen 1 súly van rajta
-	Mivel nincsen legalább 2 súly a mérlegen, a(z) A3 (Door) bezárul

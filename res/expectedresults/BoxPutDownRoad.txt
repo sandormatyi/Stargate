@@ -1,5 +1,0 @@
-ONeill elfordult EAST irányba
-ONeill megpróbál felvenni egy dobozt a(z) A2 (Road) mezőről
-	Sikeres dobozfelvétel a(z) A2 (Road) mezőről
-ONeill megpróbál letenni egy dobozt a(z) A2 (Road) mezőre
-	Sikeres dobozletétel a(z) A2 (Road) mezőre

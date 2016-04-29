@@ -17,6 +17,9 @@ public class InputListener implements KeyListener {
 		this.controller = controller;
 	}
 
+	/*
+	 * Called when a key is pressed
+	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
 		switch (e.getKeyCode()) {
@@ -75,13 +78,12 @@ public class InputListener implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
+		// Do nothing
 
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
+		// Do nothing
 	}
-
 }

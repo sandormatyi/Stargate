@@ -1,3 +1,0 @@
-ONeill elfordult EAST irányba
-ONeill YELLOW lövedéket lőtt EAST irányba
-	YELLOW lövedék megsemmisült a(z) A2 (Wall) mezőn

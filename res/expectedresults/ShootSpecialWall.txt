@@ -1,4 +1,0 @@
-ONeill elfordult EAST irányba
-ONeill YELLOW lövedéket lőtt EAST irányba
-	YELLOW csillagkaput nyitott A2 (SpecialWall) mező WEST oldalán
-	YELLOW lövedék megsemmisült a(z) A2 (SpecialWall) mezőn
