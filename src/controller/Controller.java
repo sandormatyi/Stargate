@@ -293,7 +293,8 @@ public class Controller implements IModelEventListener {
 					SwingUtilities.invokeLater(new Runnable() {
 						@Override
 						public void run() {
-							projectile.move();
+							if (projectile.isAlive())
+								projectile.move();
 						}
 					});
 
