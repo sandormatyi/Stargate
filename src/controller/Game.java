@@ -129,7 +129,8 @@ public class Game {
 		}
 
 		// Send notification that the game is over
-		ControllerEventSource.notifyGameOver(winner.toString());
+		ControllerEventSource.notifyGameOver(winner == null ? null : winner.toString());
+
 		controller.gameOver();
 
 		controller = null;
