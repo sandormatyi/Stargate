@@ -7,6 +7,7 @@ public class Projectile extends Movable {
 
 	private Direction direction;
 	private ProjectileType type;
+	private boolean isAlive = true;
 
 	public Projectile(MapElement position, Direction direction, ProjectileType type) {
 		super(position);
@@ -36,6 +37,13 @@ public class Projectile extends Movable {
 	@Override
 	public Direction getDirection() {
 		return direction;
+	}
+
+	/*
+	 * Returns if the projectile is alive
+	 */
+	public boolean isAlive() {
+		return isAlive;
 	}
 
 	/*
@@ -84,6 +92,8 @@ public class Projectile extends Movable {
 	 */
 	public void destroy() {
 		GameLogger.log(this.toString() + " lövedék megsemmisült a(z) " + position.toString() + " mezőn");
+
+		isAlive = false;
 
 		ModelEventSource.notifyProjectileDestroyed(this);
 	}

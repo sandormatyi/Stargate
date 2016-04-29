@@ -5,8 +5,6 @@ import java.awt.Graphics;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.SwingUtilities;
-
 import controller.events.ControllerEventSource;
 import controller.events.IMapEventListener;
 import debug.UILogger;
@@ -20,7 +18,7 @@ import userinterface.elements.UIElement;
 
 public class MapView implements IMapEventListener {
 	/*
-	 * The container of the MapView
+	 * The container of the MapView (the GamePanel)
 	 */
 	Container parent;
 
@@ -44,9 +42,6 @@ public class MapView implements IMapEventListener {
 	 * Draws the map using the Graphics object given as a parameter
 	 */
 	public void drawMap(Graphics g) {
-		if (g == null)
-			return;
-
 		for (UIElement field : fields.values())
 			field.draw(g);
 
@@ -55,7 +50,7 @@ public class MapView implements IMapEventListener {
 	}
 
 	/*
-	 * Creates a new UIMapElement and stores it in the set
+	 * Creates a new UIElement and stores it in the set
 	 */
 	@Override
 	public void onMapElementCreated(MapElement mapElement) {
@@ -63,17 +58,13 @@ public class MapView implements IMapEventListener {
 
 		UILogger.log(mapElement + " changed");
 
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				parent.repaint();
-				UILogger.log("GamePanel.repaint()");
-			}
-		});
+		// Notify the GamePanel that its contents need to be repainted
+		parent.repaint();
+		UILogger.log("GamePanel.repaint()");
 	}
 
 	/*
-	 * Removes the MapElement from the set
+	 * Removes the UIElement from the set
 	 */
 	@Override
 	public void onMapElementRemoved(MapElement mapElement) {
@@ -81,17 +72,13 @@ public class MapView implements IMapEventListener {
 
 		UILogger.log(mapElement + " removed");
 
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				parent.repaint();
-				UILogger.log("GamePanel.repaint()");
-			}
-		});
+		// Notify the GamePanel that its contents need to be repainted
+		parent.repaint();
+		UILogger.log("GamePanel.repaint()");
 	}
 
 	/*
-	 * Creates a new UIMapElement and stores it in the set
+	 * Creates a new RotatableElement for the stargate and stores it in the set
 	 */
 	@Override
 	public void onStargateOpened(MapElement mapElement, ProjectileType type, Direction direction) {
@@ -100,13 +87,9 @@ public class MapView implements IMapEventListener {
 
 		UILogger.log(type + " changed");
 
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				parent.repaint();
-				UILogger.log("GamePanel.repaint()");
-			}
-		});
+		// Notify the GamePanel that its contents need to be repainted
+		parent.repaint();
+		UILogger.log("GamePanel.repaint()");
 	}
 
 	/*
@@ -118,12 +101,8 @@ public class MapView implements IMapEventListener {
 
 		UILogger.log(door + " changed");
 
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				parent.repaint();
-				UILogger.log("GamePanel.repaint()");
-			}
-		});
+		// Notify the GamePanel that its contents need to be repainted
+		parent.repaint();
+		UILogger.log("GamePanel.repaint()");
 	}
 }

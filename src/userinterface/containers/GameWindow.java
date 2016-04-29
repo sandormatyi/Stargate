@@ -19,12 +19,12 @@ import userinterface.Main;
 
 public class GameWindow extends JFrame implements IGameEventListener {
 	/*
-	 * Associative container for the panels
+	 * Associative container for the side panels
 	 */
 	Map<PlayerType, SidePanel> sidePanels = new HashMap<PlayerType, SidePanel>();
 
 	/*
-	 * Initializes the application window
+	 * Initializes the game window
 	 */
 	public GameWindow() {
 		// Set the layout manager

@@ -20,7 +20,6 @@ public class UILogger {
 	 * Prints the given text to the standard output
 	 */
 	public static void log(String output) {
-		// outStream.println("--- " + Thread.currentThread().getName() + " --- "
-		// + output);
+		outStream.println("--- " + Thread.currentThread().getName() + " --- " + output);
 	}
 }

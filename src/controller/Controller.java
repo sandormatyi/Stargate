@@ -48,14 +48,9 @@ public class Controller implements IModelEventListener {
 	private Replicator replicator;
 
 	/*
-	 * Stores the current state of the Projectile
+	 * Stores the current state of the replicator
 	 */
-	private boolean isProjectileMoving = false;
-
-	/*
-	 * Stores the current state of the Projectile
-	 */
-	private boolean isReplicatorMoving = false;
+	private volatile boolean isReplicatorMoving = false;
 
 	/*
 	 * Default constructor
@@ -89,7 +84,6 @@ public class Controller implements IModelEventListener {
 	 * Disposes all the controller's resources
 	 */
 	public void gameOver() {
-		isProjectileMoving = false;
 		isReplicatorMoving = false;
 		players.clear();
 		replicator = null;
@@ -198,8 +192,10 @@ public class Controller implements IModelEventListener {
 	 * Move the replicator until it dies
 	 */
 	public void moveReplicatorUntilDeath() {
+
 		// Hand off the moving of the replicator to a background thread
 		new Thread(new Runnable() {
+
 			@Override
 			public void run() {
 				isReplicatorMoving = (replicator != null);
@@ -225,7 +221,7 @@ public class Controller implements IModelEventListener {
 						e.printStackTrace();
 					}
 
-					// Move the replicator again
+					// If the replicator is still alive, move it again
 					if (isReplicatorMoving)
 						SwingUtilities.invokeLater(moveReplicator);
 
@@ -285,13 +281,14 @@ public class Controller implements IModelEventListener {
 	 */
 	@Override
 	public void onProjectileCreated(final Projectile projectile) {
+
 		// Hand off the moving of the projectile to a background thread
 		new Thread(new Runnable() {
+
 			@Override
 			public void run() {
-				isProjectileMoving = true;
+				while (projectile.isAlive()) {
 
-				while (isProjectileMoving) {
 					// The background thread needs to post to the event loop
 					SwingUtilities.invokeLater(new Runnable() {
 						@Override
@@ -315,8 +312,6 @@ public class Controller implements IModelEventListener {
 	 */
 	@Override
 	public void onProjectileDestroyed(Projectile projectile) {
-		isProjectileMoving = false;
-
 		// Send notification that a movable has been destroyed
 		ControllerEventSource.notifyMovableDestroyed(projectile);
 	}

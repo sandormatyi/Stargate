@@ -5,8 +5,6 @@ import java.awt.Graphics;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.SwingUtilities;
-
 import controller.events.ControllerEventSource;
 import controller.events.IZPMEventListener;
 import debug.UILogger;
@@ -37,9 +35,6 @@ public class GameStateView implements IZPMEventListener {
 	 * Draws the ZPMs using the Graphics object given as a parameter
 	 */
 	public void drawZPMs(Graphics g) {
-		if (g == null)
-			return;
-
 		for (UIElement zpm : zpms.values())
 			zpm.draw(g);
 	}
@@ -53,17 +48,13 @@ public class GameStateView implements IZPMEventListener {
 
 		UILogger.log(zpm + " changed");
 
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				parent.repaint();
-				UILogger.log("GamePanel.repaint()");
-			}
-		});
+		// Notify the GamePanel that its contents need to be repainted
+		parent.repaint();
+		UILogger.log("GamePanel.repaint()");
 	}
 
 	/*
-	 * Removes the ZPM from the set and invalidates the parent view
+	 * Removes the ZPM from the set
 	 */
 	@Override
 	public void onZPMPickedUp(ZPM zpm) {
@@ -71,12 +62,8 @@ public class GameStateView implements IZPMEventListener {
 
 		UILogger.log(zpm + " removed");
 
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				parent.repaint();
-				UILogger.log("GamePanel.repaint()");
-			}
-		});
+		// Notify the GamePanel that its contents need to be repainted
+		parent.repaint();
+		UILogger.log("GamePanel.repaint()");
 	}
 }

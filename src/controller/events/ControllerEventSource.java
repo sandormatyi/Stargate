@@ -82,175 +82,114 @@ public class ControllerEventSource {
 	/*
 	 * Notifies the observers that a MapElement was created
 	 */
-	public static void notifyMapElementCreated(final MapElement mapElement) {
+	public static void notifyMapElementCreated(MapElement mapElement) {
 		assertIsOnUIThread();
 
 		for (final IMapEventListener listener : mapEventListeners)
-			SwingUtilities.invokeLater(new Runnable() {
-				@Override
-				public void run() {
-					listener.onMapElementCreated(mapElement);
-				}
-			});
+			listener.onMapElementCreated(mapElement);
 	}
 
 	/*
 	 * Notifies the observers that a MapElement was removed
 	 */
-	public static void notifyMapElementRemoved(final MapElement mapElement) {
+	public static void notifyMapElementRemoved(MapElement mapElement) {
 		assertIsOnUIThread();
 
 		for (final IMapEventListener listener : mapEventListeners)
-			SwingUtilities.invokeLater(new Runnable() {
-				@Override
-				public void run() {
-					listener.onMapElementRemoved(mapElement);
-				}
-			});
+			listener.onMapElementRemoved(mapElement);
 	}
 
 	/*
 	 * Notifies the observers that a Stargate was opened
 	 */
-	public static void notifyStargateOpened(final MapElement mapElement, final ProjectileType type,
-			final Direction direction) {
+	public static void notifyStargateOpened(MapElement mapElement, ProjectileType type, Direction direction) {
 		assertIsOnUIThread();
 
 		for (final IMapEventListener listener : mapEventListeners)
-			SwingUtilities.invokeLater(new Runnable() {
-				@Override
-				public void run() {
-					listener.onStargateOpened(mapElement, type, direction);
-				}
-			});
+			listener.onStargateOpened(mapElement, type, direction);
 	}
 
 	/*
 	 * Notifies the observers that a Door was opened or closed
 	 */
-	public static void notifyDoorStateChanged(final Door door) {
+	public static void notifyDoorStateChanged(Door door) {
 		assertIsOnUIThread();
 
 		for (final IMapEventListener listener : mapEventListeners)
-			SwingUtilities.invokeLater(new Runnable() {
-				@Override
-				public void run() {
-					listener.onDoorStateChanged(door);
-				}
-			});
+			listener.onDoorStateChanged(door);
 	}
 
 	/*
 	 * Notifies the observers that a Movable has been changed
 	 */
-	public static void notifyMovableChanged(final Movable movable) {
+	public static void notifyMovableChanged(Movable movable) {
 		assertIsOnUIThread();
 
 		for (final IMovableEventListener listener : movableEventListeners)
-			SwingUtilities.invokeLater(new Runnable() {
-				@Override
-				public void run() {
-					listener.onMovableChanged(movable);
-				}
-			});
+			listener.onMovableChanged(movable);
 	}
 
 	/*
 	 * Notifies the observers that a Movable has been destroyed
 	 */
-	public static void notifyMovableDestroyed(final Movable movable) {
+	public static void notifyMovableDestroyed(Movable movable) {
 		assertIsOnUIThread();
 
 		for (final IMovableEventListener listener : movableEventListeners)
-			SwingUtilities.invokeLater(new Runnable() {
-				@Override
-				public void run() {
-					listener.onMovableDestroyed(movable);
-				}
-			});
+			listener.onMovableDestroyed(movable);
 	}
 
 	/*
 	 * Notifies the observers that a box has been put down
 	 */
-	public static void notifyBoxPutDown(final Box box, final MapElement mapElement) {
+	public static void notifyBoxPutDown(Box box, MapElement mapElement) {
 		assertIsOnUIThread();
 
 		for (final IMovableEventListener listener : movableEventListeners)
-			SwingUtilities.invokeLater(new Runnable() {
-				@Override
-				public void run() {
-					listener.onBoxPutDown(box, mapElement);
-				}
-			});
+			listener.onBoxPutDown(box, mapElement);
 	}
 
 	/*
 	 * Notifies the observers that a box has been picked up
 	 */
-	public static void notifyBoxPickedUp(final Box box, final MapElement mapElement) {
+	public static void notifyBoxPickedUp(Box box, MapElement mapElement) {
 		assertIsOnUIThread();
 
 		for (final IMovableEventListener listener : movableEventListeners)
-			SwingUtilities.invokeLater(new Runnable() {
-				@Override
-				public void run() {
-					listener.onBoxPickedUp(box, mapElement);
-				}
-			});
+			listener.onBoxPickedUp(box, mapElement);
 	}
 
 	/*
 	 * Notifies the observers that a ZPM has been created
 	 */
-	public static void notifyZPMCreated(final ZPM zpm, final MapElement position) {
+	public static void notifyZPMCreated(ZPM zpm, MapElement position) {
 		assertIsOnUIThread();
 
-		for (final IZPMEventListener listener : zpmEventListeners)
-			SwingUtilities.invokeLater(new Runnable() {
-				@Override
-				public void run() {
-					listener.onZPMCreated(zpm, position);
-				}
-			});
+		for (IZPMEventListener listener : zpmEventListeners)
+			listener.onZPMCreated(zpm, position);
 	}
 
 	/*
 	 * Notifies the observers that a ZPM has been picked up
 	 */
-	public static void notifyZPMPickedUp(final PlayerType player, final ZPM zpm) {
+	public static void notifyZPMPickedUp(PlayerType player, ZPM zpm) {
 		assertIsOnUIThread();
 
 		for (final IZPMEventListener listener : zpmEventListeners)
-			SwingUtilities.invokeLater(new Runnable() {
-				@Override
-				public void run() {
-					listener.onZPMPickedUp(zpm);
-				}
-			});
+			listener.onZPMPickedUp(zpm);
 
-		for (final IGameEventListener listener : gameEventListeners)
-			SwingUtilities.invokeLater(new Runnable() {
-				@Override
-				public void run() {
-					listener.onScoreIncreased(player);
-				}
-			});
+		for (IGameEventListener listener : gameEventListeners)
+			listener.onScoreIncreased(player);
 	}
 
 	/*
 	 * Notifies the observers that the game is over
 	 */
-	public static void notifyGameOver(final String winner) {
+	public static void notifyGameOver(String winner) {
 		assertIsOnUIThread();
 
-		for (final IGameEventListener listener : gameEventListeners)
-			SwingUtilities.invokeLater(new Runnable() {
-				@Override
-				public void run() {
-					listener.onGameOver(winner);
-				}
-			});
+		for (IGameEventListener listener : gameEventListeners)
+			listener.onGameOver(winner);
 	}
 
 	public static void assertIsOnUIThread() {

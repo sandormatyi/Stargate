@@ -26,9 +26,7 @@ public class RotatableElement extends UIElement {
 		AffineTransform tx = new AffineTransform();
 		tx.rotate(Math.toRadians(rotationAngle), bufferedImage.getWidth() / 2, bufferedImage.getHeight() / 2);
 
-		AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-		bufferedImage = op.filter(bufferedImage, null);
-
-		this.image = bufferedImage;
+		// Store the rotated image
+		this.image = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR).filter(bufferedImage, null);
 	}
 }

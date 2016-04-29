@@ -5,6 +5,7 @@ import java.awt.event.KeyListener;
 
 import controller.Controller;
 import controller.PlayerType;
+import debug.UILogger;
 import gamemodel.Direction;
 
 public class InputListener implements KeyListener {
@@ -22,6 +23,8 @@ public class InputListener implements KeyListener {
 	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
+		UILogger.log(e.getKeyText(e.getKeyCode()) + " pressed");
+
 		switch (e.getKeyCode()) {
 		/*
 		 * O'Neill's commands
