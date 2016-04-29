@@ -43,7 +43,7 @@ public class CreditsWindow extends JFrame {
 			}
 		});
 
-		timer = new Timer(50, new ActionListener() {
+		timer = new Timer(200, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (imageAlpha < 0.95) {
