@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -48,12 +49,17 @@ public class MainWindow extends JFrame {
 	public MainWindow() {
 		// The background panel of the window
 		JPanel backgroundPanel = new JPanel() {
+			/*
+			 * The backround image of the window
+			 */
+			private Image backgroundImage = new ImageIcon("images/mainmenu.png").getImage();
+
 			@Override
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
 
 				// Display the background image of the main menu
-				g.drawImage(new ImageIcon("images/mainmenu.png").getImage(), 0, 0, null);
+				g.drawImage(backgroundImage, 0, 0, null);
 			}
 		};
 		backgroundPanel.setLayout(new BoxLayout(backgroundPanel, BoxLayout.Y_AXIS));
