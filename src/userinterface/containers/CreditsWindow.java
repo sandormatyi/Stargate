@@ -4,6 +4,7 @@ import java.awt.AlphaComposite;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -26,6 +27,16 @@ public class CreditsWindow extends JFrame {
 	public CreditsWindow() {
 		// The background panel of the window
 		setContentPane(new JPanel() {
+			/*
+			 * The background image of the window
+			 */
+			private Image backgroundImage = new ImageIcon("images/credits.png").getImage();
+
+			/*
+			 * The foreground image
+			 */
+			private Image LZ = new ImageIcon("images/LZ.png").getImage();
+
 			@Override
 			public void paintComponent(Graphics g) {
 				super.paintComponent(g);
@@ -34,10 +45,10 @@ public class CreditsWindow extends JFrame {
 
 				// Display the background image of the main menu
 				g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_IN, 1));
-				g.drawImage(new ImageIcon("images/credits.png").getImage(), 0, 0, null);
+				g.drawImage(backgroundImage, 0, 0, null);
 
 				g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, imageAlpha));
-				g2d.drawImage(new ImageIcon("images/LZ.png").getImage(), 415 - 96, 480 - 192, null);
+				g2d.drawImage(LZ, 415 - 96, 480 - 192, null);
 
 				g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_IN, 1));
 			}
