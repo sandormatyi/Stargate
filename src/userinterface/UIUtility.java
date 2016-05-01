@@ -67,13 +67,6 @@ public class UIUtility {
 	}
 
 	/*
-	 * Returns the delay between two user inputs
-	 */
-	public static int getInputDelay() {
-		return 1000;
-	}
-
-	/*
 	 * Gets the rotation angle specified by the direction (starting from north)
 	 */
 	public static int getRotationAngle(Direction dir) {
