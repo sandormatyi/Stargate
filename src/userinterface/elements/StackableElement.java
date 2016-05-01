@@ -54,7 +54,7 @@ public class StackableElement extends UIElement {
 		int center_x = Math.round(((float) position.x + 0.33f) * UIUtility.getScale());
 		int center_y = Math.round(((float) position.y + 0.66f) * UIUtility.getScale());
 
-		g.setColor(Color.decode("0x00ffff"));
+		g.setColor(Color.decode("0xA00000"));
 		g.setFont(UIUtility.getBoxCountFont());
 		g.drawString("" + numberOfStacks, center_x, center_y);
 
