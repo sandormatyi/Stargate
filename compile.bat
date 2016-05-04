@@ -1,46 +1,67 @@
-@echo off
-set OLDDIR=%CD%
+@ECHO OFF
+SET OLDDIR=%CD%
+SET ERRORLEVEL=
 
 cd /d %~dp0
 
-echo --- Cleaning project... ---
+ECHO --- Cleaning project... ---
 IF EXIST bin rmdir /s/q bin
 mkdir bin
 
-set "sources=src\controller\*.java src\controller\events\*.java src\debug\*.java src\gamemodel\*.java src\gamemodel\events\*.java src\userinterface\*.java src\userinterface\containers\*.java src\userinterface\elements\*.java src\userinterface\viewobjects\*.java"
+ECHO --- Compiling... ---
+SET "sources=src\controller\*.java src\controller\events\*.java src\debug\*.java src\gamemodel\*.java src\gamemodel\events\*.java src\userinterface\*.java src\userinterface\containers\*.java src\userinterface\elements\*.java src\userinterface\viewobjects\*.java"
 
-javac -encoding UTF-8 -d .\bin %sources%
+javac -encoding UTF-8 -d .\bin %sources% 2>nul
 
-if errorlevel==1 (
-	echo A 'javac.exe' eleresi utvonala hianyzik a PATH kornyezeti valtozobol! Ujraprobalkozom a 'JAVA_HOME'-mal...
-	set errorlevel=0
-	echo.
-	"%JAVA_HOME%/bin/javac" -encoding UTF-8 -d .\bin %sources%
+IF ERRORLEVEL==1 (
+	ECHO.
+	ECHO A 'javac.exe' eleresi utvonala hianyzik a PATH kornyezeti valtozobol!
+	ECHO Ujraprobalkozom a 'JAVA_HOME'-mal...
+	ECHO.
+	"%JAVA_HOME%/bin/javac" -encoding UTF-8 -d .\bin %sources% 2>nul
 
-	if errorlevel==1 (
-		echo A 'JAVA_HOME' kornyezeti valtozo sincsen beallitva! Meg egy utolso probalkozas...
-		set errorlevel=0
-		echo.
+	IF ERRORLEVEL==2 (
+		ECHO.
+		ECHO A 'JAVA_HOME' kornyezeti valtozo sincsen beallitva!
+		ECHO Meg egy utolso probalkozas...
+		ECHO.
 
-		for %i in (javac.exe) do @%i -encoding UTF-8 -d .\bin %sources%   %~$PATH:i
+		FOR /f %%j in ("javac.exe") DO (
+    			SET JAVA_HOME=%%~dp$PATH:j
+		)
 
-		if errorlevel==1 (
-			echo Ez sem sikerult, kerlek, add hozza kezzel a 'javac.exe'-t tartalmazo konyvtar eleresi utvonalat a PATH-hoz vagy allitsd be a 'JAVA_HOME' kornyezeti valtozot es probalkozz ujra a forditassal!
-			rmdir /s/q bin
-			goto :end
-			)
+		IF "%JAVA_HOME%."=="." (
+			ECHO.
+   			ECHO Ez sem sikerult!
+			ECHO Kerlek, add hozza kezzel a 'javac.exe'-t tartalmazo konyvtar eleresi utvonalat a PATH-hoz vagy allitsd be a 'JAVA_HOME' kornyezeti valtozot es probalkozz ujra a forditassal!
+			ECHO.
+			GOTO :error
+		)
+
+		"%JAVA_HOME%/bin/javac" -encoding UTF-8 -d .\bin %sources% 2>nul
+
+		IF ERRORLEVEL==3 (
+			ECHO.
+   			ECHO Ez sem sikerult!
+			ECHO Kerlek, add hozza kezzel a 'javac.exe'-t tartalmazo konyvtar eleresi utvonalat a PATH-hoz vagy allitsd be a 'JAVA_HOME' kornyezeti valtozot es probalkozz ujra a forditassal!
+			ECHO.
+			GOTO :error
 		)
 	)
+)
 
-echo --- Compiling... ---
-
-
-echo --- Copying resources... ---
+ECHO --- Copying resources... ---
 robocopy ./res ./bin /E >nul
 
-echo --- Compilation finished ---
-echo.
+ECHO --- Compilation successful ---
+ECHO.
+GOTO :end
+
+:ERROR
+rmdir /s/q bin
 
 :end
 chdir /d "%OLDDIR%"
-pause
+PAUSE
+
+EXIT /b %ERRORLEVEL%
