@@ -1,7 +1,7 @@
 @echo off
-set OLDDIR=%CD%
+set OLDDIR="%CD%"
 
-cd /d %~dp0
+cd /d "%~dp0"
 cd .\bin 2>nul
 if errorlevel==1 (
 	echo Futtatas elott forditsd le a forraskodot!
@@ -14,4 +14,4 @@ chcp 65001 >nul
 "%JAVA_HOME%/bin/java" userinterface.Main
 
 :end
-chdir /d %OLDDIR%
+chdir /d "%OLDDIR%"
