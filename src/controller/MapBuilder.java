@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -68,6 +69,8 @@ class MapBuilder {
 		if (resURL == null)
 			throw new FileNotFoundException("Nem sikerült a megadott pálya beolvasása: " + mapFilePath);
 
+		String mapPath = URLDecoder.decode(resURL.getPath(), "UTF-8");
+
 		// A matrix for the temporary storage of the MapElements
 		List<List<MapElement>> mapElements = new ArrayList<List<MapElement>>();
 
@@ -79,7 +82,7 @@ class MapBuilder {
 		// Store the roads to initialize MapHelper
 		Vector<Road> roads = new Vector<Road>();
 
-		FileReader input = new FileReader(resURL.getPath());
+		FileReader input = new FileReader(mapPath);
 		BufferedReader bufRead = new BufferedReader(input);
 
 		try {

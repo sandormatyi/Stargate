@@ -2,7 +2,9 @@ package userinterface;
 
 import java.awt.Font;
 import java.awt.Image;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.net.URLDecoder;
 import java.security.InvalidParameterException;
 
 import javax.swing.ImageIcon;
@@ -21,14 +23,8 @@ public class UIUtility {
 	 */
 	public static Image getImage(Object gameObject) {
 		String relPath = gameObject.getClass().getSimpleName().toLowerCase();
-		URL resURL = UIUtility.class.getClassLoader().getResource("images/gameobjects/" + relPath + ".png");
-
-		if (resURL == null) {
-			UILogger.log("File not found: images/gameobjects/" + relPath + ".png");
-			return null;
-		}
-
-		return new ImageIcon(resURL).getImage();
+		
+		return getImage(relPath);
 	}
 
 	/*
@@ -42,7 +38,15 @@ public class UIUtility {
 			return null;
 		}
 
-		return new ImageIcon(resURL).getImage();
+		String resPath = resURL.getPath();
+
+		try {
+			resPath = URLDecoder.decode(resURL.getPath(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// Do nothing
+		}
+
+		return new ImageIcon(resPath).getImage();
 	}
 
 	/*
