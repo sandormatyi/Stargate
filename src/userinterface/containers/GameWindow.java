@@ -24,6 +24,11 @@ public class GameWindow extends JFrame implements IGameEventListener {
 	Map<PlayerType, SidePanel> sidePanels = new HashMap<PlayerType, SidePanel>();
 
 	/*
+	 * The Controller object for the current game
+	 */
+	Controller controller = null;
+
+	/*
 	 * Initializes the game window
 	 */
 	public GameWindow() {
@@ -56,7 +61,7 @@ public class GameWindow extends JFrame implements IGameEventListener {
 		gamePanel.initialize();
 
 		// Start a new game and initalize the controls
-		final Controller controller = GameRunner.startGame();
+		controller = GameRunner.startGame();
 		addKeyListener(new InputListener(controller));
 
 		// When the window is closed, return to the main menu

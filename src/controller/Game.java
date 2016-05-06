@@ -7,7 +7,6 @@ import controller.MapBuilder.MapBuilderException;
 import controller.events.ControllerEventSource;
 import debug.GameLogger;
 import gamemodel.Player;
-import gamemodel.events.ModelEventSource;
 
 public class Game {
 
@@ -72,8 +71,6 @@ public class Game {
 	 * Start the game
 	 */
 	public void run() {
-		ModelEventSource.clear();
-
 		MapBuilder builder = new MapBuilder();
 
 		try {

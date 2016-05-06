@@ -20,6 +20,7 @@ import gamemodel.Projectile;
 import gamemodel.ProjectileType;
 import gamemodel.Replicator;
 import gamemodel.Road;
+import gamemodel.Stargate;
 import gamemodel.ZPM;
 import gamemodel.events.IModelEventListener;
 import gamemodel.events.ModelEventSource;
@@ -81,9 +82,14 @@ public class Controller implements IModelEventListener {
 	}
 
 	/*
-	 * Disposes all the controller's resources
+	 * Cleans up the resources after a game
 	 */
 	public void gameOver() {
+		// Clean up the model layer
+		ModelEventSource.clear();
+		Stargate.clearStargates();
+
+		//
 		isReplicatorMoving = false;
 		players.clear();
 		replicator = null;

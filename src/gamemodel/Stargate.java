@@ -9,7 +9,7 @@ public class Stargate {
 	/*
 	 * A HashMap to store the stargates indexed by their types
 	 */
-	private static HashMap<ProjectileType, Stargate> stargates = new HashMap<ProjectileType, Stargate>(2);
+	private static HashMap<ProjectileType, Stargate> stargates = new HashMap<ProjectileType, Stargate>(4);
 
 	private MapElement position;
 	private ProjectileType type;
@@ -67,6 +67,13 @@ public class Stargate {
 		}
 
 		return null;
+	}
+
+	/*
+	 * Clears the list of the open Stargates
+	 */
+	public static void clearStargates() {
+		stargates.clear();
 	}
 
 	@Override
