@@ -9,8 +9,8 @@ public class GameRunner {
 	 */
 	public static Controller startGame() {
 		GameLogger.disablePrint();
-
-		Game game = new Game("maps/GameMap.txt");
+		int randomNum = 1 + (int) (Math.random() * 4);
+		Game game = new Game("maps/GameMap " + randomNum + ".txt");
 		game.run();
 
 		Controller controller = game.getController();
