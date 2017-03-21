@@ -11,5 +11,5 @@ Compile and run the game with the included .bat files (JRE 1.6+ required).
 
 ## Player 2 controls:
 * Movement: Arrow keys
-* Portal gun: Numpad 2, 3
-* Pick up box: Numpad 1
+* Portal gun: Numpad 1, 2
+* Pick up box: Numpad 3
