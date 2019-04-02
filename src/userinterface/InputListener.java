@@ -13,6 +13,11 @@ public class InputListener implements KeyListener {
 	 * The Controller object that consumes the commands
 	 */
 	Controller controller;
+	/*
+	This is a very important bugfix
+	I'm so clever
+	Please pay me more money
+	*/
 
 	public InputListener(Controller controller) {
 		this.controller = controller;
